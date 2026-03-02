@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --pastel-pink: #f5d0dc;
+  --pastel-pink-strong: #f0b8c8;
+  --pastel-green: #c8e6c9;
+  --pastel-green-strong: #a5d6a7;
+  --bg-cream: #fefcfb;
+  --text-dark: #1c1917;
+  --text-body: #3d3935;
+  --text-muted: #534d48;
+  --accent-green: #3d7c5a;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --section-padding: clamp(4rem, 10vw, 7rem);
+}
+
+body {
+  @apply antialiased bg-[var(--bg-cream)];
+  color: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: rgba(61, 124, 90, 0.2);
+}
+
+/* Gradient mesh for hero */
+.gradient-mesh {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(245, 208, 220, 0.45) 0px, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 85% 60%, rgba(200, 230, 201, 0.45) 0px, transparent 50%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(252, 228, 236, 0.2) 0px, transparent 70%);
+}
+
+/* Hero image frame: background layout fitted to the image (same gradient style, rounded) */
+.hero-image-bg {
+  background-image:
+    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(252, 228, 236, 0.5) 0px, transparent 60%),
+    radial-gradient(ellipse 80% 80% at 30% 40%, rgba(245, 208, 220, 0.4) 0px, transparent 55%),
+    radial-gradient(ellipse 80% 80% at 70% 60%, rgba(200, 230, 201, 0.4) 0px, transparent 55%);
+  background-color: rgba(254, 252, 251, 0.6);
+}
+
+/* Section container for consistent layout */
+.section-container {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Card hover: lift + shadow + slight scale */
+.card-hover {
+  @apply transition-all duration-300;
+  transition-timing-function: var(--ease-out-expo);
+}
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 40px -12px rgba(45, 42, 38, 0.08), 0 0 0 1px rgba(200, 230, 201, 0.3);
+}
+
+/* Button press */
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* Primary button: shine + hover lift */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -8px rgba(45, 42, 38, 0.12);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.55s ease;
+}
+.btn-primary:hover::after {
+  left: 100%;
+}
+
+/* Secondary button hover */
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s var(--ease-out-expo);
+}
+
+/* Image frame for consistent alignment */
+.img-frame {
+  @apply relative overflow-hidden rounded-3xl;
+  box-shadow: 0 24px 48px -16px rgba(45, 42, 38, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Focus ring for accessibility */
+.focus-ring {
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-pastel-green-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-cream)];
+}
+
+/* White circle image container with professional shadow + hover */
+.img-circle {
+  @apply rounded-full bg-white overflow-hidden;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.06),
+    0 10px 20px -5px rgba(0, 0, 0, 0.08),
+    0 20px 40px -12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+}
+.img-circle:hover {
+  transform: scale(1.03) translateY(-4px);
+  box-shadow:
+    0 12px 24px -4px rgba(0, 0, 0, 0.08),
+    0 24px 48px -8px rgba(0, 0, 0, 0.12),
+    0 32px 64px -16px rgba(0, 0, 0, 0.14);
+}
+
+/* White rounded image container (for non-circle images) */
+.img-card {
+  @apply rounded-2xl bg-white overflow-hidden;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.06),
+    0 10px 20px -5px rgba(0, 0, 0, 0.08),
+    0 20px 40px -12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+}
+.img-card:hover {
+  transform: scale(1.02) translateY(-4px);
+  box-shadow:
+    0 12px 24px -4px rgba(0, 0, 0, 0.08),
+    0 24px 48px -8px rgba(0, 0, 0, 0.12),
+    0 32px 64px -16px rgba(0, 0, 0, 0.14);
+}
