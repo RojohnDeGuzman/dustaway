@@ -18,7 +18,7 @@ function getMonthGrid(year: number, month: number, today: Date) {
   const daysInMonth = last.getDate()
   today.setHours(0, 0, 0, 0)
 
-  const cells: { type: 'empty' } | { type: 'day'; date: string; day: number; isPast: boolean }[] = []
+  const cells: ({ type: 'empty' } | { type: 'day'; date: string; day: number; isPast: boolean })[] = []
   for (let i = 0; i < startPad; i++) cells.push({ type: 'empty' })
   for (let d = 1; d <= daysInMonth; d++) {
     const dDate = new Date(year, month, d)
