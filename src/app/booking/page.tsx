@@ -10,7 +10,6 @@ const STORAGE_BOOKINGS = 'dustaway_bookings'
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-/** Build one month of calendar cells (with leading empty cells). */
 function getMonthGrid(year: number, month: number, today: Date) {
   const first = new Date(year, month, 1)
   const last = new Date(year, month + 1, 0)
@@ -221,7 +220,6 @@ export default function BookingPage() {
                 Date & time
               </h2>
 
-              {/* Date: single-month calendar with prev/next */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-3">
                   <p className="text-sm font-medium text-[var(--text-body)]">Date</p>
@@ -288,7 +286,6 @@ export default function BookingPage() {
                 )}
               </div>
 
-              {/* Time: standard dropdown */}
               <div>
                 <label htmlFor="booking-time" className="block text-sm font-medium text-[var(--text-body)] mb-2">
                   Time

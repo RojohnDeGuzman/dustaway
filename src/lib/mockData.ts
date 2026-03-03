@@ -26,8 +26,8 @@ export const SERVICES: Service[] = [
 
 export const TIME_SLOTS: TimeSlot[] = (() => {
   const slots: TimeSlot[] = []
-  const start = 8 * 2 // 8 AM in half-hours
-  const end = 18 * 2   // 6 PM in half-hours
+  const start = 8 * 2
+  const end = 18 * 2
   for (let h = start; h <= end; h++) {
     const hours = Math.floor(h / 2)
     const mins = (h % 2) * 30

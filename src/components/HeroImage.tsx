@@ -14,7 +14,6 @@ export function HeroImage() {
       transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-full max-w-[480px] mx-auto lg:mx-0 lg:max-w-[580px] xl:max-w-[640px] aspect-square flex items-center justify-center"
     >
-      {/* Dashed ring - same size and radius as container */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
@@ -22,12 +21,10 @@ export function HeroImage() {
         aria-hidden
       />
 
-      {/* Main container: gradient bg, same rounded corners - aligns with ring */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center rounded-[2rem] overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-float-slow hero-image-bg"
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        {/* Inner white area - aligned with container, same center */}
         <div className="absolute inset-6 rounded-[1.5rem] bg-white/90 backdrop-blur-sm flex items-center justify-center">
           {!heroError ? (
             <Image

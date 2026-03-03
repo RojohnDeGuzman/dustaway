@@ -74,7 +74,6 @@ export default function Header() {
           </motion.div>
         </nav>
 
-        {/* Mobile: hamburger */}
         <div className="flex sm:hidden items-center">
           <button
             type="button"
@@ -102,7 +101,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu overlay + panel */}
       <AnimatePresence>
         {menuOpen && (
           <>

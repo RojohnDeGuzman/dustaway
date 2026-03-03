@@ -48,10 +48,8 @@ const faqs = [
 export default function Home() {
   return (
     <>
-      {/* Hero — MCSC-style: headline + trusted line + CTAs */}
       <section className="relative min-h-[85vh] sm:min-h-[90vh] lg:min-h-[92vh] flex flex-col lg:flex-row items-center justify-center overflow-hidden">
         <div className="absolute inset-0 gradient-mesh" />
-        {/* Blurs positioned to frame the image area on the right */}
         <div className="absolute top-1/2 right-0 w-[28rem] h-[28rem] -translate-y-1/2 rounded-full bg-pastel-pink-soft/40 blur-3xl animate-float" />
         <div className="absolute bottom-1/3 left-0 w-80 h-80 rounded-full bg-pastel-green-soft/45 blur-3xl animate-float-slow" />
         <div className="absolute top-1/2 right-1/4 w-64 h-64 rounded-full bg-pastel-pink-lighter/35 blur-3xl animate-float-delay -translate-y-1/2" />
@@ -130,7 +128,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials strip — MCSC-style top testimonials */}
       <section className="py-12 bg-pastel-pink-lighter/30 border-y border-pastel-pink-200/40">
         <div className="section-container">
           <AnimateIn className="text-center mb-10">
@@ -155,7 +152,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Professional Cleaning Services — MCSC-style grid with Read more */}
       <section id="services" className="py-[var(--section-padding)] bg-pastel-green-lighter/25">
         <div className="section-container">
           <AnimateIn className="text-center max-w-2xl mx-auto">
@@ -199,7 +195,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Dustaway? — MCSC-style benefit cards */}
       <section className="py-[var(--section-padding)] bg-white">
         <div className="section-container">
           <AnimateIn className="text-center max-w-2xl mx-auto">
@@ -229,7 +224,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats — MCSC-style numbers */}
       <section className="py-14 bg-pastel-pink-lighter/40 border-y border-pastel-pink-200/40">
         <div className="section-container">
           <motion.div
@@ -248,7 +242,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About + image + CTA */}
       <section id="about" className="py-[var(--section-padding)]">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -276,7 +269,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA — Your roadmap to a cleaner home */}
       <section className="py-16 bg-pastel-green-lighter/50 border-t border-pastel-green-200/50">
         <div className="section-container text-center">
           <AnimateIn>
@@ -296,7 +288,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ — MCSC-style */}
       <section id="faq" className="py-[var(--section-padding)] bg-white">
         <div className="section-container max-w-3xl mx-auto">
           <AnimateIn className="text-center mb-12">

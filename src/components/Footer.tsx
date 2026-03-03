@@ -32,7 +32,6 @@ export default function Footer() {
     >
       <div className="section-container py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 text-center sm:text-left">
-          {/* Brand */}
           <div>
             <Link href="/" className="font-display text-xl font-semibold text-[var(--text-dark)]">
               Dustaway
@@ -42,7 +41,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="font-display font-semibold text-[var(--text-dark)]">Quick links</h3>
             <ul className="mt-4 space-y-2">
@@ -59,7 +57,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Our Services */}
           <div>
             <h3 className="font-display font-semibold text-[var(--text-dark)]">Our services</h3>
             <ul className="mt-4 space-y-2">
@@ -76,7 +73,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact / Get in touch */}
           <div>
             <h3 className="font-display font-semibold text-[var(--text-dark)]">Get in touch</h3>
             <ul className="mt-4 space-y-3 text-sm text-[var(--text-body)] font-medium">
