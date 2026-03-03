@@ -77,6 +77,7 @@ export default function FloatingSocial() {
           onMouseEnter={hasHover ? setExpandedTrue : undefined}
           onMouseLeave={hasHover ? setExpandedFalse : undefined}
         >
+          {/* Expanded: WhatsApp, Messenger, IG */}
           <AnimatePresence>
             {expanded && (
               <motion.div
@@ -107,6 +108,7 @@ export default function FloatingSocial() {
             )}
           </AnimatePresence>
 
+          {/* Main button: mascot — min 44px touch target; tap toggles menu on touch devices */}
           <motion.button
             type="button"
             onClick={toggleExpanded}
