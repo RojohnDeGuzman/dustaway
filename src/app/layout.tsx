@@ -18,7 +18,7 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  title: 'Dustaway — Modern Cleaning',
+  title: 'Dustaway — Modern Cleaning | Updated assets',
   description: 'Professional cleaning services with a modern touch. Book online, manage your account, and enjoy a spotless space.',
   icons: {
     icon: '/assets/dustaway-mascot.png',
