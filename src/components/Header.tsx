@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
@@ -10,6 +11,7 @@ const navLinks = [
   { href: '/#about', label: 'About' },
   { href: '/#faq', label: 'FAQ' },
   { href: '/booking', label: 'Book' },
+  { href: '/#testimonials', label: 'Testimonials' },
 ]
 
 export default function Header() {
@@ -40,8 +42,15 @@ export default function Header() {
       <div className="section-container h-14 sm:h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="focus-ring font-display text-xl font-semibold text-[var(--text-dark)] tracking-tight rounded-lg py-1 transition-opacity hover:opacity-85"
+          className="focus-ring font-display text-3xl font-semibold text-[var(--text-dark)] tracking-tight rounded-lg py-1 transition-opacity hover:opacity-85 flex items-center gap-2"
         >
+          <Image
+            src="/assets/dustaway-logo.png"
+            alt="Dustaway logo"
+            width={60}
+            height={60}
+            className="object-contain"
+          />
           Dustaway
         </Link>
         <nav className="hidden sm:flex items-center gap-1">

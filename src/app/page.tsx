@@ -1,49 +1,137 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { AnimateIn, StaggerChildren, StaggerItem } from '@/components/AnimateIn'
-import { HeroImage, CleanHomeImage } from '@/components/HeroImage'
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  AnimateIn,
+  StaggerChildren,
+  StaggerItem,
+} from "@/components/AnimateIn";
+import { HeroImage, CleanHomeImage } from "@/components/HeroImage";
 
 const services = [
-  { title: 'Home cleaning', desc: 'Regular or one-off cleans for apartments and houses.', icon: '🏠', href: '/booking' },
-  { title: 'Deep cleaning', desc: 'Thorough top-to-bottom cleans when you need a reset.', icon: '✨', href: '/booking' },
-  { title: 'Office & commercial', desc: 'Keep your workspace spotless and professional.', icon: '💼', href: '/booking' },
-  { title: 'Carpet cleaning', desc: 'Professional carpet and rug cleaning for a fresh home.', icon: '🛋️', href: '/booking' },
-  { title: 'End of tenancy', desc: 'Move-out cleans that meet landlord and agent standards.', icon: '📦', href: '/booking' },
-  { title: 'Disinfection', desc: 'Sanitization and disinfection for a healthier space.', icon: '🧼', href: '/booking' },
-]
+  {
+    title: "Home cleaning",
+    desc: "Every home is unique oasis. Get a custom cleaning experience with a dedicated professional! Choose between a 3-hour or 4-hour service and let us take care of your cleaning needs!",
+    icon: "🏠",
+    href: "/booking",
+  },
+  {
+    title: "Deep cleaning",
+    desc: "Thorough top-to-bottom cleans when you need a reset.",
+    icon: "✨",
+    href: "/booking",
+  },
+  {
+    title: "Office & commercial",
+    desc: "Keep your workspace spotless and professional.",
+    icon: "💼",
+    href: "/booking",
+  },
+  {
+    title: "Carpet cleaning",
+    desc: "Professional carpet and rug cleaning for a fresh home.",
+    icon: "🛋️",
+    href: "/booking",
+  },
+  {
+    title: "End of tenancy",
+    desc: "Move-out cleans that meet landlord and agent standards.",
+    icon: "📦",
+    href: "/booking",
+  },
+  {
+    title: "Disinfection",
+    desc: "Sanitization and disinfection for a healthier space.",
+    icon: "🧼",
+    href: "/booking",
+  },
+];
 
-const trustItems = ['Book in 60 seconds', 'Trusted cleaners', 'Cancel anytime']
+const trustItems = ["Book in 60 seconds", "Trusted cleaners", "Cancel anytime"];
 
 const testimonials = [
-  { quote: 'The team was professional and did a really good job! Highly recommended.', name: 'Sarah M.', rating: 5, date: '2 days ago' },
-  { quote: 'Arranging an appointment is hassle-free. Very satisfied with the results.', name: 'James L.', rating: 5, date: '1 week ago' },
-  { quote: 'Huge improvement to my home. Definitely recommending for the next cleaning.', name: 'Emma K.', rating: 5, date: '1 month ago' },
-]
+  {
+    quote:
+      "The team was professional and did a really good job! Highly recommended.",
+    name: "Sarah M.",
+    rating: 5,
+    date: "2 days ago",
+  },
+  {
+    quote:
+      "Arranging an appointment is hassle-free. Very satisfied with the results.",
+    name: "James L.",
+    rating: 5,
+    date: "1 week ago",
+  },
+  {
+    quote:
+      "Huge improvement to my home. Definitely recommending for the next cleaning.",
+    name: "Emma K.",
+    rating: 5,
+    date: "1 month ago",
+  },
+];
 
 const whyChoose = [
-  { title: 'Excellent results', desc: 'Trained, experienced cleaners who take cleanliness to the next level.', icon: '✓' },
-  { title: 'Satisfaction guaranteed', desc: 'We guarantee you’ll want to call us back for your next session.', icon: '★' },
-  { title: 'Easy booking', desc: 'Book in seconds online. Reschedule or cancel anytime.', icon: '📅' },
-  { title: 'No strings attached', desc: 'Transparent pricing and no obligation. Book when you need us.', icon: '🔓' },
-  { title: 'Eco-friendly options', desc: 'We use organic and environmentally friendly products when you prefer.', icon: '🌿' },
-  { title: 'Professional team', desc: 'Skilled, dedicated cleaners who take pride in their work.', icon: '👋' },
-]
+  {
+    title: "Excellent results",
+    desc: "Trained, experienced cleaners who take cleanliness to the next level.",
+    icon: "✓",
+  },
+  {
+    title: "Satisfaction guaranteed",
+    desc: "We guarantee you’ll want to call us back for your next session.",
+    icon: "★",
+  },
+  {
+    title: "Easy booking",
+    desc: "Book in seconds online. Reschedule or cancel anytime.",
+    icon: "📅",
+  },
+  {
+    title: "No strings attached",
+    desc: "Transparent pricing and no obligation. Book when you need us.",
+    icon: "🔓",
+  },
+  {
+    title: "Eco-friendly options",
+    desc: "We use organic and environmentally friendly products when you prefer.",
+    icon: "🌿",
+  },
+  {
+    title: "Professional team",
+    desc: "Skilled, dedicated cleaners who take pride in their work.",
+    icon: "👋",
+  },
+];
 
 const stats = [
-  { value: '5/5', label: 'Google reviews' },
-  { value: '500+', label: 'Happy customers' },
-  { value: '5+', label: 'Years experience' },
-  { value: '100%', label: 'Satisfaction focus' },
-]
+  { value: "5/5", label: "Google reviews" },
+  { value: "500+", label: "Happy customers" },
+  { value: "5+", label: "Years experience" },
+  { value: "100%", label: "Satisfaction focus" },
+];
 
 const faqs = [
-  { q: 'How does booking work?', a: 'Choose your service, pick a date and time, and enter your contact details. We’ll confirm by email. No account needed.' },
-  { q: 'What’s included in a standard clean?', a: 'Dusting, vacuuming, mopping, bathroom sanitization, kitchen wipe-down, and taking out trash. Deep cleans include inside appliances and detailed work.' },
-  { q: 'Can I cancel or reschedule?', a: 'Yes. Cancel or reschedule from your bookings page up to 24 hours before the appointment at no extra charge.' },
-  { q: 'Do you bring your own supplies?', a: 'Yes. Our teams bring professional-grade products. You can request eco-friendly options in your preferences.' },
-]
+  {
+    q: "How does booking work?",
+    a: "Choose your service, pick a date and time, and enter your contact details. We’ll confirm by email. No account needed.",
+  },
+  {
+    q: "What’s included in a standard clean?",
+    a: "Dusting, vacuuming, mopping, bathroom sanitization, kitchen wipe-down, and taking out trash. Deep cleans include inside appliances and detailed work.",
+  },
+  {
+    q: "Can I cancel or reschedule?",
+    a: "Yes. Cancel or reschedule from your bookings page up to 24 hours before the appointment at no extra charge.",
+  },
+  {
+    q: "Do you bring your own supplies?",
+    a: "Yes. Our teams bring professional-grade products. You can request eco-friendly options in your preferences.",
+  },
+];
 
 export default function Home() {
   return (
@@ -69,19 +157,14 @@ export default function Home() {
             <motion.h1
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.65,
+                delay: 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[3.25rem] font-semibold text-[var(--text-dark)] tracking-tight leading-[1.1]"
             >
-              Clean space.
-              <br />
-              <motion.span
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.45 }}
-                className="text-[var(--accent-green)] font-semibold"
-              >
-                Clear mind.
-              </motion.span>
+              A clean home without the dirty work
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -89,7 +172,8 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className="mt-4 text-lg text-[var(--text-body)] max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium"
             >
-              Your trusted home cleaning service. Book in seconds and manage everything from one place.
+              But who wants to actually do all the cleaning? With Dustaway, you
+              can now kick back, relax and let us take care of the cleaning!
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -130,53 +214,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials strip — MCSC-style top testimonials */}
-      <section className="py-12 bg-pastel-pink-lighter/30 border-y border-pastel-pink-200/40">
-        <div className="section-container">
-          <AnimateIn className="text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">Testimonials</p>
-            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-dark)] mt-2">What our customers say</h2>
-          </AnimateIn>
-          <StaggerChildren className="grid sm:grid-cols-3 gap-6" delay={0.1}>
-            {testimonials.map((t) => (
-              <StaggerItem key={t.name}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="p-6 rounded-2xl bg-white/90 border border-pastel-pink-200/50 shadow-sm h-full flex flex-col text-center"
-                >
-                  <p className="text-[var(--accent-green)] font-semibold">★★★★★ {t.rating}/5</p>
-                  <p className="mt-3 text-[var(--text-body)] font-medium flex-1">&ldquo;{t.quote}&rdquo;</p>
-                  <p className="mt-4 text-sm font-semibold text-[var(--text-dark)]">{t.name}</p>
-                  <p className="text-xs text-[var(--text-muted)]">{t.date}</p>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerChildren>
-        </div>
-      </section>
-
       {/* Our Professional Cleaning Services — MCSC-style grid with Read more */}
-      <section id="services" className="py-[var(--section-padding)] bg-pastel-green-lighter/25">
+      <section
+        id="services"
+        className="py-[var(--section-padding)] bg-pastel-green-lighter/25"
+      >
         <div className="section-container">
           <AnimateIn className="text-center max-w-2xl mx-auto">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">What we offer</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
+              What we offer
+            </p>
             <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--text-dark)]">
               Our professional cleaning services
             </h2>
             <p className="mt-4 text-[var(--text-body)] font-medium">
-              Choose the service that fits your space and schedule.
+              Choose between our general home cleaning and specialized cleaning
+              such as deep cleaning, upholstery cleaning, vinyl cleaning and
+              disinfection services!
             </p>
           </AnimateIn>
-          <StaggerChildren className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" delay={0.1}>
+          <StaggerChildren
+            className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+            delay={0.1}
+          >
             {services.map((s) => (
               <StaggerItem key={s.title}>
                 <motion.div
                   whileHover={{ y: -6 }}
                   className="card-hover p-6 rounded-2xl bg-white/95 border border-pastel-green-200/50 shadow-sm h-full flex flex-col text-center sm:text-left"
                 >
-                  <span className="text-4xl block w-fit mx-auto sm:mx-0" aria-hidden>{s.icon}</span>
-                  <h3 className="mt-4 font-display text-xl font-semibold text-[var(--text-dark)]">{s.title}</h3>
-                  <p className="mt-2 text-[var(--text-body)] text-sm font-medium flex-1">{s.desc}</p>
+                  <span
+                    className="text-4xl block w-fit mx-auto sm:mx-0"
+                    aria-hidden
+                  >
+                    {s.icon}
+                  </span>
+                  <h3 className="mt-4 font-display text-xl font-semibold text-[var(--text-dark)]">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-[var(--text-body)] text-sm font-medium flex-1">
+                    {s.desc}
+                  </p>
                   <Link
                     href={s.href}
                     className="mt-4 inline-flex items-center gap-1 text-[var(--accent-green)] font-semibold hover:gap-2 transition-all focus-ring justify-center sm:justify-start"
@@ -203,12 +281,17 @@ export default function Home() {
       <section className="py-[var(--section-padding)] bg-white">
         <div className="section-container">
           <AnimateIn className="text-center max-w-2xl mx-auto">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">Why choose us</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
+              Why choose us
+            </p>
             <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--text-dark)]">
               Why choose Dustaway?
             </h2>
           </AnimateIn>
-          <StaggerChildren className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" delay={0.08}>
+          <StaggerChildren
+            className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            delay={0.08}
+          >
             {whyChoose.map((w) => (
               <StaggerItem key={w.title}>
                 <motion.div
@@ -219,9 +302,51 @@ export default function Home() {
                     {w.icon}
                   </span>
                   <div className="min-w-0">
-                    <h3 className="font-display font-semibold text-[var(--text-dark)]">{w.title}</h3>
-                    <p className="mt-1 text-sm text-[var(--text-body)] font-medium">{w.desc}</p>
+                    <h3 className="font-display font-semibold text-[var(--text-dark)]">
+                      {w.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-[var(--text-body)] font-medium">
+                      {w.desc}
+                    </p>
                   </div>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
+
+      {/* Testimonials strip — MCSC-style top testimonials */}
+      <section
+        id="testimonials"
+        className="py-12 bg-pastel-pink-lighter/40 border-y border-pastel-pink-200/40"
+      >
+        <div className="section-container">
+          <AnimateIn className="text-center mb-10">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+              Testimonials
+            </p>
+            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-dark)] mt-2">
+              What our customers say
+            </h2>
+          </AnimateIn>
+          <StaggerChildren className="grid sm:grid-cols-3 gap-6" delay={0.1}>
+            {testimonials.map((t) => (
+              <StaggerItem key={t.name}>
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="p-6 rounded-2xl bg-white/90 border border-pastel-pink-200/50 shadow-sm h-full flex flex-col text-center"
+                >
+                  <p className="text-[var(--accent-green)] font-semibold">
+                    ★★★★★ {t.rating}/5
+                  </p>
+                  <p className="mt-3 text-[var(--text-body)] font-medium flex-1">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <p className="mt-4 text-sm font-semibold text-[var(--text-dark)]">
+                    {t.name}
+                  </p>
+                  <p className="text-xs text-[var(--text-muted)]">{t.date}</p>
                 </motion.div>
               </StaggerItem>
             ))}
@@ -240,8 +365,12 @@ export default function Home() {
           >
             {stats.map((s) => (
               <div key={s.label}>
-                <p className="font-display text-3xl sm:text-4xl font-semibold text-[var(--accent-green)]">{s.value}</p>
-                <p className="mt-1 text-[var(--text-body)] font-medium">{s.label}</p>
+                <p className="font-display text-3xl sm:text-4xl font-semibold text-[var(--accent-green)]">
+                  {s.value}
+                </p>
+                <p className="mt-1 text-[var(--text-body)] font-medium">
+                  {s.label}
+                </p>
               </div>
             ))}
           </motion.div>
@@ -257,12 +386,18 @@ export default function Home() {
             </div>
             <div className="order-1 lg:order-2 flex flex-col justify-center text-center lg:text-left">
               <AnimateIn direction="right" amount={0.2}>
-                <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">About us</p>
+                <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
+                  About us
+                </p>
                 <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--text-dark)]">
-                  A professional cleaning company that delivers the quality you deserve
+                  A professional cleaning company that delivers the quality you
+                  deserve
                 </h2>
                 <p className="mt-6 text-lg text-[var(--text-body)] leading-relaxed font-medium">
-                  Dustaway was created to offer reliable, affordable cleaning for busy homes and offices. We combine easy online booking with vetted cleaners and clear pricing. No account needed—just book and we’ll confirm by email.
+                  Dustaway was created to offer reliable, affordable cleaning
+                  for busy homes and offices. We combine easy online booking
+                  with vetted cleaners and clear pricing. No account needed—just
+                  book and we’ll confirm by email.
                 </p>
                 <Link
                   href="/dashboard"
@@ -284,7 +419,8 @@ export default function Home() {
               Your roadmap to a cleaner home starts here
             </h2>
             <p className="mt-4 text-[var(--text-body)] font-medium max-w-xl mx-auto">
-              Book a cleaning in a few clicks. We’ll confirm by email and you can manage your bookings anytime.
+              Book a cleaning in a few clicks. We’ll confirm by email and you
+              can manage your bookings anytime.
             </p>
             <Link
               href="/booking"
@@ -300,8 +436,12 @@ export default function Home() {
       <section id="faq" className="py-[var(--section-padding)] bg-white">
         <div className="section-container max-w-3xl mx-auto">
           <AnimateIn className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">FAQ</p>
-            <h2 className="font-display text-3xl font-semibold text-[var(--text-dark)] mt-2">Frequently asked questions</h2>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+              FAQ
+            </p>
+            <h2 className="font-display text-3xl font-semibold text-[var(--text-dark)] mt-2">
+              Frequently asked questions
+            </h2>
           </AnimateIn>
           <div className="space-y-4">
             {faqs.map((f, i) => (
@@ -309,9 +449,13 @@ export default function Home() {
                 <details className="group p-5 rounded-xl bg-pastel-green-lighter/30 border border-pastel-green-200/50">
                   <summary className="font-display font-semibold text-[var(--text-dark)] cursor-pointer list-none flex justify-between items-center">
                     {f.q}
-                    <span className="text-pastel-pink-200 group-open:rotate-180 transition-transform">▼</span>
+                    <span className="text-pastel-pink-200 group-open:rotate-180 transition-transform">
+                      ▼
+                    </span>
                   </summary>
-                  <p className="mt-3 text-[var(--text-body)] font-medium pl-0">{f.a}</p>
+                  <p className="mt-3 text-[var(--text-body)] font-medium pl-0">
+                    {f.a}
+                  </p>
                 </details>
               </AnimateIn>
             ))}
@@ -319,5 +463,5 @@ export default function Home() {
         </div>
       </section>
     </>
-  )
+  );
 }

@@ -31,7 +31,7 @@ export function HeroImage() {
         <div className="absolute inset-6 rounded-[1.5rem] bg-white/90 backdrop-blur-sm flex items-center justify-center">
           {!heroError ? (
             <Image
-              src="/assets/dustaway-hero.png"
+              src="/assets/da-4.jpg"
               alt="Professional cleaning service"
               width={560}
               height={560}
