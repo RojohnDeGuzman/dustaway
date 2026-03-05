@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export function HeroImage() {
-  const [heroError, setHeroError] = useState(false)
+  const [heroError, setHeroError] = useState(false);
 
   return (
     <motion.div
@@ -17,7 +17,7 @@ export function HeroImage() {
       {/* Dashed ring - same size and radius as container */}
       <motion.div
         animate={{ rotate: 360 }}
-        transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
+        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
         className="absolute inset-0 rounded-[2rem] border-2 border-dashed border-pastel-pink-200/50 pointer-events-none"
         aria-hidden
       />
@@ -25,7 +25,7 @@ export function HeroImage() {
       {/* Main container: gradient bg, same rounded corners - aligns with ring */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center rounded-[2rem] overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-float-slow hero-image-bg"
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
         {/* Inner white area - aligned with container, same center */}
         <div className="absolute inset-6 rounded-[1.5rem] bg-white/90 backdrop-blur-sm flex items-center justify-center">
@@ -58,11 +58,11 @@ export function HeroImage() {
         </div>
       </motion.div>
     </motion.div>
-  )
+  );
 }
 
 export function CleanHomeImage() {
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   return (
     <motion.div
@@ -70,33 +70,35 @@ export function CleanHomeImage() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full max-w-[380px] mx-auto lg:mx-0 aspect-[4/3] flex items-center justify-center"
+      className="w-full max-w-[540px] lg:max-w-[620px] xl:max-w-[680px] mx-auto lg:mx-0 aspect-[4/3] flex items-center justify-center"
     >
       {error ? (
         <div className="img-card w-full h-full flex items-center justify-center border-2 border-dashed border-pastel-green-200/60">
-          <span className="text-5xl opacity-60" aria-hidden>✨</span>
+          <span className="text-5xl opacity-60" aria-hidden>
+            ✨
+          </span>
         </div>
       ) : (
         <motion.div className="img-card w-full h-full relative overflow-hidden">
           <Image
-            src="/assets/dustaway-clean-home.png"
+            src="/assets/da-2.png"
             alt="Clean home interior"
             fill
-            sizes="(max-width: 1024px) 380px, 420px"
-            className="object-cover object-center"
+            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 72vw, (max-width: 1280px) 48vw, 680px"
+            className="object-cover object-[50%_25%]"
             unoptimized
             onError={() => setError(true)}
           />
         </motion.div>
       )}
     </motion.div>
-  )
+  );
 }
 
-export function MascotImage({ className = '' }: { className?: string }) {
-  const [error, setError] = useState(false)
+export function MascotImage({ className = "" }: { className?: string }) {
+  const [error, setError] = useState(false);
 
-  if (error) return null
+  if (error) return null;
 
   return (
     <motion.div
@@ -116,5 +118,5 @@ export function MascotImage({ className = '' }: { className?: string }) {
         onError={() => setError(true)}
       />
     </motion.div>
-  )
+  );
 }

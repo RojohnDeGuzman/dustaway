@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   AnimateIn,
@@ -13,41 +14,46 @@ const services = [
   {
     title: "Home cleaning",
     desc: "Every home is unique oasis. Get a custom cleaning experience with a dedicated professional! Choose between a 3-hour or 4-hour service and let us take care of your cleaning needs!",
-    icon: "🏠",
+    image: "/assets/da-12.jpg",
+    href: "/booking",
+  },
+  {
+    title: "Evening cleaning",
+    desc: "Ditch the cleaning after work! This 3-hour evening service lets you come home to a spotless haven, perfect for unwinding and recharging.",
+    image: "/assets/da-11.jpg",
+    href: "/booking",
+  },
+  {
+    title: "Spring Cleaning",
+    desc: "Give your home a renewal with an extra set of hands! Our 3 or 4-hour spring cleaning service includes an addition professional crew member, covering more within the same time for a comprehensive clean, leaving your home sparkling from top to bottom.",
+    image: "/assets/da-5.jpg",
     href: "/booking",
   },
   {
     title: "Deep cleaning",
-    desc: "Thorough top-to-bottom cleans when you need a reset.",
-    icon: "✨",
+    desc: "Our post-renovation / tenancy specialist cleaning service is perfect for those looking for a deep clean for a place that needs to be moved into or returned to its original move-in condition.",
+    image: "/assets/da-6.png",
     href: "/booking",
   },
   {
-    title: "Office & commercial",
-    desc: "Keep your workspace spotless and professional.",
-    icon: "💼",
+    title: "Upholstery cleaning",
+    desc: "Our upholstery deep clean service can clean the toughest stains but gentle enough not to damage your furniture, giving everyone a clean, safe and sanitized environment.",
+    image: "/assets/da-7.png",
     href: "/booking",
   },
   {
-    title: "Carpet cleaning",
-    desc: "Professional carpet and rug cleaning for a fresh home.",
-    icon: "🛋️",
-    href: "/booking",
-  },
-  {
-    title: "End of tenancy",
-    desc: "Move-out cleans that meet landlord and agent standards.",
-    icon: "📦",
+    title: "Vinyl Cleaning",
+    desc: "Breathe new life into your vinyl floors! Our cleaning service tackles dirt, grime, and minor scuffs, restoring a brilliant shine. We use gentle methods safe for all vinyl types. Enjoy long-lasting beauty and get expert maintenance tips - all in one service.",
+    image: "/assets/da-8.jpg",
     href: "/booking",
   },
   {
     title: "Disinfection",
-    desc: "Sanitization and disinfection for a healthier space.",
-    icon: "🧼",
+    desc: "Our NEA-certified disinfection service is designed to protect you and your family members from harmful viruses and bacteria. Our specialized disinfectant and equipment are 100% safe for children and pets.",
+    image: "/assets/da-9.jpg",
     href: "/booking",
   },
 ];
-
 const trustItems = ["Book in 60 seconds", "Trusted cleaners", "Cancel anytime"];
 
 const testimonials = [
@@ -243,12 +249,15 @@ export default function Home() {
                   whileHover={{ y: -6 }}
                   className="card-hover p-6 rounded-2xl bg-white/95 border border-pastel-green-200/50 shadow-sm h-full flex flex-col text-center sm:text-left"
                 >
-                  <span
-                    className="text-4xl block w-fit mx-auto sm:mx-0"
-                    aria-hidden
-                  >
-                    {s.icon}
-                  </span>
+                  <div className="relative w-full max-w-[520px] aspect-square overflow-hidden rounded-xl mx-auto sm:mx-0">
+                    <Image
+                      src={s.image}
+                      alt={`${s.title} image`}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
                   <h3 className="mt-4 font-display text-xl font-semibold text-[var(--text-dark)]">
                     {s.title}
                   </h3>
@@ -381,8 +390,21 @@ export default function Home() {
       <section id="about" className="py-[var(--section-padding)]">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div className="order-2 lg:order-1 flex justify-center lg:justify-end">
+            <div className="order-2 lg:order-1 flex flex-col items-center lg:items-end gap-8">
               <CleanHomeImage />
+              <div className="w-full max-w-[680px]">
+                <p className="text-2xl font-display font-semibold text-[var(--text-dark)] text-center lg:text-left">
+                  Accreditations
+                </p>
+                <div className="mt-5 relative w-full aspect-[16/4]">
+                  <Image
+                    src="/assets/dustaway_partners_strip.svg"
+                    alt="Dustaway accreditations strip"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
             </div>
             <div className="order-1 lg:order-2 flex flex-col justify-center text-center lg:text-left">
               <AnimateIn direction="right" amount={0.2}>
@@ -390,14 +412,22 @@ export default function Home() {
                   About us
                 </p>
                 <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--text-dark)]">
-                  A professional cleaning company that delivers the quality you
-                  deserve
+                  Your trusted local brand for all your cleaning needs!
                 </h2>
                 <p className="mt-6 text-lg text-[var(--text-body)] leading-relaxed font-medium">
-                  Dustaway was created to offer reliable, affordable cleaning
-                  for busy homes and offices. We combine easy online booking
-                  with vetted cleaners and clear pricing. No account needed—just
-                  book and we’ll confirm by email.
+                  Since 2019, Dustaway Services has been a trusted, homegrown
+                  brand, committed to creating clean, comfortable homes. Our
+                  team offers a wide range of cleaning services, from efficient
+                  3- to 4-hour general cleaning sessions to comprehensive
+                  deep-cleaning options like post-renovation cleaning, tenancy
+                  cleaning, vinyl floor care, mattress and upholstery cleaning,
+                  and disinfection. Founded by a single working mother inspired
+                  to support other busy parents, Dustaway has grown from a small
+                  team of 3 to over 20 dedicated professionals. Our commitment
+                  to exceptional customer service sets us apart—when you choose
+                  Dustaway Services, you’ll enjoy a hassle-free booking
+                  experience and the satisfaction of a spotless & refreshed home
+                  after our sessions.
                 </p>
                 <Link
                   href="/dashboard"

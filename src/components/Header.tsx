@@ -1,35 +1,35 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/#services', label: 'Services' },
-  { href: '/#about', label: 'About' },
-  { href: '/#faq', label: 'FAQ' },
-  { href: '/booking', label: 'Book' },
-  { href: '/#testimonials', label: 'Testimonials' },
-]
+  { href: "/", label: "Home" },
+  { href: "/#services", label: "Services" },
+  { href: "/#about", label: "About" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/testimonials", label: "Testimonials" },
+  { href: "/booking", label: "Book" },
+];
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (menuOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ''
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = ''
-    }
-  }, [menuOpen])
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   function handleNavClick() {
-    setMenuOpen(false)
+    setMenuOpen(false);
   }
 
   return (
@@ -89,22 +89,22 @@ export default function Header() {
             type="button"
             onClick={() => setMenuOpen((o) => !o)}
             className="focus-ring w-11 h-11 rounded-xl flex flex-col items-center justify-center gap-1.5 bg-pastel-green-lighter/60 hover:bg-pastel-green-200/50 transition-colors"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
             <span
               className={`block w-5 h-0.5 rounded-full bg-[var(--text-dark)] transition-all duration-200 ${
-                menuOpen ? 'rotate-45 translate-y-2' : ''
+                menuOpen ? "rotate-45 translate-y-2" : ""
               }`}
             />
             <span
               className={`block w-5 h-0.5 rounded-full bg-[var(--text-dark)] transition-all duration-200 ${
-                menuOpen ? 'opacity-0 scale-x-0' : ''
+                menuOpen ? "opacity-0 scale-x-0" : ""
               }`}
             />
             <span
               className={`block w-5 h-0.5 rounded-full bg-[var(--text-dark)] transition-all duration-200 ${
-                menuOpen ? '-rotate-45 -translate-y-2' : ''
+                menuOpen ? "-rotate-45 -translate-y-2" : ""
               }`}
             />
           </button>
@@ -155,5 +155,5 @@ export default function Header() {
         )}
       </AnimatePresence>
     </motion.header>
-  )
+  );
 }
