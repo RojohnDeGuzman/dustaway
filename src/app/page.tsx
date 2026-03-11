@@ -12,7 +12,7 @@ import { HeroImage, CleanHomeImage } from "@/components/HeroImage";
 
 const services = [
   {
-    title: "Home cleaning",
+    title: "3hr / 4hr Cleaning",
     desc: "Every home is unique oasis. Get a custom cleaning experience with a dedicated professional! Choose between a 3-hour or 4-hour service and let us take care of your cleaning needs!",
     image: "/assets/da-12.jpg",
     href: "/booking",
@@ -122,11 +122,39 @@ const stats = [
 
 const faqs = [
   {
-    q: "How does booking work?",
-    a: "Choose your service, pick a date and time, and enter your contact details. We’ll confirm by email. No account needed.",
+    q: "General Cleaning",
+    a: `My house is X size, how many hours should I book?
+We endeavor to clean as much as possible during the allocated time. We recommend a 3 hours session for a 2-3 room apartment and 4 hours for a 4-5 room apartment. However, you may choose to book whichever suits you best.
+
+What are the payment options?
+Paynow is our preferred payment option. We also accept all major debit and credit cards.
+
+Why do we need to pay first?
+We understand that pre-payment might seem inconvenient. As a small, privately-owned business, it helps us ensure we can continue providing high-quality services to all our customers. Your satisfaction is our priority. If you're unhappy with any aspect of our service, please let us know. Your feedback is invaluable in helping us improve.
+
+Can I get a trial of your services?
+We offer a discounted rate for first time users of our service. Please enquire via whatsapp to learn more.
+
+Can I cancel or reschedule my sessions?
+Yes we allow cancellation and rescheduling of sessions. A $20 surcharge will be applied for rescheduling done less than 24 hours before the session.
+
+Can I get a refund if I have to cancel the session?
+A partial refund of 50% will be given if you are cancelling more than 72 hours before the session. We do not offer refund for cancellations less than 72 hours before the session.
+
+Do residents need to be home during the general cleaning service?
+Yes, you are highly encouraged to be present during the cleaning process. We are not liable for any missing items.
+
+Are pets allowed to be on premise?
+Yes, please do inform us prior to your session.
+
+Will the helpers have cleaning equipment?
+For our 3hr and 4hr home cleaning and spring cleaning services, cleaning supplies & equipment are to be provided by you. If you prefer a comprehensive service with professional cleaning equipment provided, please schedule our deep cleaning service.
+
+Can you clean ceiling fans and chandeliers?
+We can clean ceiling fans if an adequate ladder is provided and if the fan does not exceed the height limit of our safety regulations. We do not clean chandeliers.`,
   },
   {
-    q: "What’s included in a standard clean?",
+    q: "What's included in a standard clean?",
     a: "Dusting, vacuuming, mopping, bathroom sanitization, kitchen wipe-down, and taking out trash. Deep cleans include inside appliances and detailed work.",
   },
   {
@@ -363,7 +391,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats — MCSC-style numbers */}
+      {/* Stats — MCSC-style numbers
       <section className="py-14 bg-pastel-pink-lighter/40 border-y border-pastel-pink-200/40">
         <div className="section-container">
           <motion.div
@@ -384,7 +412,7 @@ export default function Home() {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* About + image + CTA */}
       <section id="about" className="py-[var(--section-padding)]">
@@ -392,19 +420,21 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div className="order-2 lg:order-1 flex flex-col items-center lg:items-end gap-8">
               <CleanHomeImage />
-              <div className="w-full max-w-[680px]">
-                <p className="text-2xl font-display font-semibold text-[var(--text-dark)] text-center lg:text-left">
-                  Accreditations
-                </p>
-                <div className="mt-5 relative w-full aspect-[16/4]">
-                  <Image
-                    src="/assets/dustaway_partners_strip.svg"
-                    alt="Dustaway accreditations strip"
-                    fill
-                    className="object-contain"
-                  />
+              <AnimateIn className="w-full">
+                <div className="w-full max-w-[680px]">
+                  <p className="text-2xl font-display font-semibold text-[var(--text-dark)] text-center lg:text-left">
+                    Accreditations
+                  </p>
+                  <div className="mt-5 relative w-full aspect-[16/4]">
+                    <Image
+                      src="/assets/dustaway_partners_strip.svg"
+                      alt="Dustaway accreditations strip"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
-              </div>
+              </AnimateIn>
             </div>
             <div className="order-1 lg:order-2 flex flex-col justify-center text-center lg:text-left">
               <AnimateIn direction="right" amount={0.2}>
@@ -441,6 +471,21 @@ export default function Home() {
         </div>
       </section>
 
+      <AnimateIn>
+        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--text-dark)] text-center mb-10">
+          Featured on
+        </h1>
+        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+          <Image
+            src="/assets/logo_no_background.png"
+            alt="Dustaway logo"
+            width={1200}
+            height={400}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      </AnimateIn>
+
       {/* CTA — Your roadmap to a cleaner home */}
       <section className="py-16 bg-pastel-green-lighter/50 border-t border-pastel-green-200/50">
         <div className="section-container text-center">
@@ -473,6 +518,7 @@ export default function Home() {
               Frequently asked questions
             </h2>
           </AnimateIn>
+
           <div className="space-y-4">
             {faqs.map((f, i) => (
               <AnimateIn key={f.q} delay={i * 0.05}>
@@ -483,7 +529,7 @@ export default function Home() {
                       ▼
                     </span>
                   </summary>
-                  <p className="mt-3 text-[var(--text-body)] font-medium pl-0">
+                  <p className="mt-3 text-[var(--text-body)] font-medium whitespace-pre-line">
                     {f.a}
                   </p>
                 </details>

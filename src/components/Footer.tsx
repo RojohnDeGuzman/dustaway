@@ -1,25 +1,25 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const quickLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/#services', label: 'Services' },
-  { href: '/#about', label: 'About' },
-  { href: '/#faq', label: 'FAQ' },
-  { href: '/booking', label: 'Book' },
-  { href: '/dashboard', label: 'My bookings' },
-]
+  { href: "/", label: "Home" },
+  { href: "/#services", label: "Services" },
+  { href: "/#about", label: "About" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/booking", label: "Book" },
+  { href: "/dashboard", label: "My bookings" },
+];
 
 const ourServices = [
-  { href: '/booking', label: 'Home cleaning' },
-  { href: '/booking', label: 'Deep cleaning' },
-  { href: '/booking', label: 'Office & commercial' },
-  { href: '/booking', label: 'Carpet cleaning' },
-  { href: '/booking', label: 'End of tenancy' },
-  { href: '/booking', label: 'Disinfection' },
-]
+  { href: "/booking", label: "3hr / 4hr Cleaning" },
+  { href: "/booking", label: "Spring Cleaning" },
+  { href: "/booking", label: "Deep Cleaning" },
+  { href: "/booking", label: "Upholstery Cleaning" },
+  { href: "/booking", label: "Vinyl Cleaning" },
+  { href: "/booking", label: "Disinfection" },
+];
 
 export default function Footer() {
   return (
@@ -34,17 +34,24 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 text-center sm:text-left">
           {/* Brand */}
           <div>
-            <Link href="/" className="font-display text-xl font-semibold text-[var(--text-dark)]">
+            <Link
+              href="/"
+              className="font-display text-xl font-semibold text-[var(--text-dark)]"
+            >
               Dustaway
             </Link>
             <p className="mt-3 text-sm text-[var(--text-body)] font-medium">
-              Your trusted home cleaning service. Book in seconds, manage in one place.
+              Novelty Bizcentre , <br />
+              18 Howard Road #03-07 <br />
+              Singapore 369585
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display font-semibold text-[var(--text-dark)]">Quick links</h3>
+            <h3 className="font-display font-semibold text-[var(--text-dark)]">
+              Quick links
+            </h3>
             <ul className="mt-4 space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -60,7 +67,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display font-semibold text-[var(--text-dark)]">Our services</h3>
+            <h3 className="font-display font-semibold text-[var(--text-dark)]">
+              Our services
+            </h3>
             <ul className="mt-4 space-y-2">
               {ourServices.map((link) => (
                 <li key={link.label}>
@@ -77,22 +86,32 @@ export default function Footer() {
 
           {/* Contact / Get in touch */}
           <div>
-            <h3 className="font-display font-semibold text-[var(--text-dark)]">Get in touch</h3>
+            <h3 className="font-display font-semibold text-[var(--text-dark)]">
+              Get in touch
+            </h3>
             <ul className="mt-4 space-y-3 text-sm text-[var(--text-body)] font-medium">
               <li>
-                <Link href="/booking" className="focus-ring text-[var(--accent-green)] hover:underline font-semibold">
+                <Link
+                  href="/booking"
+                  className="focus-ring text-[var(--accent-green)] hover:underline font-semibold"
+                >
                   Book a cleaning →
                 </Link>
               </li>
-              <li>Email: hello@dustaway.com</li>
-              <li>Mon–Fri, 9am–6pm</li>
+              <li>
+                Email: cs@dustaway.sg <br />
+                marketing@dustaway.sg
+              </li>
+              <li>Contact Number: +65 8057 9500</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-pastel-green-200/50 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
           <p className="text-sm text-[var(--text-body)] font-medium">
-            © {new Date().getFullYear()} Dustaway. All rights reserved.
+            DustAwaySvcs © {new Date().getFullYear()} All rights reserved. Owned
+            by Dustaway Services Pte. Ltd. |{" "}
+            <Link href="/terms">Terms & Conditions</Link>
           </p>
           <p className="text-sm text-[var(--text-muted)] font-medium">
             Modern cleaning, made simple.
@@ -100,5 +119,5 @@ export default function Footer() {
         </div>
       </div>
     </motion.footer>
-  )
+  );
 }
