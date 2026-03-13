@@ -120,50 +120,168 @@ const stats = [
   { value: "100%", label: "Satisfaction focus" },
 ];
 
+
 const faqs = [
   {
-    q: "General Cleaning",
-    a: `My house is X size, how many hours should I book?
-We endeavor to clean as much as possible during the allocated time. We recommend a 3 hours session for a 2-3 room apartment and 4 hours for a 4-5 room apartment. However, you may choose to book whichever suits you best.
-
-What are the payment options?
-Paynow is our preferred payment option. We also accept all major debit and credit cards.
-
-Why do we need to pay first?
-We understand that pre-payment might seem inconvenient. As a small, privately-owned business, it helps us ensure we can continue providing high-quality services to all our customers. Your satisfaction is our priority. If you're unhappy with any aspect of our service, please let us know. Your feedback is invaluable in helping us improve.
-
-Can I get a trial of your services?
-We offer a discounted rate for first time users of our service. Please enquire via whatsapp to learn more.
-
-Can I cancel or reschedule my sessions?
-Yes we allow cancellation and rescheduling of sessions. A $20 surcharge will be applied for rescheduling done less than 24 hours before the session.
-
-Can I get a refund if I have to cancel the session?
-A partial refund of 50% will be given if you are cancelling more than 72 hours before the session. We do not offer refund for cancellations less than 72 hours before the session.
-
-Do residents need to be home during the general cleaning service?
-Yes, you are highly encouraged to be present during the cleaning process. We are not liable for any missing items.
-
-Are pets allowed to be on premise?
-Yes, please do inform us prior to your session.
-
-Will the helpers have cleaning equipment?
-For our 3hr and 4hr home cleaning and spring cleaning services, cleaning supplies & equipment are to be provided by you. If you prefer a comprehensive service with professional cleaning equipment provided, please schedule our deep cleaning service.
-
-Can you clean ceiling fans and chandeliers?
-We can clean ceiling fans if an adequate ladder is provided and if the fan does not exceed the height limit of our safety regulations. We do not clean chandeliers.`,
+    section: "General Cleaning",
+    questions: [
+      {
+        q: "My house is X size, how many hours should I book?",
+        a: "We endeavor to clean as much as possible during the allocated time. We recommend a 3 hours session for a 2-3 room apartment and 4 hours for a 4-5 room apartment. However, you may choose to book whichever suits you best.",
+      },
+      {
+        q: "What are the payment options?",
+        a: "Paynow is our preferred payment option. We also accept all major debit and credit cards.",
+      },
+      {
+        q: "Why do we need to pay first?",
+        a: "We understand that pre-payment might seem inconvenient. As a small, privately-owned business, it helps us ensure we can continue providing high-quality services to all our customers. Your satisfaction is our priority. If you're unhappy with any aspect of our service, please let us know. Your feedback is invaluable in helping us improve.",
+      },
+      {
+        q: "Can I get a trial of your services?",
+        a: "We offer a discounted rate for first time users of our service. Please enquire via whatsapp to learn more.",
+      },
+      {
+        q: "Can I cancel or reschedule my sessions?",
+        a: "Yes we allow cancellation and rescheduling of sessions. A $20 surcharge will be applied for rescheduling done less than 24 hours before the session.",
+      },
+      {
+        q: "Can I get a refund if I have to cancel the session?",
+        a: "A partial refund of 50% will be given if you are cancelling more than 72 hours before the session. We do not offer refund for cancellations less than 72 hours before the session.",
+      },
+      {
+        q: "Do residents need to be home during the general cleaning service?",
+        a: "Yes, you are highly encouraged to be present during the cleaning process. We are not liable for any missing items.",
+      },
+      {
+        q: "Are pets allowed to be on premise?",
+        a: "Yes, please do inform us prior to your session.",
+      },
+      {
+        q: "Will the helpers have cleaning equipment?",
+        a: "For our 3hr and 4hr home cleaning and spring cleaning services, cleaning supplies & equipment are to be provided by you. If you prefer a comprehensive service with professional cleaning equipment provided, please schedule our deep cleaning service.",
+      },
+      {
+        q: "Can you clean ceiling fans and chandeliers?",
+        a: "We can clean ceiling fans if an adequate ladder is provided and if the fan does not exceed the height limit of our safety regulations. We do not clean chandeliers.",
+      },
+    ],
   },
   {
-    q: "What's included in a standard clean?",
-    a: "Dusting, vacuuming, mopping, bathroom sanitization, kitchen wipe-down, and taking out trash. Deep cleans include inside appliances and detailed work.",
+    section: "Deep Clean",
+    questions: [
+      {
+        q: "Will cleaning equipment be provided?",
+        a: "Yes, for deep clean sessions, ALL cleaning equipment will be provided.",
+      },
+      {
+        q: "How long does cleaning take?",
+        a: "3-4 hours depending on the size of your house.",
+      },
+      {
+        q: "Is there chemical wash?",
+        a: "No. Chemical wash is required to be performed by your ID.",
+      },
+      {
+        q: "What if some areas of my house are not fully renovated yet?",
+        a: "Please make sure that there will be no ongoing construction works on the day of service.",
+      },
+      {
+        q: "Can I cancel/reschedule before the appointment date?",
+        a: "Cancellation are to be done at least 1 week before the appointment date. Any cancellation less than 1 week will incur a penalty fee of $150. If you would like to reschedule your appointment, please do it at least 3 days before appointment.",
+      },
+    ],
   },
   {
-    q: "Can I cancel or reschedule?",
-    a: "Yes. Cancel or reschedule from your bookings page up to 24 hours before the appointment at no extra charge.",
+    section: "Upholstery",
+    questions: [
+      {
+        q: "Why is there a need to wait 6-8 hours for the mattress to dry?",
+        a: "Disinfection solutions are injected into the mattress to extract any impurities and dirt, penetrating the surface into the material. This is a tedious process and takes up to 8 hours for the mattress to dry and be fully sanitized and disinfected.",
+      },
+      {
+        q: "Will the mattress be hot and dry after the cleaning process?",
+        a: "No. If the mattress feels dry immediately after cleaning, it means that deep cleaning was not carried out. This would mean that the mattress was only cleaned on the surface, and would not be considered sanitised or disinfected.",
+      },
+      {
+        q: "Is the upholstery deep cleaning process more suitable for old mattresses?",
+        a: "Upholstery deep cleaning is suitable for both old and new mattresses. However, some stains on old mattresses will be harder to remove and may have permanently set into the material. It is recommended to sanitise and disinfect your mattresses regardless of their age if they are used regularly.",
+      },
+      {
+        q: "Will upholstery deep cleaning affect a new mattress?",
+        a: "No, our upholstery deep cleaning process is effective yet delicate and gentle. The cleaning process helps sterilise, disinfect and clean the mattress to avoid any stubborn stain or odour that can potentially be permanent.",
+      },
+      {
+        q: "Will the mattresses be fully soaked during the cleansing process?",
+        a: "No. Our cleaning process penetrates about 10cm deep into the material to remove any stain, smell or bacteria that may remain.",
+      },
+      {
+        q: "Does the cleaning process include the drying of the cleaning services?",
+        a: "No, our cleaning solution requires natural drying for sanitization and disinfection to take place. Please wait 6-8 hours for the mattress to dry. That’s why we will suggest having the upholstery session in the morning.",
+      },
+      {
+        q: "Do you do bamboo mattress cleaning?",
+        a: "It’s not advisable to do as it will soften the firmness of the mattress and might not remove harder stains.",
+      },
+    ],
   },
   {
-    q: "Do you bring your own supplies?",
-    a: "Yes. Our teams bring professional-grade products. You can request eco-friendly options in your preferences.",
+    section: "Disinfection",
+    questions: [
+      {
+        q: "What is the scope of your disinfection?",
+        a: "We will wipe down all high touch areas such as cabinets and door handles and do misting to help with the removal of virus and bacteria.",
+      },
+      {
+        q: "Are your chemicals safe?",
+        a: "Yes, the chemicals we use are NEA approved and friendly for kids and pets!",
+      },
+      {
+        q: "Are we allowed to stay in the house during the disinfection process?",
+        a: "You are advised to stay outside the house as the chemicals might irritate the throat.",
+      },
+    ],
+  },
+  {
+    section: "Vinyl Floor Cleaning",
+    questions: [
+      {
+        q: "How much does the vinyl floor cleaning service cost?",
+        a: "Depending on the unit sizes/number of rooms our price starts from $300 onwards.",
+      },
+      {
+        q: "How long is the duration for the session?",
+        a: "Depending on the size of the surface area, it can take up to 2.5 to 5 hrs. As a gauge, vinyl cleaning for 3 bedrooms and 1 living room will take about 4hrs.",
+      },
+      {
+        q: "How often should I have my vinyl floors professionally cleaned?",
+        a: "The frequency of professional cleaning for vinyl floors depends on factors such as foot traffic, pets, and the level of soiling. Commercial premises will usually require deep cleaning every 1-2 years. For Homes, about once every 3-5 years will be good to maintain it.",
+      },
+      {
+        q: "How to care for a vinyl floor after professional cleaning has been completed?",
+        a: "Try not to use floor detergents that are too harsh when mopping regularly because it might “stripped off” the protective coating layer faster. Neutral cleaning agents are recommended.",
+      },
+      {
+        q: "Can professional vinyl floor cleaning remove scratches and scuffs?",
+        a: "Professional cleaning can improve the appearance of minor scratches and scuffs on vinyl floors. However, deeper scratches or damage may require additional repair or restoration services.",
+      },
+      {
+        q: "If my vinyl flooring has defects can we still engage the cleaning?",
+        a: "Yes you can. Our specialist will inspect and evaluate for any defects before commencing the job and will advise cx accordingly on the steps they will take. In fact some scratches will look less visible after the Cleaning.",
+      },
+      {
+        q: "Will you be able to reach beneath my furniture?",
+        a: "We will shift all movable furniture for cleaning. Do take note that furniture that are too heavy/bulky will not be moved. (e.g. Storage bed/Wardrobes/TV cabinets, that are filled with items)",
+      },
+      {
+        q:"After cleaning & sealing, is it safe for kids/pets?",
+        a:"Yes it is absolutely safe once the full process is completed. There will be better friction in fact."
+      },
+      {
+        q:"Can I clean my vinyl floors myself instead of hiring a professional service?",
+        a:"While regular maintenance and light cleaning of vinyl floors can be done by homeowners, professional cleaning offers a deeper level of cleaning and can address more stubborn stains and buildup. We have the expertise, specialized equipment, and cleaning solutions to achieve optimal results without causing damage to the floors."
+      }
+    ],
   },
 ];
 
@@ -216,7 +334,7 @@ export default function Home() {
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <Link
-                href="/#services"
+                href="/services"
                 className="btn-secondary focus-ring inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-pastel-pink-soft text-[var(--text-dark)] font-medium hover:bg-pastel-pink-lighter/50 btn-press"
               >
                 View services
@@ -303,14 +421,7 @@ export default function Home() {
               </StaggerItem>
             ))}
           </StaggerChildren>
-          <AnimateIn delay={0.3} className="mt-12 text-center">
-            <Link
-              href="/booking"
-              className="btn-primary focus-ring inline-flex items-center justify-center px-8 py-4 rounded-full bg-pastel-green-soft text-[var(--text-dark)] font-medium"
-            >
-              Book a service
-            </Link>
-          </AnimateIn>
+          
         </div>
       </section>
 
@@ -422,7 +533,7 @@ export default function Home() {
               <CleanHomeImage />
               <AnimateIn className="w-full">
                 <div className="w-full max-w-[680px]">
-                  <p className="text-2xl font-display font-semibold text-[var(--text-dark)] text-center lg:text-left">
+                  <p className="text-2xl font-display font-semibold text-[var(--text-dark)] text-center lg:text-center">
                     Accreditations
                   </p>
                   <div className="mt-5 relative w-full aspect-[16/4]">
@@ -494,8 +605,7 @@ export default function Home() {
               Your roadmap to a cleaner home starts here
             </h2>
             <p className="mt-4 text-[var(--text-body)] font-medium max-w-xl mx-auto">
-              Book a cleaning in a few clicks. We’ll confirm by email and you
-              can manage your bookings anytime.
+              Book a cleaning in a few clicks!
             </p>
             <Link
               href="/booking"
@@ -520,18 +630,30 @@ export default function Home() {
           </AnimateIn>
 
           <div className="space-y-4">
-            {faqs.map((f, i) => (
-              <AnimateIn key={f.q} delay={i * 0.05}>
+            {faqs.map((section, i) => (
+              <AnimateIn key={section.section} delay={i * 0.05}>
                 <details className="group p-5 rounded-xl bg-pastel-green-lighter/30 border border-pastel-green-200/50">
                   <summary className="font-display font-semibold text-[var(--text-dark)] cursor-pointer list-none flex justify-between items-center">
-                    {f.q}
+                    {section.section}
                     <span className="text-pastel-pink-200 group-open:rotate-180 transition-transform">
                       ▼
                     </span>
                   </summary>
-                  <p className="mt-3 text-[var(--text-body)] font-medium whitespace-pre-line">
-                    {f.a}
-                  </p>
+                  <div className="mt-3 space-y-3">
+                    {section.questions.map((q, j) => (
+                      <details key={j} className="group p-3 rounded-lg bg-white/50 border border-pastel-green-200/30">
+                        <summary className="font-medium text-[var(--text-dark)] cursor-pointer list-none flex justify-between items-center">
+                          {q.q}
+                          <span className="text-pastel-pink-200 group-open:rotate-180 transition-transform text-sm">
+                            ▼
+                          </span>
+                        </summary>
+                        <p className="mt-2 text-[var(--text-body)] whitespace-pre-line">
+                          {q.a}
+                        </p>
+                      </details>
+                    ))}
+                  </div>
                 </details>
               </AnimateIn>
             ))}
