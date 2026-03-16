@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root Variables */
 :root {
   --pastel-pink: #f5d0dc;
   --pastel-pink-strong: #f0b8c8;
@@ -16,6 +17,7 @@
   --section-padding: clamp(4rem, 10vw, 7rem);
 }
 
+/* Base body styles */
 body {
   @apply antialiased bg-[var(--bg-cream)];
   color: var(--text-body);
@@ -23,21 +25,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .touch-manipulation {
-    touch-action: manipulation;
-  }
-}
-
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: rgba(61, 124, 90, 0.2);
 }
 
-/* Gradient mesh for hero */
+/* Custom utilities */
+@layer utilities {
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+}
+
+/* Gradient mesh for hero background */
 .gradient-mesh {
   background-image:
     radial-gradient(ellipse 80% 60% at 20% 30%, rgba(245, 208, 220, 0.45) 0px, transparent 50%),
@@ -45,7 +52,7 @@ html {
     radial-gradient(ellipse 100% 80% at 50% 50%, rgba(252, 228, 236, 0.2) 0px, transparent 70%);
 }
 
-/* Hero image frame: background layout fitted to the image (same gradient style, rounded) */
+/* Hero image background style */
 .hero-image-bg {
   background-image:
     radial-gradient(ellipse 100% 100% at 50% 50%, rgba(252, 228, 236, 0.5) 0px, transparent 60%),
@@ -54,39 +61,46 @@ html {
   background-color: rgba(254, 252, 251, 0.6);
 }
 
-/* Section container for consistent layout */
+/* Section container layout */
 .section-container {
   @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* Card hover: lift + shadow + slight scale */
+/* Card hover animation */
 .card-hover {
   @apply transition-all duration-300;
   transition-timing-function: var(--ease-out-expo);
 }
+
 .card-hover:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 20px 40px -12px rgba(45, 42, 38, 0.08), 0 0 0 1px rgba(200, 230, 201, 0.3);
+  box-shadow:
+    0 20px 40px -12px rgba(45, 42, 38, 0.08),
+    0 0 0 1px rgba(200, 230, 201, 0.3);
 }
 
-/* Button press */
+/* Button press effect */
 .btn-press:active {
   transform: scale(0.98);
 }
 
-/* Primary button: shine + hover lift */
+/* Primary button animation */
 .btn-primary {
   position: relative;
   overflow: hidden;
   transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
 }
+
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px -8px rgba(45, 42, 38, 0.12);
 }
+
 .btn-primary:active {
   transform: translateY(0) scale(0.98);
 }
+
+/* Shine animation */
 .btn-primary::after {
   content: '';
   position: absolute;
@@ -102,36 +116,41 @@ html {
   );
   transition: left 0.55s ease;
 }
+
 .btn-primary:hover::after {
   left: 100%;
 }
 
-/* Secondary button hover */
+/* Secondary button */
 .btn-secondary:hover {
   transform: translateY(-2px);
   transition: transform 0.25s var(--ease-out-expo);
 }
 
-/* Image frame for consistent alignment */
+/* Image frame */
 .img-frame {
   @apply relative overflow-hidden rounded-3xl;
-  box-shadow: 0 24px 48px -16px rgba(45, 42, 38, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 24px 48px -16px rgba(45, 42, 38, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 /* Focus ring for accessibility */
 .focus-ring {
-  @apply outline-none focus-visible:ring-2 focus-visible:ring-pastel-green-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-cream)];
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-green-200 focus-visible:ring-offset-2;
 }
 
-/* White circle image container with professional shadow + hover */
+/* Circular image container */
 .img-circle {
   @apply rounded-full bg-white overflow-hidden;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.06),
     0 10px 20px -5px rgba(0, 0, 0, 0.08),
     0 20px 40px -12px rgba(0, 0, 0, 0.1);
+
   transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
 }
+
 .img-circle:hover {
   transform: scale(1.03) translateY(-4px);
   box-shadow:
@@ -140,19 +159,30 @@ html {
     0 32px 64px -16px rgba(0, 0, 0, 0.14);
 }
 
-/* White rounded image container (for non-circle images) */
+/* Image card container */
 .img-card {
   @apply rounded-2xl bg-white overflow-hidden;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.06),
     0 10px 20px -5px rgba(0, 0, 0, 0.08),
     0 20px 40px -12px rgba(0, 0, 0, 0.1);
+
   transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
 }
+
 .img-card:hover {
   transform: scale(1.02) translateY(-4px);
   box-shadow:
     0 12px 24px -4px rgba(0, 0, 0, 0.08),
     0 24px 48px -8px rgba(0, 0, 0, 0.12),
     0 32px 64px -16px rgba(0, 0, 0, 0.14);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

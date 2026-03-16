@@ -1,5 +1,6 @@
 "use client";
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@/app/globals.css';
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
