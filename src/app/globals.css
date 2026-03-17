@@ -17,6 +17,13 @@
   --section-padding: clamp(4rem, 10vw, 7rem);
 }
 
+/* Reusable component classes */
+@layer components {
+  .hero-title {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight;
+  }
+}
+
 /* Base body styles */
 body {
   @apply antialiased bg-[var(--bg-cream)];

@@ -1,21 +1,42 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
+export const serviceLinks = [
+  { href: "/services/3hr-4hr-cleaning", label: "3hr / 4hr Cleaning" },
+  { href: "/services/evening-cleaning", label: "Evening Cleaning" },
+  { href: "/services/spring-cleaning", label: "Spring Cleaning" },
+  { href: "/services/deep-cleaning", label: "Deep Cleaning" },
+  { href: "/services/upholstery-cleaning", label: "Upholstery Cleaning" },
+  { href: "/services/vinyl-cleaning", label: "Vinyl Cleaning" },
+  { href: "/services/disinfection", label: "Disinfection" },
+];
+
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
   { href: "/#about", label: "About" },
   { href: "/#faq", label: "FAQ" },
-  { href: "/testimonials", label: "Testimonials" },
+  { href: "/#testimonials", label: "Testimonials" },
   { href: "/booking", label: "Book" },
 ];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setServicesOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     if (menuOpen) {
@@ -54,12 +75,79 @@ export default function Header() {
           Dustaway
         </Link>
         <nav className="hidden sm:flex items-center gap-1">
-          {navLinks.map((link, i) => (
+          {navLinks.slice(0, 1).map((link, i) => (
             <motion.div
               key={link.href}
               initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.04 * i, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link
+                href={link.href}
+                className="focus-ring relative px-4 py-2 rounded-lg text-[var(--text-body)] hover:text-[var(--text-dark)] font-medium transition-colors after:absolute after:left-4 after:right-4 after:bottom-1 after:h-px after:scale-x-0 after:bg-pastel-green-200 after:origin-left after:transition-transform hover:after:scale-x-100"
+              >
+                {link.label}
+              </Link>
+            </motion.div>
+          ))}
+          <motion.div
+            ref={dropdownRef}
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <div className="inline-flex items-center">
+              <Link
+                href="/services"
+                onClick={() => setServicesOpen(true)}
+                onFocus={() => setServicesOpen(true)}
+                className="focus-ring relative px-4 py-2 rounded-lg text-[var(--text-body)] hover:text-[var(--text-dark)] font-medium transition-colors after:absolute after:left-4 after:right-4 after:bottom-1 after:h-px after:scale-x-0 after:bg-pastel-green-200 after:origin-left after:transition-transform hover:after:scale-x-100"
+                aria-expanded={servicesOpen}
+                aria-haspopup="true"
+              >
+                Services
+              </Link>
+              <button
+                type="button"
+                onClick={() => setServicesOpen((o) => !o)}
+                className="focus-ring -ml-2 mr-1 px-2 py-2 rounded-lg text-[var(--text-body)] hover:text-[var(--text-dark)]"
+                aria-label={servicesOpen ? "Close services menu" : "Open services menu"}
+              >
+                <span className={`text-sm text-pastel-pink-200 transition-transform ${servicesOpen ? "rotate-180" : ""}`}>▼</span>
+              </button>
+            </div>
+            <AnimatePresence>
+              {servicesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full left-0 mt-1 py-2 w-56 rounded-xl bg-[var(--bg-cream)] border border-pastel-green-200/50 shadow-lg z-50"
+                >
+                  {serviceLinks.map((s) => (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      onClick={() => setServicesOpen(false)}
+                      className="focus-ring block px-4 py-2.5 text-sm text-[var(--text-body)] hover:bg-pastel-green-lighter/50 hover:text-[var(--text-dark)] font-medium"
+                    >
+                      {s.label}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+          {navLinks.slice(1).map((link, i) => (
+            <motion.div
+              key={link.href}
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.04 * (i + 2), ease: [0.16, 1, 0.3, 1] }}
             >
               <Link
                 href={link.href}
@@ -129,10 +217,30 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed left-0 right-0 top-14 sm:top-16 z-50 sm:hidden bg-[var(--bg-cream)] border-b border-pastel-green-200/50 shadow-lg"
+              className="fixed left-0 right-0 top-14 sm:top-16 z-50 sm:hidden bg-[var(--bg-cream)] border-b border-pastel-green-200/50 shadow-lg overflow-y-auto max-h-[calc(100vh-4rem)]"
             >
               <div className="section-container py-4 flex flex-col gap-1">
-                {navLinks.map((link) => (
+                <Link
+                  href="/"
+                  onClick={handleNavClick}
+                  className="focus-ring block w-full px-4 py-3.5 rounded-xl text-[var(--text-body)] font-medium hover:bg-pastel-green-lighter/50 hover:text-[var(--text-dark)] active:bg-pastel-green-200/40"
+                >
+                  Home
+                </Link>
+                <div className="px-4 py-2">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-1">Services</p>
+                  {serviceLinks.map((s) => (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      onClick={handleNavClick}
+                      className="focus-ring block w-full py-2.5 pl-2 rounded-lg text-sm text-[var(--text-body)] font-medium hover:bg-pastel-green-lighter/50 hover:text-[var(--text-dark)]"
+                    >
+                      {s.label}
+                    </Link>
+                  ))}
+                </div>
+                {navLinks.slice(1).map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}

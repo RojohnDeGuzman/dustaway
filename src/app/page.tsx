@@ -3,13 +3,17 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import '@/app/globals.css';
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import {
   AnimateIn,
   StaggerChildren,
   StaggerItem,
 } from "@/components/AnimateIn";
 import { HeroImage, CleanHomeImage } from "@/components/HeroImage";
+
+const SERVICES_AUTO_ADVANCE_MS = 5000;
 
 const services = [
   {
@@ -60,25 +64,47 @@ const trustItems = ["Book in 60 seconds", "Trusted cleaners", "Cancel anytime"];
 const testimonials = [
   {
     quote:
-      "The team was professional and did a really good job! Highly recommended.",
-    name: "Sarah M.",
+      "I recently engaged the cleaning service from Dustaway, and couldn't be happier with the results! The helper was punctual, friendly, and did an amazing job cleaning my home. Every corner was sparkling clean, and she paid attention to details. Will definitely engage them again!",
+    name: "TWW",
     rating: 5,
-    date: "2 days ago",
+    date: "2024-09-07",
   },
   {
     quote:
-      "Arranging an appointment is hassle-free. Very satisfied with the results.",
-    name: "James L.",
+      "The session with Dustaway was very good. Aung is very fast and efficient, and does her work very clean too. Highly recommended, and will book her again in future! 👍🏻😊",
+    name: "leng xing yu",
     rating: 5,
-    date: "1 week ago",
+    date: "2024-07-06",
   },
   {
     quote:
-      "Huge improvement to my home. Definitely recommending for the next cleaning.",
-    name: "Emma K.",
+      "As a family in Singapore, we've had a fantastic experience with Dust Away. Their team is always punctual, friendly, and incredibly thorough. It’s such a relief to come home to a spotless house after a long day. The booking process is simple and convenient, and their attention to detail is impressive. We really appreciate how much easier they've made our lives, giving us more time to spend together. Highly recommend Dust Away for anyone in need of reliable and efficient cleaning services!",
+    name: "Joel Fu",
     rating: 5,
-    date: "1 month ago",
+    date: "2024-07-01",
   },
+  {
+    quote:
+      "For the post Reno cleaning, the crew was very dedicated and thorough. Every single corner of the house was carefully vacuumed and cleaned. I engaged again a few weeks later for general house cleaning and they didn’t disappoint as well. San San was very experienced and knowledgeable in the use of various cleaning machines and products so I had a peace of mind leaving her to take care of the house.",
+    name: "Semantha Tan",
+    rating: 5,
+    date: "2024-06-07",
+  },
+  {
+    quote:
+    "We had Hein over for general cleaning and she did a great job during the 3 hours. Will definitely engage them again" ,
+    name: "Casey",
+    rating: 5,
+    date: "2024-06-03",
+  },
+  {
+    quote:
+      "Great cleaning services!",
+    name: "Winnie Lie",
+    rating: 5,
+    date: "2024-05-18",
+  },
+ 
 ];
 
 const whyChoose = [
@@ -287,6 +313,42 @@ const faqs = [
 ];
 
 export default function Home() {
+  const [servicesIndex, setServicesIndex] = useState(0);
+  const [activeTestimonial, setActiveTestimonial] = useState<null | (typeof testimonials)[number]>(null);
+
+  const maxServicesIndex = Math.max(0, services.length - 3);
+
+  const goToNext = useCallback(() => {
+    setServicesIndex((i) => (i >= maxServicesIndex ? 0 : i + 1));
+  }, [maxServicesIndex]);
+
+  const goToPrev = useCallback(() => {
+    setServicesIndex((i) => (i <= 0 ? maxServicesIndex : i - 1));
+  }, [maxServicesIndex]);
+
+  useEffect(() => {
+    const t = setInterval(goToNext, SERVICES_AUTO_ADVANCE_MS);
+    return () => clearInterval(t);
+  }, [goToNext]);
+
+  const [testimonialsRef, testimonialsApi] = useEmblaCarousel({
+    align: "start",
+    loop: true,
+    dragFree: false,
+  });
+
+  const scrollTestimonialsPrev = () => testimonialsApi && testimonialsApi.scrollPrev();
+  const scrollTestimonialsNext = () => testimonialsApi && testimonialsApi.scrollNext();
+
+  useEffect(() => {
+    if (!testimonialsApi) return;
+    const intervalId = setInterval(() => {
+      if (!testimonialsApi) return;
+      testimonialsApi.scrollNext();
+    }, 4500);
+    return () => clearInterval(intervalId);
+  }, [testimonialsApi]);
+
   return (
     <>
       {/* Hero — MCSC-style: headline + trusted line + CTAs */}
@@ -367,10 +429,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Professional Cleaning Services — MCSC-style grid with Read more */}
+      {/* Our Professional Cleaning Services — automatic carousel */}
       <section
         id="services"
         className="py-[var(--section-padding)] bg-pastel-green-lighter/25"
+        aria-label="Our professional cleaning services carousel"
       >
         <div className="section-container">
           <AnimateIn className="text-center max-w-2xl mx-auto">
@@ -386,43 +449,92 @@ export default function Home() {
               disinfection services!
             </p>
           </AnimateIn>
-          <StaggerChildren
-            className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-            delay={0.1}
-          >
-            {services.map((s) => (
-              <StaggerItem key={s.title}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  className="card-hover p-6 rounded-2xl bg-white/95 border border-pastel-green-200/50 shadow-sm h-full flex flex-col text-center sm:text-left"
-                >
-                  <div className="relative w-full max-w-[520px] aspect-square overflow-hidden rounded-xl mx-auto sm:mx-0">
-                    <Image
-                      src={s.image}
-                      alt={`${s.title} image`}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <h3 className="mt-4 font-display text-xl font-semibold text-[var(--text-dark)]">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-[var(--text-body)] text-sm font-medium flex-1">
-                    {s.desc}
-                  </p>
-                  <Link
-                    href={s.href}
-                    className="mt-4 inline-flex items-center gap-1 text-[var(--accent-green)] font-semibold hover:gap-2 transition-all focus-ring justify-center sm:justify-start"
+
+          <div className="mt-14 relative">
+            {/* Prev/Next */}
+            <button
+              type="button"
+              onClick={goToPrev}
+              aria-label="Previous services"
+              className="hidden sm:flex items-center justify-center absolute -left-10 lg:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 text-gray-700 hover:text-gray-900 focus-ring z-10"
+            >
+              <span className="material-symbols-outlined text-[22px] leading-none">
+                arrow_back_ios
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={goToNext}
+              aria-label="Next services"
+              className="hidden sm:flex items-center justify-center absolute -right-10 lg:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 text-gray-700 hover:text-gray-900 focus-ring z-10"
+            >
+              <span className="material-symbols-outlined text-[22px] leading-none">
+                arrow_forward_ios
+              </span>
+            </button>
+
+            {/* Viewport (clipped), arrows live outside */}
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={{
+                  transform: `translateX(-${servicesIndex * (100 / 3)}%)`,
+                }}
+              >
+                {services.map((s) => (
+                  <div
+                    key={s.title}
+                    className="w-1/3 flex-shrink-0 px-2 sm:px-3"
                   >
-                    Read more
-                    <span aria-hidden>→</span>
-                  </Link>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerChildren>
-          
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      className="card-hover p-4 rounded-xl bg-white/95 border border-pastel-green-200/50 shadow-sm h-full flex flex-col text-center sm:text-left"
+                    >
+                      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
+                        <Image
+                          src={s.image}
+                          alt={`${s.title} image`}
+                          fill
+                          sizes="33vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <h3 className="mt-3 font-display text-base font-semibold text-[var(--text-dark)]">
+                        {s.title}
+                      </h3>
+                      <p className="mt-1.5 text-[var(--text-body)] text-xs font-medium line-clamp-3 flex-1">
+                        {s.desc}
+                      </p>
+                      <Link
+                        href={s.href}
+                        className="mt-3 inline-flex items-center gap-1 text-[var(--accent-green)] font-semibold text-sm hover:gap-2 transition-all focus-ring justify-center sm:justify-start"
+                      >
+                        Read more
+                        <span aria-hidden>→</span>
+                      </Link>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Dots — one per slide position (slide one by one, 3 visible) */}
+            <div className="flex justify-center gap-2 mt-6">
+              {Array.from({ length: maxServicesIndex + 1 }, (_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setServicesIndex(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 focus-ring ${
+                    i === servicesIndex
+                      ? "w-8 bg-pastel-green-soft"
+                      : "w-2.5 bg-pastel-green-200/60 hover:bg-pastel-green-200"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -479,52 +591,141 @@ export default function Home() {
               What our customers say
             </h2>
           </AnimateIn>
-          <StaggerChildren className="grid sm:grid-cols-3 gap-6" delay={0.1}>
-            {testimonials.map((t) => (
-              <StaggerItem key={t.name}>
+
+          <div className="relative">
+            {/* Arrows */}
+            <button
+              type="button"
+              onClick={scrollTestimonialsPrev}
+              aria-label="Previous testimonials"
+              className="hidden sm:flex items-center justify-center absolute -left-12 lg:-left-14 top-1/2 -translate-y-1/2 w-10 h-10 text-gray-700 hover:text-gray-900 focus-ring z-10"
+            >
+              <span className="material-symbols-outlined text-[22px] leading-none">
+                arrow_back_ios
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={scrollTestimonialsNext}
+              aria-label="Next testimonials"
+              className="hidden sm:flex items-center justify-center absolute -right-12 lg:-right-14 top-1/2 -translate-y-1/2 w-10 h-10 text-gray-700 hover:text-gray-900 focus-ring z-10"
+            >
+              <span className="material-symbols-outlined text-[22px] leading-none">
+                arrow_forward_ios
+              </span>
+            </button>
+
+            {/* Carousel */}
+            <div className="overflow-hidden" ref={testimonialsRef}>
+              <div className="flex -mx-3">
+                {testimonials.map((t) => (
+                  <div
+                    key={`${t.name}-${t.date}`}
+                    className="px-3 flex-[0_0_85%] sm:flex-[0_0_50%] md:flex-[0_0_33.333%] lg:flex-[0_0_25%]"
+                  >
+                    <motion.button
+                      type="button"
+                      onClick={() => setActiveTestimonial(t)}
+                      whileHover={{ y: -4 }}
+                      className="w-full text-left p-5 rounded-2xl bg-white/90 border border-pastel-pink-200/50 shadow-sm h-full flex flex-col"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-pastel-green-lighter/60 border border-pastel-green-200/60 flex items-center justify-center font-semibold text-[var(--text-dark)]">
+                          {t.name
+                            .split(" ")
+                            .slice(0, 2)
+                            .map((p) => p[0])
+                            .join("")}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-semibold text-[var(--text-dark)] truncate">
+                            {t.name}
+                          </p>
+                          <p className="text-xs text-[var(--text-muted)]">{t.date}</p>
+                        </div>
+                      </div>
+
+                      <p className="mt-3 text-yellow-500 font-semibold text-sm">
+                        {"★".repeat(t.rating)}{" "}
+                        <span className="text-[var(--text-muted)] font-medium">
+                          {t.rating}/5
+                        </span>
+                      </p>
+
+                      <p className="mt-3 text-sm text-[var(--text-body)] font-medium line-clamp-4 flex-1">
+                        {t.quote}
+                      </p>
+
+                      <span className="mt-3 inline-flex items-center gap-1 text-[var(--accent-green)] font-semibold text-sm hover:gap-2 transition-all focus-ring justify-center sm:justify-start">
+                        Read more
+                      </span>
+                    </motion.button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Read more modal */}
+          <AnimatePresence>
+            {activeTestimonial && (
+              <>
                 <motion.div
-                  whileHover={{ y: -4 }}
-                  className="p-6 rounded-2xl bg-white/90 border border-pastel-pink-200/50 shadow-sm h-full flex flex-col text-center"
-                >
-                  <p className="text-[var(--accent-green)] font-semibold">
-                    ★★★★★ {t.rating}/5
-                  </p>
-                  <p className="mt-3 text-[var(--text-body)] font-medium flex-1">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <p className="mt-4 text-sm font-semibold text-[var(--text-dark)]">
-                    {t.name}
-                  </p>
-                  <p className="text-xs text-[var(--text-muted)]">{t.date}</p>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerChildren>
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="fixed inset-0 bg-black/35 z-[60]"
+                  onClick={() => setActiveTestimonial(null)}
+                  aria-hidden
+                />
+                <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 12, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full max-w-lg rounded-2xl bg-[var(--bg-cream)] border border-pastel-pink-200/60 shadow-xl p-6"
+                    role="dialog"
+                    aria-modal="true"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        <p className="font-display text-xl font-semibold text-[var(--text-dark)]">
+                          {activeTestimonial.name}
+                        </p>
+                        <p className="text-xs text-[var(--text-muted)] mt-1">
+                          {activeTestimonial.date} •{" "}
+                          <span className="text-yellow-500">
+                            {"★".repeat(activeTestimonial.rating)}
+                          </span>{" "}
+                          <span className="font-medium text-[var(--text-muted)]">
+                            {activeTestimonial.rating}/5
+                          </span>
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setActiveTestimonial(null)}
+                        className="focus-ring w-10 h-10 rounded-xl bg-white/70 hover:bg-white border border-pastel-pink-200/60 flex items-center justify-center"
+                        aria-label="Close"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <p className="mt-4 text-[var(--text-body)] font-medium leading-relaxed whitespace-pre-line">
+                      {activeTestimonial.quote}
+                    </p>
+                  </motion.div>
+                </div>
+              </>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 
-      {/* Stats — MCSC-style numbers
-      <section className="py-14 bg-pastel-pink-lighter/40 border-y border-pastel-pink-200/40">
-        <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center"
-          >
-            {stats.map((s) => (
-              <div key={s.label}>
-                <p className="font-display text-3xl sm:text-4xl font-semibold text-[var(--accent-green)]">
-                  {s.value}
-                </p>
-                <p className="mt-1 text-[var(--text-body)] font-medium">
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section> */}
+     
 
       {/* About + image + CTA */}
       <section id="about" className="py-[var(--section-padding)]">

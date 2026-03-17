@@ -230,10 +230,12 @@ export default function BookingPage() {
                       type="button"
                       onClick={prevMonth}
                       disabled={!canGoPrev}
-                      className="w-9 h-9 rounded-lg border border-pastel-green-200/50 bg-white font-medium text-[var(--text-body)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-pastel-green-lighter/50 focus-ring"
+                      className="w-9 h-9 rounded-lg font-medium text-[var(--text-body)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-pastel-green-lighter/50 focus-ring"
                       aria-label="Previous month"
                     >
-                      ←
+                      <span className="material-symbols-outlined text-[20px] leading-none">
+                        arrow_back_ios
+                      </span>
                     </button>
                     <span className="min-w-[10rem] text-center font-display font-semibold text-[var(--text-dark)]">
                       {monthLabel}
@@ -242,10 +244,12 @@ export default function BookingPage() {
                       type="button"
                       onClick={nextMonth}
                       disabled={!canGoNext}
-                      className="w-9 h-9 rounded-lg border border-pastel-green-200/50 bg-white font-medium text-[var(--text-body)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-pastel-green-lighter/50 focus-ring"
+                      className="w-9 h-9 rounded-lg font-medium text-[var(--text-body)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-pastel-green-lighter/50 focus-ring"
                       aria-label="Next month"
                     >
-                      →
+                      <span className="material-symbols-outlined text-[20px] leading-none">
+                        arrow_forward_ios
+                      </span>
                     </button>
                   </div>
                 </div>
