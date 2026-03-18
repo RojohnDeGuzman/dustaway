@@ -9,7 +9,7 @@ import { addBenefits } from "@/app/data/addBenefits";
 
 type TabType = "3hr" | "4hr";
 
-export default function ThreeHrFourHrCleaningPage() {
+export default function SpringCleaningPage() {
   const [activeTab, setActiveTab] = useState<TabType>("3hr");
 
   const [emblaRef, emblaApi] = useEmblaCarousel({

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { serviceLinks } from "@/lib/serviceLinks";
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -10,15 +11,6 @@ const quickLinks = [
   { href: "/#faq", label: "FAQ" },
   { href: "/booking", label: "Book" },
   { href: "/dashboard", label: "My bookings" },
-];
-
-const ourServices = [
-  { href: "/booking", label: "3hr / 4hr Cleaning" },
-  { href: "/booking", label: "Spring Cleaning" },
-  { href: "/booking", label: "Deep Cleaning" },
-  { href: "/booking", label: "Upholstery Cleaning" },
-  { href: "/booking", label: "Vinyl Cleaning" },
-  { href: "/booking", label: "Disinfection" },
 ];
 
 export default function Footer() {
@@ -71,7 +63,7 @@ export default function Footer() {
               Our services
             </h3>
             <ul className="mt-4 space-y-2">
-              {ourServices.map((link) => (
+              {serviceLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}

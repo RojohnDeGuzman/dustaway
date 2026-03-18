@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { serviceLinks } from "@/components/Header";
+import { serviceLinks } from "@/lib/serviceLinks";
 
 export default function ServicesPage() {
   return (

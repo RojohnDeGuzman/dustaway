@@ -12,6 +12,7 @@ import {
   StaggerItem,
 } from "@/components/AnimateIn";
 import { HeroImage, CleanHomeImage } from "@/components/HeroImage";
+import { serviceLinks } from "@/lib/serviceLinks";
 
 const SERVICES_AUTO_ADVANCE_MS = 5000;
 
@@ -20,43 +21,43 @@ const services = [
     title: "3hr / 4hr Cleaning",
     desc: "Every home is unique oasis. Get a custom cleaning experience with a dedicated professional! Choose between a 3-hour or 4-hour service and let us take care of your cleaning needs!",
     image: "/assets/da-12.jpg",
-    href: "/booking",
+    href: serviceLinks[0].href,
   },
   {
     title: "Evening cleaning",
     desc: "Ditch the cleaning after work! This 3-hour evening service lets you come home to a spotless haven, perfect for unwinding and recharging.",
     image: "/assets/da-11.jpg",
-    href: "/booking",
+    href: serviceLinks[1].href,
   },
   {
     title: "Spring Cleaning",
     desc: "Give your home a renewal with an extra set of hands! Our 3 or 4-hour spring cleaning service includes an addition professional crew member, covering more within the same time for a comprehensive clean, leaving your home sparkling from top to bottom.",
     image: "/assets/da-5.jpg",
-    href: "/booking",
+    href: serviceLinks[2].href,
   },
   {
     title: "Deep cleaning",
     desc: "Our post-renovation / tenancy specialist cleaning service is perfect for those looking for a deep clean for a place that needs to be moved into or returned to its original move-in condition.",
     image: "/assets/da-6.png",
-    href: "/booking",
+    href: serviceLinks[3].href,
   },
   {
     title: "Upholstery cleaning",
     desc: "Our upholstery deep clean service can clean the toughest stains but gentle enough not to damage your furniture, giving everyone a clean, safe and sanitized environment.",
     image: "/assets/da-7.png",
-    href: "/booking",
+    href: serviceLinks[4].href,
   },
   {
     title: "Vinyl Cleaning",
     desc: "Breathe new life into your vinyl floors! Our cleaning service tackles dirt, grime, and minor scuffs, restoring a brilliant shine. We use gentle methods safe for all vinyl types. Enjoy long-lasting beauty and get expert maintenance tips - all in one service.",
     image: "/assets/da-8.jpg",
-    href: "/booking",
+    href: serviceLinks[5].href,
   },
   {
     title: "Disinfection",
     desc: "Our NEA-certified disinfection service is designed to protect you and your family members from harmful viruses and bacteria. Our specialized disinfectant and equipment are 100% safe for children and pets.",
     image: "/assets/da-9.jpg",
-    href: "/booking",
+    href: serviceLinks[6].href,
   },
 ];
 const trustItems = ["Book in 60 seconds", "Trusted cleaners", "Cancel anytime"];
@@ -490,15 +491,17 @@ export default function Home() {
                       whileHover={{ y: -4 }}
                       className="card-hover p-4 rounded-xl bg-white/95 border border-pastel-green-200/50 shadow-sm h-full flex flex-col text-center sm:text-left"
                     >
-                      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
-                        <Image
-                          src={s.image}
-                          alt={`${s.title} image`}
-                          fill
-                          sizes="33vw"
-                          className="object-cover"
-                        />
-                      </div>
+                      <Link href={s.href} className="block rounded-lg focus-ring">
+                        <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
+                          <Image
+                            src={s.image}
+                            alt={`${s.title} image`}
+                            fill
+                            sizes="33vw"
+                            className="object-cover"
+                          />
+                        </div>
+                      </Link>
                       <h3 className="mt-3 font-display text-base font-semibold text-[var(--text-dark)]">
                         {s.title}
                       </h3>

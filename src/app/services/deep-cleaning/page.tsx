@@ -5,7 +5,7 @@ import Image from "next/image";
 import { deepClean } from "@/app/data/deepClean";
 
 
-export default function ThreeHrFourHrCleaningPage() {
+export default function DeepCleaningPage() {
 
   return (
     <div className="w-full bg-gray-100 py-5 lg:py-10">
@@ -13,7 +13,7 @@ export default function ThreeHrFourHrCleaningPage() {
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           <div className="relative w-full lg:w-[35%] aspect-[4/5] lg:aspect-auto lg:min-h-full flex-shrink-0">
             <Image
-              src="/assets/da-5.jpg"
+              src="/assets/da-6.png"
               alt="Cleaning"
               fill
               className="object-cover rounded-xl"
