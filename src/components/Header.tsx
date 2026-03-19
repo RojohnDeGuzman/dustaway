@@ -21,7 +21,10 @@ export default function Header() {
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setServicesOpen(false);
       }
     }
@@ -49,7 +52,7 @@ export default function Header() {
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-cream)]/88 backdrop-blur-lg border-b border-pastel-green-200/40"
+      className="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-cream)]/88 backdrop-blur-lg shadow-[inset_0_-14px_20px_-22px_rgba(148,166,132,0.26)]"
     >
       <div className="section-container h-14 sm:h-16 flex items-center justify-between">
         <Link
@@ -105,9 +108,15 @@ export default function Header() {
                 type="button"
                 onClick={() => setServicesOpen((o) => !o)}
                 className="focus-ring -ml-2 mr-1 px-2 py-2 rounded-lg text-[var(--text-body)] hover:text-[var(--text-dark)]"
-                aria-label={servicesOpen ? "Close services menu" : "Open services menu"}
+                aria-label={
+                  servicesOpen ? "Close services menu" : "Open services menu"
+                }
               >
-                <span className={`text-sm text-pastel-pink-200 transition-transform ${servicesOpen ? "rotate-180" : ""}`}>▼</span>
+                <span
+                  className={`inline-block text-sm text-pastel-pink-200 transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                >
+                  ▼
+                </span>
               </button>
             </div>
             <AnimatePresence>
@@ -208,7 +217,7 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed left-0 right-0 top-14 sm:top-16 z-50 sm:hidden bg-[var(--bg-cream)] border-b border-pastel-green-200/50 shadow-lg overflow-y-auto max-h-[calc(100vh-4rem)]"
+              className="fixed left-0 right-0 top-14 sm:top-16 z-50 sm:hidden bg-[var(--bg-cream)] shadow-[0_14px_30px_-18px_rgba(28,25,23,0.18),inset_0_-14px_20px_-22px_rgba(148,166,132,0.24)] overflow-y-auto max-h-[calc(100vh-4rem)]"
             >
               <div className="section-container py-4 flex flex-col gap-1">
                 <Link
@@ -219,7 +228,9 @@ export default function Header() {
                   Home
                 </Link>
                 <div className="px-4 py-2">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-1">Services</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-1">
+                    Services
+                  </p>
                   {serviceLinks.map((s) => (
                     <Link
                       key={s.href}

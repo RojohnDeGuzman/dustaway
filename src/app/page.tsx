@@ -1,6 +1,6 @@
 "use client";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import '@/app/globals.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "@/app/globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
@@ -93,61 +93,51 @@ const testimonials = [
   },
   {
     quote:
-    "We had Hein over for general cleaning and she did a great job during the 3 hours. Will definitely engage them again" ,
+      "We had Hein over for general cleaning and she did a great job during the 3 hours. Will definitely engage them again",
     name: "Casey",
     rating: 5,
     date: "2024-06-03",
   },
   {
-    quote:
-      "Great cleaning services!",
+    quote: "Great cleaning services!",
     name: "Winnie Lie",
     rating: 5,
     date: "2024-05-18",
   },
- 
 ];
 
 const whyChoose = [
   {
     title: "Excellent results",
     desc: "Trained, experienced cleaners who take cleanliness to the next level.",
-    icon: "✓",
+    icon: "/assets/ex.png",
   },
   {
     title: "Satisfaction guaranteed",
     desc: "We guarantee you’ll want to call us back for your next session.",
-    icon: "★",
+    icon: "/assets/customer-satisfaction.png",
   },
   {
     title: "Easy booking",
     desc: "Book in seconds online. Reschedule or cancel anytime.",
-    icon: "📅",
+    icon: "/assets/calendar.png",
   },
   {
     title: "No strings attached",
     desc: "Transparent pricing and no obligation. Book when you need us.",
-    icon: "🔓",
+    icon: "/assets/feedback.png",
   },
   {
     title: "Eco-friendly options",
     desc: "We use organic and environmentally friendly products when you prefer.",
-    icon: "🌿",
+    icon: "/assets/eco-friendly.png",
   },
   {
     title: "Professional team",
     desc: "Skilled, dedicated cleaners who take pride in their work.",
-    icon: "👋",
+    icon: "/assets/team-lead.png",
   },
 ];
-
-const stats = [
-  { value: "5/5", label: "Google reviews" },
-  { value: "500+", label: "Happy customers" },
-  { value: "5+", label: "Years experience" },
-  { value: "100%", label: "Satisfaction focus" },
-];
-
 
 const faqs = [
   {
@@ -302,20 +292,27 @@ const faqs = [
         a: "We will shift all movable furniture for cleaning. Do take note that furniture that are too heavy/bulky will not be moved. (e.g. Storage bed/Wardrobes/TV cabinets, that are filled with items)",
       },
       {
-        q:"After cleaning & sealing, is it safe for kids/pets?",
-        a:"Yes it is absolutely safe once the full process is completed. There will be better friction in fact."
+        q: "After cleaning & sealing, is it safe for kids/pets?",
+        a: "Yes it is absolutely safe once the full process is completed. There will be better friction in fact.",
       },
       {
-        q:"Can I clean my vinyl floors myself instead of hiring a professional service?",
-        a:"While regular maintenance and light cleaning of vinyl floors can be done by homeowners, professional cleaning offers a deeper level of cleaning and can address more stubborn stains and buildup. We have the expertise, specialized equipment, and cleaning solutions to achieve optimal results without causing damage to the floors."
-      }
+        q: "Can I clean my vinyl floors myself instead of hiring a professional service?",
+        a: "While regular maintenance and light cleaning of vinyl floors can be done by homeowners, professional cleaning offers a deeper level of cleaning and can address more stubborn stains and buildup. We have the expertise, specialized equipment, and cleaning solutions to achieve optimal results without causing damage to the floors.",
+      },
     ],
   },
 ];
 
 export default function Home() {
   const [servicesIndex, setServicesIndex] = useState(0);
-  const [activeTestimonial, setActiveTestimonial] = useState<null | (typeof testimonials)[number]>(null);
+  const [activeTestimonial, setActiveTestimonial] = useState<
+    null | (typeof testimonials)[number]
+  >(null);
+  const [contactName, setContactName] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+  const [contactStatus, setContactStatus] = useState("");
 
   const maxServicesIndex = Math.max(0, services.length - 3);
 
@@ -338,8 +335,10 @@ export default function Home() {
     dragFree: false,
   });
 
-  const scrollTestimonialsPrev = () => testimonialsApi && testimonialsApi.scrollPrev();
-  const scrollTestimonialsNext = () => testimonialsApi && testimonialsApi.scrollNext();
+  const scrollTestimonialsPrev = () =>
+    testimonialsApi && testimonialsApi.scrollPrev();
+  const scrollTestimonialsNext = () =>
+    testimonialsApi && testimonialsApi.scrollNext();
 
   useEffect(() => {
     if (!testimonialsApi) return;
@@ -350,10 +349,17 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, [testimonialsApi]);
 
+  function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setContactStatus(
+      "You're query have been submitted! We'll get back to you soon.",
+    );
+  }
+
   return (
     <>
       {/* Hero — MCSC-style: headline + trusted line + CTAs */}
-      <section className="relative min-h-[85vh] sm:min-h-[90vh] lg:min-h-[92vh] flex flex-col lg:flex-row items-center justify-center overflow-hidden">
+      <section className="relative min-h-[84vh] sm:min-h-[89vh] lg:min-h-[91vh] flex flex-col lg:flex-row items-center justify-center overflow-hidden">
         <div className="absolute inset-0 gradient-mesh" />
         {/* Blurs positioned to frame the image area on the right */}
         <div className="absolute top-1/2 right-0 w-[28rem] h-[28rem] -translate-y-1/2 rounded-full bg-pastel-pink-soft/40 blur-3xl animate-float" />
@@ -414,7 +420,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="mt-12 pt-8 border-t border-pastel-green-200/50 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-sm font-medium text-[var(--text-body)]"
+              className="mt-10 pt-7 soft-divider-top flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-sm font-medium text-[var(--text-body)]"
             >
               {trustItems.map((item, i) => (
                 <span key={item} className="flex items-center gap-2">
@@ -491,7 +497,10 @@ export default function Home() {
                       whileHover={{ y: -4 }}
                       className="card-hover p-4 rounded-xl bg-white/95 border border-pastel-green-200/50 shadow-sm h-full flex flex-col text-center sm:text-left"
                     >
-                      <Link href={s.href} className="block rounded-lg focus-ring">
+                      <Link
+                        href={s.href}
+                        className="block rounded-lg focus-ring"
+                      >
                         <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
                           <Image
                             src={s.image}
@@ -562,8 +571,14 @@ export default function Home() {
                   whileHover={{ y: -4 }}
                   className="p-6 rounded-2xl bg-pastel-green-lighter/40 border border-pastel-green-200/50 flex flex-col sm:flex-row gap-4 text-center sm:text-left items-center sm:items-start"
                 >
-                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-pastel-pink-soft flex items-center justify-center text-[var(--text-dark)] font-bold">
-                    {w.icon}
+                  <span className="flex-shrink-0 w-16 h-16 rounded-full bg-pastel-pink-soft flex items-center justify-center text-[var(--text-dark)] font-bold">
+                    <Image
+                      src={w.icon}
+                      alt={w.title}
+                      width={46}
+                      height={46}
+                      className="object-contain"
+                    />
                   </span>
                   <div className="min-w-0">
                     <h3 className="font-display font-semibold text-[var(--text-dark)]">
@@ -583,7 +598,7 @@ export default function Home() {
       {/* Testimonials strip — MCSC-style top testimonials */}
       <section
         id="testimonials"
-        className="py-12 bg-pastel-pink-lighter/40 border-y border-pastel-pink-200/40"
+        className="py-12 bg-pastel-pink-lighter/55 soft-divider"
       >
         <div className="section-container">
           <AnimateIn className="text-center mb-10">
@@ -644,7 +659,9 @@ export default function Home() {
                           <p className="font-semibold text-[var(--text-dark)] truncate">
                             {t.name}
                           </p>
-                          <p className="text-xs text-[var(--text-muted)]">{t.date}</p>
+                          <p className="text-xs text-[var(--text-muted)]">
+                            {t.date}
+                          </p>
                         </div>
                       </div>
 
@@ -728,12 +745,10 @@ export default function Home() {
         </div>
       </section>
 
-     
-
       {/* About + image + CTA */}
       <section id="about" className="py-[var(--section-padding)]">
         <div className="section-container">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
             <div className="order-2 lg:order-1 flex flex-col items-center lg:items-end gap-8">
               <CleanHomeImage />
               <AnimateIn className="w-full">
@@ -775,12 +790,6 @@ export default function Home() {
                   experience and the satisfaction of a spotless & refreshed home
                   after our sessions.
                 </p>
-                <Link
-                  href="/dashboard"
-                  className="btn-primary focus-ring mt-8 inline-flex items-center justify-center px-8 py-4 rounded-full bg-pastel-pink-soft text-[var(--text-dark)] font-medium hover:bg-pastel-pink-200 btn-press w-fit mx-auto lg:mx-0"
-                >
-                  View my bookings
-                </Link>
               </AnimateIn>
             </div>
           </div>
@@ -791,7 +800,7 @@ export default function Home() {
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--text-dark)] text-center mb-10">
           Featured on
         </h1>
-        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+        <div className="w-full overflow-hidden">
           <Image
             src="/assets/logo_no_background.png"
             alt="Dustaway logo"
@@ -803,7 +812,7 @@ export default function Home() {
       </AnimateIn>
 
       {/* CTA — Your roadmap to a cleaner home */}
-      <section className="py-16 bg-pastel-green-lighter/50 border-t border-pastel-green-200/50">
+      <section className="py-16 bg-[color:var(--bg-soft-strong)] soft-divider-top">
         <div className="section-container text-center">
           <AnimateIn>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-dark)]">
@@ -819,6 +828,132 @@ export default function Home() {
               Book now
             </Link>
           </AnimateIn>
+        </div>
+      </section>
+
+      <section id="contact" className="py-[var(--section-padding)] bg-white">
+        <div className="section-container">
+          <div className="rounded-[2rem] bg-gradient-to-br from-pastel-green-lighter/70 via-white to-pastel-pink-lighter/55 border border-pastel-green-200/40 p-8 lg:p-10 shadow-sm">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-12">
+              {/* Left: Info */}
+              <AnimateIn>
+                <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
+                  Contact us
+                </p>
+                <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[var(--text-dark)]">
+                  Let&apos;s make your home feel fresh again
+                </h2>
+                <p className="mt-4 text-[var(--text-body)] font-medium leading-relaxed">
+                  Reach out for bookings, quotations, or questions about the
+                  right cleaning service for your space.
+                </p>
+
+                <div className="mt-8 space-y-4">
+                  <div className="rounded-2xl bg-white/80 border border-pastel-pink-200/40 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                      Call us
+                    </p>
+                    <p className="mt-2 font-semibold text-[var(--text-dark)]">
+                      +65 8057 9500
+                    </p>
+                  </div>
+                  <div className="rounded-2xl bg-white/80 border border-pastel-pink-200/40 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                      Email
+                    </p>
+                    <p className="mt-2 text-[var(--text-dark)] font-semibold break-all">
+                      cs@dustaway.sg
+                    </p>
+                  </div>
+                </div>
+              </AnimateIn>
+
+              {/* Right: Form */}
+              <AnimateIn delay={0.08}>
+                <form onSubmit={handleContactSubmit}>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="contact-name"
+                        className="block text-sm font-medium text-[var(--text-body)] mb-2"
+                      >
+                        Full name
+                      </label>
+                      <input
+                        id="contact-name"
+                        type="text"
+                        className="w-full px-4 py-3 rounded-xl border bg-white/80 border border-pastel-pink-200/40 outline-none"
+                        placeholder="Jane Doe"
+                        value={contactName}
+                        onChange={(e) => setContactName(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="contact-phone"
+                        className="block text-sm font-medium text-[var(--text-body)] mb-2"
+                      >
+                        Phone number
+                      </label>
+                      <input
+                        id="contact-phone"
+                        type="text"
+                        className="w-full px-4 py-3 rounded-xl border border-pastel-pink-200/40 bg-white/80 outline-none"
+                        placeholder="+65 1234 5678"
+                        value={contactPhone}
+                        onChange={(e) => setContactPhone(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <label
+                      htmlFor="contact-email"
+                      className="block text-sm font-medium text-[var(--text-body)] mb-2"
+                    >
+                      Email address
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      className="w-full px-4 py-3 rounded-xl border border-pastel-pink-200/40 bg-white/80 outline-none"
+                      placeholder="jane@example.com"
+                      value={contactEmail}
+                      onChange={(e) => setContactEmail(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="mt-4">
+                    <label
+                      htmlFor="contact-message"
+                      className="block text-sm font-medium text-[var(--text-body)] mb-2"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      rows={5}
+                      className="w-full px-4 py-3 rounded-xl border border-pastel-pink-200/40 bg-white/80 outline-none resize-none"
+                      placeholder="Tell us what kind of cleaning help you need..."
+                      value={contactMessage}
+                      onChange={(e) => setContactMessage(e.target.value)}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="mx-auto block px-6 py-3 my-5 rounded-full bg-pastel-green-soft text-[var(--text-dark)] font-medium shadow-sm"
+                  >
+                    Send inquiry
+                  </button>
+                  {contactStatus ? (
+                    <p className="text-center text-sm text-[var(--text-muted)] font-medium">
+                      {contactStatus}
+                    </p>
+                  ) : null}
+                </form>
+              </AnimateIn>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -846,7 +981,10 @@ export default function Home() {
                   </summary>
                   <div className="mt-3 space-y-3">
                     {section.questions.map((q, j) => (
-                      <details key={j} className="group p-3 rounded-lg bg-white/50 border border-pastel-green-200/30">
+                      <details
+                        key={j}
+                        className="group p-3 rounded-lg bg-white/50 border border-pastel-green-200/30"
+                      >
                         <summary className="font-medium text-[var(--text-dark)] cursor-pointer list-none flex justify-between items-center">
                           {q.q}
                           <span className="text-pastel-pink-200 group-open:rotate-180 transition-transform text-sm">

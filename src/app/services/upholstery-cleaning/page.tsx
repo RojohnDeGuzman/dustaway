@@ -1,6 +1,7 @@
 "use client";
-
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const upholsteryDropdowns = [
   {
@@ -55,30 +56,100 @@ const upholsteryDropdowns = [
   },
 ] as const;
 
+const steps = [
+  {
+    title: "Step 1",
+    copy: "Our specialists begin with an inspection and assessment of the condition of your item.",
+  },
+  {
+    title: "Step 2",
+    copy: "Large particles are then removed* from the surface of the item to prevent damaging our equipment.",
+  },
+  {
+    title: "Step 3",
+    copy: "High heat pressure* steaming will be done to remove bad odour, loosen clogged dirt and further break down any tough stains.",
+  },
+  {
+    title: "Step 4",
+    copy: "A special high pH level solution will be applied to double down on stains.",
+  },
+  {
+    title: "Step 5",
+    copy: "Sanitization and deep cleaning will be performed by injecting a specialized solution into the fabric with our heavy-duty carpet/upholstery cleaning machine.",
+  },
+  {
+    title: "Step 6",
+    copy: "The deep cleaning process is completed as the solution is extracted alongside unwanted particles.",
+  },
+];
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2, // delay between each card
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function VinylCleaningPage() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % steps.length);
+    }, 1500); // change speed here
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="w-full bg-[var(--bg-cream)] py-6 lg:py-10">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
-        <div className="flex flex-col lg:flex-row gap-8 items-stretch">
-          <div className="relative w-full lg:w-[35%] aspect-[4/5] lg:aspect-auto lg:min-h-auto flex-shrink-0">
-            <Image
-              src="/assets/da-10.png"
-              alt="Cleaning"
-              fill
-              className="object-cover object-top rounded-xl"
-            />
+        <div className="w-full">
+          <div className="mb-6 text-center max-w-3xl mx-auto">
+            <h2 className="font-display text-4xl md:text-5xl font-semibold text-[var(--text-dark)]">
+              Upholstery Cleaning
+            </h2>
+            <p className="text-sm text-[var(--text-body)] mt-3 font-medium">
+              Our upholstery deep clean service can clean the toughest stains
+              but gentle enough not to damage your furniture, giving everyone a
+              clean, safe and sanitized environment.
+            </p>
           </div>
 
-          <div className="flex-1">
-            <div className="mb-4">
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[var(--text-dark)]">
-                Upholstery Cleaning
-              </h2>
-              <p className="text-sm text-[var(--text-body)] mt-1 mb-4 font-medium">
-                Our upholstery deep clean service can clean the toughest stains
-                but gentle enough not to damage your furniture, giving everyone
-                a clean, safe and sanitized environment.
-              </p>
+          <div className="grid md:grid-cols-2 gap-5">
+            <div className="relative w-[88%] md:w-[82%] mx-auto rounded-[1.75rem] border border-pastel-green-200/50 bg-transparent shadow-sm overflow-hidden">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.25rem]">
+                <Image
+                  src="/assets/da-1.png"
+                  alt="Upholstery cleaning preview"
+                  fill
+                  className="object-cover object-top scale-110"
+                />
+              </div>
+            </div>
+            <div className="relative w-[88%] md:w-[82%] mx-auto rounded-[1.75rem] border border-pastel-pink-200/50 bg-transparent shadow-sm overflow-hidden">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.25rem]">
+                <Image
+                  src="/assets/da-7.png"
+                  alt="Furniture cleaning preview"
+                  fill
+                  className="object-cover object-center scale-110"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -97,36 +168,36 @@ export default function VinylCleaningPage() {
               stains from a wide range of materials.
             </p>
 
-            <ul className="space-y-3 text-sm text-[var(--text-body)] font-medium mb-4">
+            <ul className="list-disc pl-5 space-y-3 text-sm text-[var(--text-body)] font-medium mb-4">
               <li>
-                <span className="font-semibold">
+                <span className="font-extrabold">
                   Sofas (Fabric or Leather):
                 </span>
                 We remove grime and restore both fabric and leather sofas,
                 leaving them sanitized and refreshed. Cushions included.
               </li>
               <li>
-                <span className="font-semibold">Cushions & Pillows:</span>
+                <span className="font-extrabold">Cushions & Pillows:</span>
                 Eliminates dust mites, allergens, and odors for a cleaner and
                 healthier environment.
               </li>
               <li>
-                <span className="font-semibold">Soft Toys:</span>
+                <span className="font-extrabold">Soft Toys:</span>
                 Gentle cleaning that removes dirt and allergens, making them
                 safe for everyday use.
               </li>
               <li>
-                <span className="font-semibold">Carpets & Rugs:</span>
+                <span className="font-extrabold">Carpets & Rugs:</span>
                 Deep extraction cleaning that removes embedded dirt and restores
                 color.
               </li>
               <li>
-                <span className="font-semibold">Curtains & Fabrics:</span>
+                <span className="font-extrabold">Curtains & Fabrics:</span>
                 Refreshes curtains, drapes, and fabric surfaces, leaving them
                 dust-free and revitalized.
               </li>
               <li>
-                <span className="font-semibold">Tailored Care:</span>
+                <span className="font-extrabold">Tailored Care:</span>
                 Every material is treated with the most suitable cleaning method
                 for safe and effective results.
               </li>
@@ -141,7 +212,7 @@ export default function VinylCleaningPage() {
           {/* Image */}
           <div className="relative w-full lg:w-[45%] h-[300px] lg:h-full">
             <Image
-              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop"
+              src="/assets/da-13.jpg"
               alt="Upholstery cleaning"
               fill
               className="object-cover"
@@ -156,36 +227,30 @@ export default function VinylCleaningPage() {
               Our Process
             </h2>
 
-            <div className="grid md:grid-cols-4 gap-6 mt-10">
-              {[
-                {
-                  title: "Step 1",
-                  copy: "Our specialists begin with an inspection and assessment of the condition of your item.",
-                },
-                {
-                  title: "Step 2",
-                  copy: "Large particles are then removed* from the surface of the item to prevent damaging our equipment.",
-                },
-                {
-                  title: "Step 3",
-                  copy: "High heat pressure* steaming will be done to remove bad odour, loosen clogged dirt and further break down any tough stains.",
-                },
-                {
-                  title: "Step 4",
-                  copy: "A special high pH level solution will be applied to double down on stains.",
-                },
-                {
-                  title: "Step 5",
-                  copy: "Sanitization and deep cleaning will be performed by injecting a specialized solution into the fabric with our heavy-duty carpet/upholstery cleaning machine.",
-                },
-                {
-                  title: "Step 6",
-                  copy: "The deep cleaning process is completed as the solution is extracted alongside unwanted particles.",
-                },
-              ].map((step) => (
-                <div
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+            >
+              {steps.map((step, index) => (
+                <motion.div
                   key={step.title}
-                  className="bg-white/90 rounded-[1.5rem] shadow-sm p-6 text-center border border-pastel-green-200/50"
+                  variants={item}
+                  animate={
+                    index === activeIndex
+                      ? {
+                          scale: 1.05,
+                          boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                        }
+                      : {
+                          scale: 1,
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+                        }
+                  }
+                  transition={{ duration: 0.4 }}
+                  className="bg-white/90 rounded-[1.5rem] p-6 text-center border border-pastel-green-200/50 h-full flex flex-col justify-between"
                 >
                   <h3 className="font-display text-lg font-semibold text-[var(--text-dark)] mb-3">
                     {step.title}
@@ -193,9 +258,9 @@ export default function VinylCleaningPage() {
                   <p className="text-sm text-[var(--text-body)] leading-relaxed font-medium">
                     {step.copy}
                   </p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             <div className="mt-6 rounded-[1.5rem] border border-pastel-pink-200/50 bg-pastel-pink-lighter/40 p-6 text-sm text-[var(--text-body)] font-medium">
               *Removal of large particles and high heat steaming are not
@@ -204,16 +269,18 @@ export default function VinylCleaningPage() {
             </div>
           </div>
           <section className="mt-8">
-            <div className="w-full bg-gradient-to-r from-[#fbe9e4] to-[#fdf5f1] py-10 rounded-xl">
+            <div className="w-full bg-gradient-to-r from-pastel-pink-lighter via-white to-pastel-green-lighter py-10 rounded-[1.75rem] soft-divider">
               <div className="flex flex-col md:flex-row items-stretch gap-10 px-4 lg:px-8">
                 <div className="flex-1 flex flex-col justify-center items-center text-center">
                   <div className="mb-4">
-                    <p className="text-4xl font-semibold text-gray-900">4.9</p>
+                    <p className="text-4xl font-semibold text-[var(--text-dark)]">
+                      4.9
+                    </p>
                     <p className="text-yellow-500 text-xl mt-1">
                       {"\u2605".repeat(5)}
                     </p>
                   </div>
-                  <div className="space-y-4 text-sm text-gray-700 max-w-md mx-auto">
+                  <div className="space-y-4 text-sm text-[var(--text-body)] max-w-md mx-auto font-medium">
                     <div>
                       <p className="font-semibold tracking-wide">
                         TRUSTED PROFESSIONALS
@@ -237,7 +304,7 @@ export default function VinylCleaningPage() {
 
                 <div className="flex-1">
                   <div className="text-center mb-6">
-                    <h2 className="text-4xl font-semibold text-gray-900">
+                    <h2 className="font-display text-4xl font-semibold text-[var(--text-dark)]">
                       PRICING
                     </h2>
                   </div>
@@ -246,10 +313,10 @@ export default function VinylCleaningPage() {
                     {upholsteryDropdowns.map((section) => (
                       <details
                         key={section.title}
-                        open={section.defaultOpen}
-                        className="group overflow-hidden rounded-xl border border-[#ead8c8] bg-white"
+                        open={false}
+                        className="group overflow-hidden rounded-xl border border-pastel-green-200/50 bg-white/95 shadow-sm"
                       >
-                        <summary className="list-none cursor-pointer bg-[#fdf3ec] px-5 py-5">
+                        <summary className="list-none cursor-pointer bg-pastel-pink-lighter/55 px-5 py-5">
                           <div className="flex items-center justify-between gap-4">
                             <span className="text-xl font-medium text-[var(--text-dark)]">
                               {section.title}
@@ -263,8 +330,8 @@ export default function VinylCleaningPage() {
                         </summary>
 
                         <div className="p-4 sm:p-5">
-                          <div className="bg-white rounded-xl shadow-sm overflow-hidden h-full">
-                            <div className="grid grid-cols-2 bg-[#d8b79c] text-white">
+                          <div className="bg-white rounded-xl shadow-sm overflow-hidden h-full border border-pastel-green-200/40">
+                            <div className="grid grid-cols-2 bg-[var(--pastel-green-strong)] text-white">
                               <div className="py-3 pl-5 border-r border-white/15 flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold">
                                 <span className="material-symbols-outlined text-[20px] leading-none">
                                   straighten
@@ -279,13 +346,13 @@ export default function VinylCleaningPage() {
                               </div>
                             </div>
 
-                            <div className="divide-y text-xs sm:text-sm">
+                            <div className="divide-y divide-pastel-green-200/30 text-xs sm:text-sm text-[var(--text-body)]">
                               {section.rows.map((row) => (
                                 <div
                                   key={`${section.title}-${row.label}`}
                                   className="grid grid-cols-2"
                                 >
-                                  <div className="py-4 pl-5 border-r border-[#ece7df] flex items-center justify-center text-center">
+                                  <div className="py-4 pl-5 border-r border-pastel-green-200/35 flex items-center justify-center text-center">
                                     <span>{row.label}</span>
                                   </div>
                                   <div className="py-4 pl-5 text-center flex items-center justify-center">

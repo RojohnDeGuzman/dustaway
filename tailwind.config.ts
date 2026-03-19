@@ -10,28 +10,28 @@ const config: Config = {
   theme: {
     extend: {
 
-      /* Custom pastel color palette */
+      /* Custom palette with added pink range: 94A684 / AEC3AE / E4E4D0 / F9F5F6 / F8E8EE / FDCEDF / F2BED1 */
       colors: {
         pastel: {
           pink: {
-            50: "#fdf2f8",
-            100: "#fce7f3",
-            200: "#fbcfe8",
-            soft: "#f5d0dc",
-            lighter: "#fce4ec",
+            50: "#f9f5f6",
+            100: "#f8e8ee",
+            200: "#fdcedf",
+            soft: "#f2bed1",
+            lighter: "#f9f5f6",
           },
           green: {
-            50: "#f0fdf4",
-            100: "#dcfce7",
-            200: "#bbf7d0",
-            soft: "#c8e6c9",
-            lighter: "#e8f5e9",
+            50: "#f6faf4",
+            100: "#e7efe4",
+            200: "#aec3ae",
+            soft: "#aec3ae",
+            lighter: "#f6faf4",
           },
         },
 
         /* Optional direct color references for easier use */
         accent: {
-          green: "#3d7c5a",
+          green: "#94a684",
         },
       },
 

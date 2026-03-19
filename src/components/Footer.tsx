@@ -20,9 +20,9 @@ export default function Footer() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-pastel-green-lighter/50 border-t border-pastel-green-200/50"
+      className="bg-[color:var(--bg-soft-strong)] soft-divider-top"
     >
-      <div className="section-container py-14">
+      <div className="max-w-[1700px] mx-auto px-6 sm:px-8 lg:px-10 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 text-center sm:text-left">
           {/* Brand */}
           <div>
@@ -99,7 +99,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-pastel-green-200/50 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+        <div className="mt-12 pt-8 soft-divider-top flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
           <p className="text-sm text-[var(--text-body)] font-medium">
             DustAwaySvcs © {new Date().getFullYear()} All rights reserved. Owned
             by Dustaway Services Pte. Ltd. |{" "}
