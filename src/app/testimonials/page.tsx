@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import ArrowIcon from "@/components/ArrowIcon";
+import PageReveal from "@/components/PageReveal";
  
 // Define the structure for our data
 interface Testimonial {
@@ -78,7 +79,7 @@ export default function TestimonialPage() {
   };
  
   return (
-<div className="min-h-screen bg-[#fefcfb] flex items-center justify-center p-6 text-[#3d3935]">
+<PageReveal className="min-h-screen bg-[#fefcfb] flex items-center justify-center p-6 text-[#3d3935]">
 <main className="max-w-2xl mx-auto w-full">
 <div className="text-center mb-8">
 <h2 className="text-2xl md:text-3xl font-bold text-[#1c1917] mb-2">What Our Customers Say</h2>
@@ -168,6 +169,6 @@ export default function TestimonialPage() {
           ))}
 </div>
 </main>
-</div>
+</PageReveal>
   );
 }

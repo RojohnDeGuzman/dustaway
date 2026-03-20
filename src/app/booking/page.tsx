@@ -100,9 +100,10 @@ export default function BookingPage() {
     calendarMonth.year < maxMonth.getFullYear() ||
     calendarMonth.month < maxMonth.getMonth();
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!selectedService || !date || !timeId) return;
+
     const slot = TIME_SLOTS.find((t) => t.id === timeId);
     const id = `B${Date.now()}`;
     const booking = {
@@ -121,6 +122,27 @@ export default function BookingPage() {
       list.push(booking);
       localStorage.setItem(STORAGE_BOOKINGS, JSON.stringify(list));
     } catch (_) {}
+
+    try {
+      await fetch("/api/emails", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "booking",
+          bookingId: id,
+          serviceTitle: selectedService.title,
+          date,
+          time: slot?.label ?? timeId,
+          fullName: name,
+          email,
+          phoneNumber: phone,
+          address: address || undefined,
+        }),
+      });
+    } catch (error) {
+      console.error("Booking email failed:", error);
+    }
+
     setBookingId(id);
     setConfirmed(true);
   }
@@ -133,7 +155,14 @@ export default function BookingPage() {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-lg mx-auto text-center"
         >
-          <div className="w-16 h-16 rounded-full bg-pastel-green-soft flex items-center justify-center mx-auto text-2xl">
+          <div className="w-28 h-28 flex items-center justify-center mx-auto text-[0] text-transparent">
+            <Image
+              src="/assets/eco-friendly.png"
+              alt="Eco-friendly confirmation icon"
+              width={76}
+              height={76}
+              className="h-[76px] w-[76px] object-contain"
+            />
             ✓
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-dark)] mt-6">

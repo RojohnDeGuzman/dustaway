@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import LocalAssetIcon from "@/components/LocalAssetIcon";
+import PageReveal from "@/components/PageReveal";
 import { useEffect, useState } from "react";
 
 const upholsteryDropdowns = [
@@ -123,7 +124,7 @@ export default function VinylCleaningPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-6 lg:py-10 services-info-glow">
+    <PageReveal className="w-full bg-[var(--bg-cream)] py-6 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="w-full">
           <div className="mb-6 text-center max-w-3xl mx-auto">
@@ -442,6 +443,6 @@ export default function VinylCleaningPage() {
           </section>
         </div>
       </div>
-    </div>
+    </PageReveal>
   );
 }

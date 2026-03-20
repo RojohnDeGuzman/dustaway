@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import LocalAssetIcon from "@/components/LocalAssetIcon";
+import PageReveal from "@/components/PageReveal";
 
 export default function VinylCleaningPage() {
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
+    <PageReveal className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="w-full">
           <div className="mb-6 text-center max-w-3xl mx-auto">
@@ -112,12 +113,6 @@ export default function VinylCleaningPage() {
                     to post service support. (Mon-Sun, from 9am-6pm)
                   </p>
                 </div>
-                <div>
-                  <p className="font-semibold tracking-wide">
-                    CLEANING SUPPLIES PROVIDED
-                  </p>
-                  <p>Professional graded cleaning supplies provided.</p>
-                </div>
               </div>
             </div>
             <div className="flex-1 self-start">
@@ -198,6 +193,6 @@ export default function VinylCleaningPage() {
           </div>
         </div>
       </div>
-    </div>
+    </PageReveal>
   );
 }

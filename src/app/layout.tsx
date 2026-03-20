@@ -4,7 +4,6 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import FloatingSocial from '@/components/FloatingSocial'
-import PageTransition from '@/components/PageTransition'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -49,9 +48,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col font-sans">
         <Header />
-        <main className="flex-1 pt-14 sm:pt-16">
-          <PageTransition>{children}</PageTransition>
-        </main>
+        <main className="flex-1 pt-14 sm:pt-16">{children}</main>
         <Footer />
         <FloatingSocial />
       </body>

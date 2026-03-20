@@ -3,10 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { serviceLinks } from "@/lib/serviceLinks";
+import PageReveal from "@/components/PageReveal";
 
 export default function ServicesPage() {
   return (
-    <div className="section-container py-12 lg:py-16">
+    <PageReveal className="section-container py-12 lg:py-16">
       <div className="text-center max-w-2xl mx-auto mb-12">
         <p className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-3">
           What we offer
@@ -40,6 +41,6 @@ export default function ServicesPage() {
           </li>
         ))}
       </ul>
-    </div>
+    </PageReveal>
   );
 }

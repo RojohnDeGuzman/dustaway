@@ -8,6 +8,7 @@ import { importantNotes } from "@/app/data/importantNotes";
 import { addBenefits } from "@/app/data/addBenefits";
 import ArrowIcon from "@/components/ArrowIcon";
 import LocalAssetIcon from "@/components/LocalAssetIcon";
+import PageReveal from "@/components/PageReveal";
 
 type TabType = "3hr" | "4hr";
 
@@ -33,7 +34,7 @@ export default function SpringCleaningPage() {
   }, [emblaApi]);
 
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
+    <PageReveal className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           <div className="relative w-full lg:w-[35%] aspect-[4/5] lg:aspect-auto lg:min-h-full flex-shrink-0">
@@ -124,7 +125,16 @@ export default function SpringCleaningPage() {
             {activeTab === "4hr" && (
               <div className="mb-6 flex justify-center">
                 <div className="bg-white/90 border border-pastel-green-200/50 rounded-xl p-6 max-w-xl w-full shadow-sm">
-                  <h3 className="font-bold mb-4">SCOPE</h3>
+                  <div className="mb-4 flex items-center gap-3">
+                    <Image
+                      src="/assets/target.png"
+                      alt=""
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 flex-shrink-0 object-contain"
+                    />
+                    <h3 className="font-bold">SCOPE</h3>
+                  </div>
                   <p className="text-sm text-[var(--text-body)] leading-relaxed font-medium">
                     The 4-hours cleaning service includes everything in our
                     3-hour services as well as cleaning of window frames and
@@ -139,13 +149,13 @@ export default function SpringCleaningPage() {
               <div className="bg-white/90 border border-pastel-green-200/50 rounded-xl overflow-hidden shadow-sm">
                 <div className="w-full flex items-center gap-3 p-5 font-semibold">
                   <Image
-                    src="/assets/loupe.png"
+                    src="/assets/cancel.png"
                     alt=""
                     width={24}
                     height={24}
                     className="h-6 w-6 flex-shrink-0 object-contain"
                   />
-                  <span>IMPORTANT NOTES</span>
+                  <span>SERVICE DOES NOT INCLUDE</span>
                 </div>
                 <div className="p-6 pt-0">
                   <ul className="list-disc pl-5 text-sm space-y-2 mb-4">
@@ -167,8 +177,15 @@ export default function SpringCleaningPage() {
               </div>
 
               <div className="bg-white/90 border border-pastel-green-200/50 rounded-xl overflow-hidden shadow-sm">
-                <div className="w-full flex justify-between items-center p-5 font-semibold">
-                  ADDITIONAL BENEFITS
+                <div className="w-full flex items-center gap-3 p-5 font-semibold">
+                  <Image
+                    src="/assets/add.png"
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="h-6 w-6 flex-shrink-0 object-contain"
+                  />
+                  <span>ADDITIONAL DETAILS</span>
                 </div>
                 <div className="p-6 pt-0">
                   <ul className="space-y-3 text-sm">
@@ -219,14 +236,6 @@ export default function SpringCleaningPage() {
                     to post service support. (Mon–Sun, from 9am–6pm)
                   </p>
                 </div>
-                <div>
-                  <p className="font-semibold tracking-wide">
-                    CLEANING SUPPLIES PROVIDED
-                  </p>
-                  <p>
-                  Professional graded cleaning supplies provided. Simply provide vacuum & mop and we will settle the rest
-                  </p>
-                </div>
               </div>
             </div>
             <div className="flex-1 self-start">
@@ -267,6 +276,6 @@ export default function SpringCleaningPage() {
           </div>
         </div>
       </div>
-    </div>
+    </PageReveal>
   );
 }

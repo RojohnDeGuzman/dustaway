@@ -7,6 +7,7 @@ import { services3hr } from "@/app/data/services3hr";
 import { importantNotes } from "@/app/data/importantNotes";
 import ArrowIcon from "@/components/ArrowIcon";
 import LocalAssetIcon from "@/components/LocalAssetIcon";
+import PageReveal from "@/components/PageReveal";
 
 export default function EveningCleaningPage() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -28,7 +29,7 @@ export default function EveningCleaningPage() {
   }, [emblaApi]);
 
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
+    <PageReveal className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           <div className="relative w-full lg:w-[35%] aspect-[4/5] lg:aspect-auto lg:min-h-full flex-shrink-0">
@@ -101,13 +102,13 @@ export default function EveningCleaningPage() {
             <div className="bg-white/90 border border-pastel-green-200/50 rounded-xl overflow-hidden shadow-sm">
               <div className="w-full flex items-center gap-3 p-5 font-semibold">
                 <Image
-                  src="/assets/loupe.png"
+                  src="/assets/cancel.png"
                   alt=""
                   width={24}
                   height={24}
                   className="h-6 w-6 flex-shrink-0 object-contain"
                 />
-                <span>IMPORTANT NOTES</span>
+                <span>SERVICE DOES NOT INCLUDE</span>
               </div>
               <div className="p-6 pt-0">
                 <ul className="list-disc pl-5 text-sm space-y-2 mb-4">
@@ -160,14 +161,6 @@ export default function EveningCleaningPage() {
                     to post service support. (Mon–Sun, from 9am–6pm)
                   </p>
                 </div>
-                <div>
-                  <p className="font-semibold tracking-wide">
-                    CLEANING SUPPLIES PROVIDED
-                  </p>
-                  <p>
-                  Professional graded cleaning supplies provided. Simply provide vacuum & mop and we will settle the rest
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -204,6 +197,6 @@ export default function EveningCleaningPage() {
           </div>
         </div>
       </div>
-    </div>
+    </PageReveal>
   );
 }

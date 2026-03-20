@@ -503,11 +503,12 @@ export default function Home() {
 
             {/* Viewport (clipped), arrows live outside */}
             <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-out"
-                style={{
-                  transform: `translateX(-${servicesIndex * (100 / visibleServicesCount)}%)`,
+              <motion.div
+                className="flex"
+                animate={{
+                  x: `-${servicesIndex * (100 / visibleServicesCount)}%`,
                 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
                 {services.map((s) => (
                   <div
@@ -548,7 +549,7 @@ export default function Home() {
                     </motion.div>
                   </div>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
             {/* Dots — one per slide position (slide one by one, 3 visible) */}
@@ -906,7 +907,35 @@ export default function Home() {
 
               {/* Right: Form */}
               <AnimateIn delay={0.08}>
-                <form onSubmit={handleContactSubmit}>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const res = await fetch("/api/emails", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        fullName: contactName,
+                        phoneNumber: contactPhone,
+                        email: contactEmail,
+                        message: contactMessage,
+                      }),
+                    });
+
+                    if (!res.ok) {
+                      setContactStatus(
+                        "Something went wrong. Please try again.",
+                      );
+                      return;
+                    }
+                    setContactName("");
+                    setContactPhone("");
+                    setContactEmail("");
+                    setContactMessage("");
+                    setContactStatus(
+                      "Your inquiry has been sent! We'll be in touch soon. 🎉",
+                    );
+                  }}
+                >
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label
