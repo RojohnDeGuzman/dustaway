@@ -26,7 +26,7 @@ export default function EveningCleaningPage() {
   }, [emblaApi]);
 
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10">
+    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           <div className="relative w-full lg:w-[35%] aspect-[4/5] lg:aspect-auto lg:min-h-full flex-shrink-0">
@@ -76,9 +76,18 @@ export default function EveningCleaningPage() {
               <div className="overflow-hidden" ref={emblaRef}>
                 <div className="-mx-3 flex">
                   {services3hr.map((service) => (
-                    <div key={service.title} className="flex-[0_0_50%] px-3">
-                      <div className="h-full bg-white/90 border border-pastel-green-200/50 rounded-xl p-6 shadow-sm">
-                        <h3 className="font-bold mb-3">{service.title}</h3>
+                    <div key={service.title} className="flex-[0_0_100%] sm:flex-[0_0_50%] px-3">
+                      <div className="h-full bg-white/90 border border-pastel-green-200/50 rounded-xl p-6 shadow-sm services-carousel-card">
+                        <div className="flex items-center gap-4 mb-3">
+                          <Image
+                            src={service.icon}
+                            alt={`${service.title} icon`}
+                            width={56}
+                            height={56}
+                            className="w-[56px] h-[56px] object-contain"
+                          />
+                          <h3 className="font-bold">{service.title}</h3>
+                        </div>
                         <ul className="list-disc pl-5 text-sm space-y-2">
                           {service.items.map((item, i) => (
                             <li key={i}>{item}</li>
@@ -92,8 +101,15 @@ export default function EveningCleaningPage() {
             </div>
 
             <div className="bg-white/90 border border-pastel-green-200/50 rounded-xl overflow-hidden shadow-sm">
-              <div className="w-full flex justify-between items-center p-5 font-semibold">
-                IMPORTANT NOTES
+              <div className="w-full flex items-center gap-3 p-5 font-semibold">
+                <Image
+                  src="/assets/loupe.png"
+                  alt=""
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 flex-shrink-0 object-contain"
+                />
+                <span>IMPORTANT NOTES</span>
               </div>
               <div className="p-6 pt-0">
                 <ul className="list-disc pl-5 text-sm space-y-2 mb-4">
@@ -144,6 +160,14 @@ export default function EveningCleaningPage() {
                   <p>
                     Our support team will assist on all your needs, from booking
                     to post service support. (Mon–Sun, from 9am–6pm)
+                  </p>
+                </div>
+                <div>
+                  <p className="font-semibold tracking-wide">
+                    CLEANING SUPPLIES PROVIDED
+                  </p>
+                  <p>
+                  Professional graded cleaning supplies provided. Simply provide vacuum & mop and we will settle the rest
                   </p>
                 </div>
               </div>

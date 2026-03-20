@@ -1,11 +1,18 @@
-export type ServiceId = 'home' | 'deep' | 'office'
+export type ServiceId =
+  | 'cleaning-3hr-4hr'
+  | 'evening-cleaning'
+  | 'spring-cleaning'
+  | 'deep-cleaning'
+  | 'upholstery-cleaning'
+  | 'vinyl-cleaning'
+  | 'disinfection'
 
 export interface Service {
   id: ServiceId
   title: string
   description: string
-  duration: string
-  price: string
+  icon: string
+  href: string
 }
 
 export interface TimeSlot {

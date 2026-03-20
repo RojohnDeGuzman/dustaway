@@ -31,7 +31,7 @@ export default function SpringCleaningPage() {
   }, [emblaApi]);
 
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10">
+    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           <div className="relative w-full lg:w-[35%] aspect-[4/5] lg:aspect-auto lg:min-h-full flex-shrink-0">
@@ -98,9 +98,18 @@ export default function SpringCleaningPage() {
                 <div className="overflow-hidden" ref={emblaRef}>
                   <div className="-mx-3 flex">
                     {springCleaning.map((service) => (
-                      <div key={service.title} className="flex-[0_0_50%] px-3">
-                        <div className="h-full bg-white/90 border border-pastel-green-200/50 rounded-xl p-6 shadow-sm">
-                          <h3 className="font-bold mb-3">{service.title}</h3>
+                      <div key={service.title} className="flex-[0_0_100%] sm:flex-[0_0_50%] px-3">
+                        <div className="h-full bg-white/90 border border-pastel-green-200/50 rounded-xl p-6 shadow-sm services-carousel-card">
+                          <div className="flex items-center gap-4 mb-3">
+                            <Image
+                              src={service.icon}
+                              alt={`${service.title} icon`}
+                              width={56}
+                              height={56}
+                              className="w-[56px] h-[56px] object-contain"
+                            />
+                            <h3 className="font-bold">{service.title}</h3>
+                          </div>
                           <ul className="list-disc pl-5 text-sm space-y-2">
                             {service.items.map((item, i) => (
                               <li key={i}>{item}</li>
@@ -130,8 +139,15 @@ export default function SpringCleaningPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white/90 border border-pastel-green-200/50 rounded-xl overflow-hidden shadow-sm">
-                <div className="w-full flex justify-between items-center p-5 font-semibold">
-                  IMPORTANT NOTES
+                <div className="w-full flex items-center gap-3 p-5 font-semibold">
+                  <Image
+                    src="/assets/loupe.png"
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="h-6 w-6 flex-shrink-0 object-contain"
+                  />
+                  <span>IMPORTANT NOTES</span>
                 </div>
                 <div className="p-6 pt-0">
                   <ul className="list-disc pl-5 text-sm space-y-2 mb-4">
@@ -157,9 +173,18 @@ export default function SpringCleaningPage() {
                   ADDITIONAL BENEFITS
                 </div>
                 <div className="p-6 pt-0">
-                  <ul className="list-disc pl-5 text-sm space-y-2">
+                  <ul className="space-y-3 text-sm">
                     {addBenefits.map((benefit, i) => (
-                      <li key={i}>{benefit}</li>
+                      <li key={i} className="flex items-start gap-2 text-[var(--text-body)]">
+                        <Image
+                          src="/assets/eco-friendly.png"
+                          alt=""
+                          width={20}
+                          height={20}
+                          className="mt-[2px] h-5 w-5 flex-shrink-0 object-contain"
+                        />
+                        <span>{benefit}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -196,10 +221,18 @@ export default function SpringCleaningPage() {
                     to post service support. (Mon–Sun, from 9am–6pm)
                   </p>
                 </div>
+                <div>
+                  <p className="font-semibold tracking-wide">
+                    CLEANING SUPPLIES PROVIDED
+                  </p>
+                  <p>
+                  Professional graded cleaning supplies provided. Simply provide vacuum & mop and we will settle the rest
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="flex-1">
-              <div className="bg-white/95 rounded-xl shadow-sm overflow-hidden h-full border border-pastel-green-200/40">
+            <div className="flex-1 self-start">
+              <div className="bg-white/95 rounded-xl shadow-sm overflow-hidden border border-pastel-green-200/40">
                 <div className="bg-[var(--pastel-green-strong)] text-white text-center py-3 font-semibold tracking-wide">
                   PRICING
                 </div>

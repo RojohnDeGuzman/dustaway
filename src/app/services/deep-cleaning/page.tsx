@@ -5,7 +5,7 @@ import { deepClean } from "@/app/data/deepClean";
 
 export default function DeepCleaningPage() {
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10">
+    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           <div className="relative w-full lg:w-[35%] aspect-[4/5] lg:aspect-auto lg:min-h-full flex-shrink-0">
@@ -41,17 +41,26 @@ export default function DeepCleaningPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              {deepClean.map((service) => (
-                <div
-                  key={service.title}
-                  className="bg-white/90 border border-pastel-green-200/50 rounded-xl p-6 shadow-sm"
-                >
-                  <h3 className="font-bold mb-3">{service.title}</h3>
-                  <ul className="list-disc pl-5 text-sm space-y-2">
-                    {service.items.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
+	            <div className="grid md:grid-cols-2 gap-6 mb-8">
+	              {deepClean.map((service) => (
+	                <div
+	                  key={service.title}
+	                  className="bg-white/90 border border-pastel-green-200/50 rounded-xl p-6 shadow-sm"
+	                >
+	                  <div className="flex items-center gap-4 mb-3">
+	                    <Image
+	                      src={service.icons}
+	                      alt={`${service.title} icon`}
+	                      width={56}
+	                      height={56}
+	                      className="w-[56px] h-[56px] object-contain"
+	                    />
+	                    <h3 className="font-bold">{service.title}</h3>
+	                  </div>
+	                  <ul className="list-disc pl-5 text-sm space-y-2">
+	                    {service.items.map((item, i) => (
+	                      <li key={i}>{item}</li>
+	                    ))}
                   </ul>
                 </div>
               ))}
@@ -104,10 +113,18 @@ export default function DeepCleaningPage() {
                       booking to post service support. (Mon–Sun, from 9am–6pm)
                     </p>
                   </div>
+                  <div>
+                  <p className="font-semibold tracking-wide">
+                    CLEANING SUPPLIES PROVIDED
+                  </p>
+                  <p>
+                  Professional graded cleaning supplies provided. 
+                  </p>
+                </div>
                 </div>
               </div>
-              <div className="flex-1">
-                <div className="bg-white/95 rounded-xl overflow-hidden h-full border border-pastel-green-200/40 shadow-sm">
+              <div className="flex-1 self-start">
+                <div className="bg-white/95 rounded-xl overflow-hidden border border-pastel-green-200/40 shadow-sm">
                   <div className="bg-[var(--pastel-green-strong)] text-white text-center py-3 font-semibold tracking-wide">
                     PRICING
                   </div>
@@ -128,7 +145,7 @@ export default function DeepCleaningPage() {
                   <div className="divide-y divide-pastel-green-200/30 text-xs sm:text-sm text-[var(--text-body)]">
                     <div className="grid grid-cols-2">
                       <div className="py-4 pl-5 border-r border-pastel-green-200/40 flex items-center justify-center">
-                        <span>&lt; 700 Sqft</span>
+                        <span>&lt; 700 sqft</span>
                       </div>
                       <div className="py-4 pl-5 text-center">
                         <p className="font-semibold">$380</p>

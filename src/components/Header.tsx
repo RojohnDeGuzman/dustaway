@@ -126,16 +126,23 @@ export default function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full left-0 mt-1 py-2 w-56 rounded-xl bg-[var(--bg-cream)] border border-pastel-green-200/50 shadow-lg z-50"
+                  className="absolute top-full left-0 mt-1 py-2 w-72 rounded-xl bg-[var(--bg-cream)] border border-pastel-green-200/50 shadow-lg z-50"
                 >
                   {serviceLinks.map((s) => (
                     <Link
                       key={s.href}
                       href={s.href}
                       onClick={() => setServicesOpen(false)}
-                      className="focus-ring block px-4 py-2.5 text-sm text-[var(--text-body)] hover:bg-pastel-green-lighter/50 hover:text-[var(--text-dark)] font-medium"
+                      className="focus-ring flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--text-body)] hover:bg-pastel-green-lighter/50 hover:text-[var(--text-dark)] font-medium"
                     >
-                      {s.label}
+                      <Image
+                        src={s.icon}
+                        alt=""
+                        width={36}
+                        height={36}
+                        className="h-9 w-9 flex-shrink-0 object-contain"
+                      />
+                      <span>{s.label}</span>
                     </Link>
                   ))}
                 </motion.div>
@@ -236,9 +243,16 @@ export default function Header() {
                       key={s.href}
                       href={s.href}
                       onClick={handleNavClick}
-                      className="focus-ring block w-full py-2.5 pl-2 rounded-lg text-sm text-[var(--text-body)] font-medium hover:bg-pastel-green-lighter/50 hover:text-[var(--text-dark)]"
+                      className="focus-ring flex w-full items-center gap-3 py-2.5 pl-2 rounded-lg text-sm text-[var(--text-body)] font-medium hover:bg-pastel-green-lighter/50 hover:text-[var(--text-dark)]"
                     >
-                      {s.label}
+                      <Image
+                        src={s.icon}
+                        alt=""
+                        width={36}
+                        height={36}
+                        className="h-9 w-9 flex-shrink-0 object-contain"
+                      />
+                      <span>{s.label}</span>
                     </Link>
                   ))}
                 </div>

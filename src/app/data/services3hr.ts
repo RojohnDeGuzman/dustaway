@@ -6,6 +6,7 @@ export const services3hr = [
         "Disposal and cleaning of rubbish",
         "Vacuum and mopping",
       ],
+      icon: "/assets/living-room.png",
     },
     {
       title: "KITCHEN AREA",
@@ -15,6 +16,7 @@ export const services3hr = [
         "Disposal and cleaning of rubbish",
         "Vacuum and mopping",
       ],
+      icon: "/assets/kitchen.png",
     },
     {
       title: "BEDROOMS",
@@ -23,6 +25,7 @@ export const services3hr = [
         "Disposal and cleaning of rubbish",
         "Vacuum and mopping",
       ],
+      icon: "/assets/bedroom.png",
     },
     {
       title: "BATHROOMS",
@@ -32,6 +35,7 @@ export const services3hr = [
         "Disposal and cleaning of rubbish",
         "Vacuum and mopping",
       ],
+      icon: "/assets/bath.png",
     },
     {
       title: "OTHERS",
@@ -40,5 +44,6 @@ export const services3hr = [
         "Wiping of glass windows and hand metal grilles (if time permits)",
         "Vacuum and mopping",
       ],
+      icon: "/assets/window.png",
     },
   ];

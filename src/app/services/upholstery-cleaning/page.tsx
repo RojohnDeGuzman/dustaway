@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 const upholsteryDropdowns = [
   {
     title: "Carpet",
+    icon: "/assets/carpet.png",
     defaultOpen: true,
     rows: [
       { label: "Small ( <44 sqft)", price: "$80" },
@@ -15,6 +16,7 @@ const upholsteryDropdowns = [
   },
   {
     title: "Mattress",
+    icon: "/assets/air-mattress.png",
     rows: [
       { label: "Baby Cot", price: "$80" },
       { label: "Single", price: "$80" },
@@ -25,6 +27,7 @@ const upholsteryDropdowns = [
   },
   {
     title: "Fabric Sofa",
+    icon: "/assets/loveseat.png",
     rows: [
       { label: "Single Seater", price: "$80" },
       { label: "2 Seater", price: "$120" },
@@ -35,6 +38,7 @@ const upholsteryDropdowns = [
   },
   {
     title: "Leather Sofa",
+    icon: "/assets/sofa.png",
     rows: [
       { label: "Single Seater", price: "$100" },
       { label: "2 Seater", price: "$140" },
@@ -45,6 +49,7 @@ const upholsteryDropdowns = [
   },
   {
     title: "Other Upholstery",
+    icon: "/assets/ottoman.png",
     rows: [
       { label: "Dining Chair", price: "$30" },
       { label: "Gaming/Office Chair", price: "$60" },
@@ -63,11 +68,11 @@ const steps = [
   },
   {
     title: "Step 2",
-    copy: "Large particles are then removed* from the surface of the item to prevent damaging our equipment.",
+    copy: "Large particles are then removed from the surface of the item to prevent damaging our equipment.",
   },
   {
     title: "Step 3",
-    copy: "High heat pressure* steaming will be done to remove bad odour, loosen clogged dirt and further break down any tough stains.",
+    copy: "High heat pressure steaming will be done to remove bad odour, loosen clogged dirt and further break down any tough stains.",
   },
   {
     title: "Step 4",
@@ -107,6 +112,7 @@ const item = {
 
 export default function VinylCleaningPage() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [openPricingIndex, setOpenPricingIndex] = useState<number | null>(null);
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % steps.length);
@@ -116,7 +122,7 @@ export default function VinylCleaningPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-6 lg:py-10">
+    <div className="w-full bg-[var(--bg-cream)] py-6 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="w-full">
           <div className="mb-6 text-center max-w-3xl mx-auto">
@@ -157,11 +163,11 @@ export default function VinylCleaningPage() {
         {/* PROFESSIONAL UPHOLSTERY CLEANING */}
         <div className="w-full bg-white/90 rounded-[1.75rem] border border-pastel-green-200/50 shadow-sm overflow-hidden flex flex-col lg:flex-row mt-6 lg:h-[460px]">
           <div className="flex-1 p-6 lg:p-10 flex flex-col justify-center">
-            <h3 className="font-display text-2xl md:text-3xl font-semibold text-[var(--text-dark)] mb-4">
+            <h3 className="font-display text-center text-2xl md:text-3xl font-semibold text-[var(--text-dark)] mb-4">
               Professional Upholstery Cleaning
             </h3>
 
-            <p className="text-sm text-[var(--text-body)] font-medium mb-4">
+            <p className="text-sm text-center text-[var(--text-body)] font-medium mb-4">
               Reclaim the comfort and freshness of your furniture with our
               comprehensive upholstery cleaning service. Our expert technicians
               use gentle yet effective methods to remove dirt, allergens, and
@@ -220,6 +226,48 @@ export default function VinylCleaningPage() {
           </div>
         </div>
 
+        {/* BENEFITS SECTION (plain text, no card layout) */}
+        <div className="w-full mt-10">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold text-[var(--text-dark)] text-center">
+              Benefits
+            </h2>
+
+            <ul className="mt-5 mx-auto grid max-w-4xl grid-cols-1 gap-4 list-none text-sm md:grid-cols-2 md:text-base text-[var(--text-body)] font-medium lg:grid-cols-3">
+              <li className="flex items-center justify-center gap-2 text-center">
+                <Image
+                  src="/assets/eco-friendly.png"
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="h-[18px] w-[18px] flex-shrink-0 object-contain"
+                />
+                <span>Prevent mould build-up</span>
+              </li>
+              <li className="flex items-center justify-center gap-2 text-center">
+                <Image
+                  src="/assets/eco-friendly.png"
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="h-[18px] w-[18px] flex-shrink-0 object-contain"
+                />
+                <span>Remove common stains, dust mites and other allergens</span>
+              </li>
+              <li className="flex items-center justify-center gap-2 text-center">
+                <Image
+                  src="/assets/eco-friendly.png"
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="h-[18px] w-[18px] flex-shrink-0 object-contain"
+                />
+                <span>High heat pressure steaming for sterilization &amp; disinfection</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         {/* OUR PROCESS SECTION */}
         <div className="w-full mt-12">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -242,15 +290,17 @@ export default function VinylCleaningPage() {
                     index === activeIndex
                       ? {
                           scale: 1.05,
-                          boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                          boxShadow:
+                            "0 0 0 1px rgba(253, 206, 223, 0.55), 0 0 18px rgba(253, 206, 223, 0.75), 0 0 35px rgba(148, 166, 132, 0.30), 0 0 50px rgba(174, 195, 174, 0.22)",
                         }
                       : {
                           scale: 1,
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+                          boxShadow:
+                            "0 0 0 1px rgba(253, 206, 223, 0.25), 0 0 12px rgba(148, 166, 132, 0.18), 0 0 28px rgba(174, 195, 174, 0.14)",
                         }
                   }
                   transition={{ duration: 0.4 }}
-                  className="bg-white/90 rounded-[1.5rem] p-6 text-center border border-pastel-green-200/50 h-full flex flex-col justify-between"
+                  className="bg-white/90 rounded-[1.5rem] p-6 text-center border border-pastel-green-200/50 h-full flex flex-col justify-start gap-4 shadow-sm"
                 >
                   <h3 className="font-display text-lg font-semibold text-[var(--text-dark)] mb-3">
                     {step.title}
@@ -262,9 +312,9 @@ export default function VinylCleaningPage() {
               ))}
             </motion.div>
 
-            <div className="mt-6 rounded-[1.5rem] border border-pastel-pink-200/50 bg-pastel-pink-lighter/40 p-6 text-sm text-[var(--text-body)] font-medium">
-              *Removal of large particles and high heat steaming are not
-              available for carpets above 100sqft in size. Please keep your
+            <div className="mt-6 rounded-[1.5rem] text-center border border-pastel-pink-200/50 bg-pastel-pink-lighter/40 p-6 text-sm text-[var(--text-body)] font-medium">
+              Removal of large particles and high heat steaming are not
+              available for carpets above 100 sqft in size. Please keep your
               carpet free from any large particles.
             </div>
           </div>
@@ -310,16 +360,32 @@ export default function VinylCleaningPage() {
                   </div>
 
                   <div className="space-y-4">
-                    {upholsteryDropdowns.map((section) => (
+                    {upholsteryDropdowns.map((section, idx) => (
                       <details
                         key={section.title}
-                        open={false}
-                        className="group overflow-hidden rounded-xl border border-pastel-green-200/50 bg-white/95 shadow-sm"
+                        open={openPricingIndex === idx}
+                        className="pricing-details group overflow-hidden rounded-xl border border-pastel-green-200/50 bg-white/95 shadow-sm"
                       >
-                        <summary className="list-none cursor-pointer bg-pastel-pink-lighter/55 px-5 py-5">
+                        <summary
+                          onClick={(e) => {
+                            // Prevent native <details> toggling; React `open={...}` controls state.
+                            e.preventDefault();
+                            setOpenPricingIndex((prev) =>
+                              prev === idx ? null : idx,
+                            );
+                          }}
+                          className="list-none cursor-pointer bg-pastel-pink-lighter/55 px-5 py-5"
+                        >
                           <div className="flex items-center justify-between gap-4">
-                            <span className="text-xl font-medium text-[var(--text-dark)]">
-                              {section.title}
+                            <span className="flex min-w-0 items-center gap-3 text-xl font-medium text-[var(--text-dark)]">
+                              <Image
+                                src={section.icon}
+                                alt=""
+                                width={44}
+                                height={44}
+                                className="h-11 w-11 flex-shrink-0 object-contain"
+                              />
+                              <span className="truncate">{section.title}</span>
                             </span>
                             <span className="flex items-center justify-center text-[var(--text-dark)] transition-transform duration-300 group-open:rotate-180">
                               <span className="material-symbols-outlined text-[24px] leading-none">
@@ -329,7 +395,7 @@ export default function VinylCleaningPage() {
                           </div>
                         </summary>
 
-                        <div className="p-4 sm:p-5">
+                        <div className="pricing-details-content p-4 sm:p-5">
                           <div className="bg-white rounded-xl shadow-sm overflow-hidden h-full border border-pastel-green-200/40">
                             <div className="grid grid-cols-2 bg-[var(--pastel-green-strong)] text-white">
                               <div className="py-3 pl-5 border-r border-white/15 flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold">

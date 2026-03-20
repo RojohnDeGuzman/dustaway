@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { serviceLinks } from "@/lib/serviceLinks";
 
 export default function ServicesPage() {
@@ -25,7 +26,16 @@ export default function ServicesPage() {
               href={s.href}
               className="focus-ring block p-5 rounded-xl bg-pastel-green-lighter/40 border border-pastel-green-200/50 hover:bg-pastel-green-lighter/60 hover:border-pastel-green-200 font-medium text-[var(--text-dark)] transition-colors"
             >
-              {s.label}
+              <span className="flex items-center gap-4">
+                <Image
+                  src={s.icon}
+                  alt={`${s.label} icon`}
+                  width={72}
+                  height={72}
+                  className="w-[72px] h-[72px] object-contain"
+                />
+                <span>{s.label}</span>
+              </span>
             </Link>
           </li>
         ))}

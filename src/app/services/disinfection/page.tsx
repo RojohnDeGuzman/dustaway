@@ -8,7 +8,7 @@ export default function DisinfectionPage() {
 
 
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10">
+    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="w-full">
           <div className="mb-6 text-center max-w-3xl mx-auto">
@@ -49,7 +49,7 @@ export default function DisinfectionPage() {
 
         <div className="w-full bg-gradient-to-br from-pastel-green-lighter/55 via-white to-pastel-pink-lighter/55 rounded-[1.75rem] shadow-sm overflow-hidden mt-4 border border-pastel-green-200/50">
           <div className="grid lg:grid-cols-[1.35fr_0.95fr] gap-8 lg:gap-10 p-6 lg:p-8 items-start">
-            <div className="max-w-none">
+            <div className="max-w-none text-center">
               <h3 className="font-display text-2xl md:text-3xl font-semibold text-[var(--text-dark)] mb-3">
                 Pet &amp; Kid-Friendly Disinfection
               </h3>
@@ -59,56 +59,77 @@ export default function DisinfectionPage() {
               <p className="text-sm font-semibold text-[var(--text-dark)] mb-2">
                 Our comprehensive disinfection service includes:
               </p>
-              <ul className="list-disc pl-5 space-y-2 text-sm text-[var(--text-body)] font-medium">
+              <ul className="list-disc pl-5 space-y-2 text-start text-sm text-[var(--text-body)] font-medium">
                 <li>
-                  <span className="font-semibold">High-Touch Surface Focus:</span> We target areas frequently touched by hands, like doorknobs, light switches, countertops, and toys.
+                  <span className="font-extrabold">High-Touch Surface Focus:</span> 
+                  We target areas frequently touched by hands, like doorknobs, light switches, countertops, and toys.
                 </li>
                 <li>
-                  <span className="font-semibold">Targeted Aerosol Disinfection &amp; Sanitization:</span> We utilize a pet-safe, broad-spectrum aerosol treatment to effectively sanitize surfaces and eliminate airborne bacteria and viruses.
+                  <span className="font-extrabold">Targeted Aerosol Disinfection &amp; Sanitization:</span> We utilize a pet-safe, broad-spectrum aerosol treatment to effectively sanitize surfaces and eliminate airborne bacteria and viruses.
                 </li>
                 <li>
-                  <span className="font-semibold">Safe for All Surface:</span> Our disinfectants are effective yet gentle, ensuring the safety of your children&apos;s toys, pet beds, and everyday household items.
+                  <span className="font-extrabold">Safe for All Surface:</span> Our disinfectants are effective yet gentle, ensuring the safety of your children&apos;s toys, pet beds, and everyday household items.
                 </li>
                 <li>
-                  <span className="font-semibold">Transparent Communication:</span> We&apos;ll discuss the disinfection process with you beforehand and answer any questions you may have.
+                  <span className="font-extrabold">Transparent Communication:</span> We&apos;ll discuss the disinfection process with you beforehand and answer any questions you may have.
                 </li>
               </ul>
               <p className="text-sm text-[var(--text-body)] mt-4 font-medium">
-                <span className="font-semibold">Breathe Easy with a Clean Home:</span> Experience the peace of mind that comes with a sanitized environment. Our pet and kid-friendly disinfection service keeps your family safe and healthy, allowing you to focus on what matters most.
+                <span className="font-extrabold">Breathe Easy with a Clean Home:</span> Experience the peace of mind that comes with a sanitized environment. Our pet and kid-friendly disinfection service keeps your family safe and healthy, allowing you to focus on what matters most.
               </p>
             </div>
 
             <div className="rounded-[1.5rem] border border-pastel-pink-200/50 bg-pastel-pink-lighter/45 p-5 lg:p-6">
-              <p className="font-semibold tracking-wide text-[var(--text-dark)] mb-4">BENEFITS</p>
+              <p className="font-semibold tracking-wide text-[var(--text-dark)] mb-4 text-center">BENEFITS</p>
               <ul className="grid sm:grid-cols-2 lg:grid-cols-1 gap-3 text-sm text-[var(--text-body)] font-medium">
                 <li className="flex items-start gap-2">
-                  <span className="mt-[2px] inline-flex h-5 w-5 items-center justify-center rounded-full bg-white border border-pastel-green-200/50 text-[var(--text-body)] text-[12px]">
-                    ✓
-                  </span>
+                  <Image
+                    src="/assets/eco-friendly.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="mt-[2px] h-5 w-5 flex-shrink-0 object-contain"
+                  />
                   <span>Providing a safe and clean environment for everyone</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-[2px] inline-flex h-5 w-5 items-center justify-center rounded-full bg-white border border-pastel-green-200/50 text-[var(--text-body)] text-[12px]">
-                    ✓
-                  </span>
+                  <Image
+                    src="/assets/eco-friendly.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="mt-[2px] h-5 w-5 flex-shrink-0 object-contain"
+                  />
                   <span>Services by our specialized team of professionals</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-[2px] inline-flex h-5 w-5 items-center justify-center rounded-full bg-white border border-pastel-green-200/50 text-[var(--text-body)] text-[12px]">
-                    ✓
-                  </span>
+                  <Image
+                    src="/assets/eco-friendly.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="mt-[2px] h-5 w-5 flex-shrink-0 object-contain"
+                  />
                   <span>Scientifically tested to eliminate 99.99% of germs and bacteria</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-[2px] inline-flex h-5 w-5 items-center justify-center rounded-full bg-white border border-pastel-green-200/50 text-[var(--text-body)] text-[12px]">
-                    ✓
-                  </span>
+                  <Image
+                    src="/assets/eco-friendly.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="mt-[2px] h-5 w-5 flex-shrink-0 object-contain"
+                  />
                   <span>Reduces allergens</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-[2px] inline-flex h-5 w-5 items-center justify-center rounded-full bg-white border border-pastel-green-200/50 text-[var(--text-body)] text-[12px]">
-                    ✓
-                  </span>
+                  <Image
+                    src="/assets/eco-friendly.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="mt-[2px] h-5 w-5 flex-shrink-0 object-contain"
+                  />
                   <span>Kids and pet friendly</span>
                 </li>
               </ul>
@@ -140,8 +161,8 @@ export default function DisinfectionPage() {
             </div>
 
 
-            <div className="flex-1">
-  <div className="bg-white/95 rounded-xl shadow-sm overflow-hidden h-full border border-pastel-green-200/40">
+            <div className="flex-1 self-start">
+  <div className="bg-white/95 rounded-xl shadow-sm overflow-hidden border border-pastel-green-200/40">
     
     {/* Header */}
     <div className="bg-[var(--pastel-green-strong)] text-white text-center py-3 font-semibold tracking-wide">

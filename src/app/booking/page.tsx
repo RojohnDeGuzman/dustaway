@@ -1,105 +1,127 @@
-'use client'
+"use client";
 
-import { useState, useMemo } from 'react'
-import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import { SERVICES, TIME_SLOTS } from '@/lib/mockData'
-import type { ServiceId } from '@/lib/types'
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { SERVICES, TIME_SLOTS } from "@/lib/mockData";
+import type { ServiceId } from "@/lib/types";
 
-const STORAGE_BOOKINGS = 'dustaway_bookings'
+const STORAGE_BOOKINGS = "dustaway_bookings";
 
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+function formatLocalDate(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
 /** Build one month of calendar cells (with leading empty cells). */
 function getMonthGrid(year: number, month: number, today: Date) {
-  const first = new Date(year, month, 1)
-  const last = new Date(year, month + 1, 0)
-  const startPad = first.getDay()
-  const daysInMonth = last.getDate()
-  today.setHours(0, 0, 0, 0)
+  const first = new Date(year, month, 1);
+  const last = new Date(year, month + 1, 0);
+  const startPad = first.getDay();
+  const daysInMonth = last.getDate();
+  today.setHours(0, 0, 0, 0);
 
-  const cells: ({ type: 'empty' } | { type: 'day'; date: string; day: number; isPast: boolean })[] = []
-  for (let i = 0; i < startPad; i++) cells.push({ type: 'empty' })
+  const cells: (
+    | { type: "empty" }
+    | { type: "day"; date: string; day: number; isPast: boolean }
+  )[] = [];
+  for (let i = 0; i < startPad; i++) cells.push({ type: "empty" });
   for (let d = 1; d <= daysInMonth; d++) {
-    const dDate = new Date(year, month, d)
-    dDate.setHours(0, 0, 0, 0)
-    const dateStr = dDate.toISOString().slice(0, 10)
+    const dDate = new Date(year, month, d);
+    dDate.setHours(0, 0, 0, 0);
+    const dateStr = formatLocalDate(dDate);
     cells.push({
-      type: 'day',
+      type: "day",
       date: dateStr,
       day: d,
       isPast: dDate.getTime() < today.getTime(),
-    })
+    });
   }
-  return cells
+  return cells;
 }
 
 export default function BookingPage() {
-  const [step, setStep] = useState(1)
-  const [serviceId, setServiceId] = useState<ServiceId | null>(null)
-  const [date, setDate] = useState('')
-  const [timeId, setTimeId] = useState('')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [address, setAddress] = useState('')
-  const [confirmed, setConfirmed] = useState(false)
-  const [bookingId, setBookingId] = useState<string | null>(null)
+  const [step, setStep] = useState(1);
+  const [serviceId, setServiceId] = useState<ServiceId | null>(null);
+  const [date, setDate] = useState("");
+  const [timeId, setTimeId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
+  const [bookingId, setBookingId] = useState<string | null>(null);
 
-  const today = useMemo(() => new Date(), [])
-  const [calendarMonth, setCalendarMonth] = useState(() => ({ year: today.getFullYear(), month: today.getMonth() }))
+  const today = useMemo(() => new Date(), []);
+  const [calendarMonth, setCalendarMonth] = useState(() => ({
+    year: today.getFullYear(),
+    month: today.getMonth(),
+  }));
 
-  const selectedService = SERVICES.find((s) => s.id === serviceId)
+  const selectedService = SERVICES.find((s) => s.id === serviceId);
   const monthGrid = useMemo(
     () => getMonthGrid(calendarMonth.year, calendarMonth.month, new Date()),
-    [calendarMonth.year, calendarMonth.month]
-  )
+    [calendarMonth.year, calendarMonth.month],
+  );
   const monthLabel = useMemo(
-    () => new Date(calendarMonth.year, calendarMonth.month).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-    [calendarMonth.year, calendarMonth.month]
-  )
+    () =>
+      new Date(calendarMonth.year, calendarMonth.month).toLocaleDateString(
+        "en-US",
+        { month: "long", year: "numeric" },
+      ),
+    [calendarMonth.year, calendarMonth.month],
+  );
 
   function prevMonth() {
     setCalendarMonth((prev) => {
-      const d = new Date(prev.year, prev.month - 1)
-      return { year: d.getFullYear(), month: d.getMonth() }
-    })
+      const d = new Date(prev.year, prev.month - 1);
+      return { year: d.getFullYear(), month: d.getMonth() };
+    });
   }
 
   function nextMonth() {
     setCalendarMonth((prev) => {
-      const d = new Date(prev.year, prev.month + 1)
-      return { year: d.getFullYear(), month: d.getMonth() }
-    })
+      const d = new Date(prev.year, prev.month + 1);
+      return { year: d.getFullYear(), month: d.getMonth() };
+    });
   }
 
-  const canGoPrev = calendarMonth.year > today.getFullYear() || calendarMonth.month > today.getMonth()
-  const maxMonth = new Date(today.getFullYear(), today.getMonth() + 2)
-  const canGoNext = calendarMonth.year < maxMonth.getFullYear() || calendarMonth.month < maxMonth.getMonth()
+  const canGoPrev =
+    calendarMonth.year > today.getFullYear() ||
+    calendarMonth.month > today.getMonth();
+  const maxMonth = new Date(today.getFullYear(), today.getMonth() + 2);
+  const canGoNext =
+    calendarMonth.year < maxMonth.getFullYear() ||
+    calendarMonth.month < maxMonth.getMonth();
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!selectedService || !date || !timeId) return
-    const slot = TIME_SLOTS.find((t) => t.id === timeId)
-    const id = `B${Date.now()}`
+    e.preventDefault();
+    if (!selectedService || !date || !timeId) return;
+    const slot = TIME_SLOTS.find((t) => t.id === timeId);
+    const id = `B${Date.now()}`;
     const booking = {
       id,
       serviceId: selectedService.id,
       serviceTitle: selectedService.title,
       date,
       time: slot?.label ?? timeId,
-      status: 'upcoming' as const,
+      status: "upcoming" as const,
       address: address || undefined,
       createdAt: new Date().toISOString(),
-    }
+    };
     try {
-      const stored = localStorage.getItem(STORAGE_BOOKINGS)
-      const list = stored ? JSON.parse(stored) : []
-      list.push(booking)
-      localStorage.setItem(STORAGE_BOOKINGS, JSON.stringify(list))
+      const stored = localStorage.getItem(STORAGE_BOOKINGS);
+      const list = stored ? JSON.parse(stored) : [];
+      list.push(booking);
+      localStorage.setItem(STORAGE_BOOKINGS, JSON.stringify(list));
     } catch (_) {}
-    setBookingId(id)
-    setConfirmed(true)
+    setBookingId(id);
+    setConfirmed(true);
   }
 
   if (confirmed && bookingId) {
@@ -117,9 +139,13 @@ export default function BookingPage() {
             Booking confirmed
           </h1>
           <p className="mt-3 text-[var(--text-body)] font-medium">
-            Your {selectedService?.title} is scheduled for{' '}
-            {new Date(date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} at{' '}
-            {TIME_SLOTS.find((t) => t.id === timeId)?.label}.
+            Your {selectedService?.title} is scheduled for{" "}
+            {new Date(date + "T12:00:00").toLocaleDateString("en-US", {
+              weekday: "long",
+              month: "long",
+              day: "numeric",
+            })}{" "}
+            at {TIME_SLOTS.find((t) => t.id === timeId)?.label}.
           </p>
           <p className="mt-2 text-sm text-[var(--text-muted)]">
             A confirmation has been sent to {email}.
@@ -140,7 +166,7 @@ export default function BookingPage() {
           </div>
         </motion.div>
       </div>
-    )
+    );
   }
 
   return (
@@ -150,7 +176,7 @@ export default function BookingPage() {
           Book a cleaning
         </h1>
         <p className="mt-2 text-[var(--text-body)] font-medium text-center sm:text-left">
-          Choose a service, date, and time. We’ll confirm by email—no account needed.
+          Choose a service, date, and time.
         </p>
 
         <div className="mt-8 flex gap-2">
@@ -158,7 +184,7 @@ export default function BookingPage() {
             <div
               key={s}
               className={`h-1 flex-1 rounded-full transition-colors ${
-                step >= s ? 'bg-pastel-green-200' : 'bg-pastel-green-200/30'
+                step >= s ? "bg-pastel-green-200" : "bg-pastel-green-200/30"
               }`}
             />
           ))}
@@ -177,21 +203,30 @@ export default function BookingPage() {
               <h2 className="font-display text-xl font-semibold text-[var(--text-dark)] mb-4 text-center sm:text-left">
                 Select service
               </h2>
-              <div className="grid sm:grid-cols-3 gap-4">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {SERVICES.map((s) => (
                   <button
                     key={s.id}
                     type="button"
                     onClick={() => setServiceId(s.id)}
-                    className={`p-5 rounded-2xl border-2 text-center sm:text-left transition-all card-hover focus-ring ${
+                    className={`p-5 rounded-2xl border-2 text-center sm:text-left transition-all card-hover focus-ring flex flex-col items-start justify-start ${
                       serviceId === s.id
-                        ? 'border-pastel-green-200 bg-pastel-green-lighter/50'
-                        : 'border-pastel-green-200/50 bg-white hover:border-pastel-pink-soft'
+                        ? "border-pastel-green-200 bg-pastel-green-lighter/50"
+                        : "border-pastel-green-200/50 bg-white hover:border-pastel-pink-soft"
                     }`}
                   >
-                    <span className="font-display font-semibold text-[var(--text-dark)]">{s.title}</span>
-                    <p className="mt-1 text-sm text-[var(--text-body)] font-medium">{s.description}</p>
-                    <p className="mt-2 text-sm font-semibold text-[var(--accent-green)]">{s.price}</p>
+                    <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
+                      <Image
+                        src={s.icon}
+                        alt=""
+                        width={56}
+                        height={56}
+                        className="h-14 w-14 object-contain"
+                      />
+                      <span className="font-display font-semibold text-[var(--text-dark)]">
+                        {s.title}
+                      </span>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -224,7 +259,9 @@ export default function BookingPage() {
               {/* Date: single-month calendar with prev/next */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-sm font-medium text-[var(--text-body)]">Date</p>
+                  <p className="text-sm font-medium text-[var(--text-body)]">
+                    Date
+                  </p>
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
@@ -237,7 +274,7 @@ export default function BookingPage() {
                         arrow_back_ios
                       </span>
                     </button>
-                    <span className="min-w-[10rem] text-center font-display font-semibold text-[var(--text-dark)]">
+                    <span className="min-w-0 flex-1 text-center font-display font-semibold text-[var(--text-dark)]">
                       {monthLabel}
                     </span>
                     <button
@@ -256,14 +293,17 @@ export default function BookingPage() {
                 <div className="rounded-xl border border-pastel-green-200/50 bg-white p-4">
                   <div className="grid grid-cols-7 gap-1 mb-2">
                     {WEEKDAYS.map((w) => (
-                      <div key={w} className="text-center text-xs font-semibold text-[var(--text-muted)] py-1">
+                      <div
+                        key={w}
+                        className="text-center text-xs font-semibold text-[var(--text-muted)] py-1"
+                      >
                         {w}
                       </div>
                     ))}
                   </div>
                   <div className="grid grid-cols-7 gap-1">
                     {monthGrid.map((cell, i) =>
-                      cell.type === 'empty' ? (
+                      cell.type === "empty" ? (
                         <div key={`e-${i}`} className="aspect-square" />
                       ) : (
                         <button
@@ -273,28 +313,37 @@ export default function BookingPage() {
                           onClick={() => setDate(cell.date)}
                           className={`aspect-square rounded-lg text-sm font-medium focus-ring transition-colors ${
                             cell.isPast
-                              ? 'text-[var(--text-muted)]/40 cursor-not-allowed'
+                              ? "text-[var(--text-muted)]/40 cursor-not-allowed"
                               : date === cell.date
-                                ? 'bg-pastel-green-200 text-[var(--text-dark)]'
-                                : 'text-[var(--text-body)] hover:bg-pastel-green-lighter/60'
+                                ? "bg-pastel-green-200 text-[var(--text-dark)]"
+                                : "text-[var(--text-body)] hover:bg-pastel-green-lighter/60"
                           }`}
                         >
                           {cell.day}
                         </button>
-                      )
+                      ),
                     )}
                   </div>
                 </div>
                 {date && (
                   <p className="mt-2 text-sm text-[var(--text-body)]">
-                    Selected: <span className="font-semibold text-[var(--text-dark)]">{new Date(date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</span>
+                    Selected:{" "}
+                    <span className="font-semibold text-[var(--text-dark)]">
+                      {new Date(date + "T12:00:00").toLocaleDateString(
+                        "en-US",
+                        { weekday: "long", month: "long", day: "numeric" },
+                      )}
+                    </span>
                   </p>
                 )}
               </div>
 
               {/* Time: standard dropdown */}
               <div>
-                <label htmlFor="booking-time" className="block text-sm font-medium text-[var(--text-body)] mb-2">
+                <label
+                  htmlFor="booking-time"
+                  className="block text-sm font-medium text-[var(--text-body)] mb-2"
+                >
                   Time
                 </label>
                 <select
@@ -345,12 +394,15 @@ export default function BookingPage() {
                 Contact details
               </h2>
               <p className="text-sm text-[var(--text-body)] mb-4 text-center sm:text-left">
-                We’ll use this to confirm your booking. No account required.
+                We’ll use this to confirm your booking.
               </p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-[var(--text-body)] mb-1">
-                    Full name *
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-[var(--text-body)] mb-1"
+                  >
+                    Full name
                   </label>
                   <input
                     id="name"
@@ -363,8 +415,11 @@ export default function BookingPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[var(--text-body)] mb-1">
-                    Email *
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-[var(--text-body)] mb-1"
+                  >
+                    Email
                   </label>
                   <input
                     id="email"
@@ -377,8 +432,11 @@ export default function BookingPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-[var(--text-body)] mb-1">
-                    Phone *
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-[var(--text-body)] mb-1"
+                  >
+                    Phone
                   </label>
                   <input
                     id="phone"
@@ -391,7 +449,10 @@ export default function BookingPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="address" className="block text-sm font-medium text-[var(--text-body)] mb-1">
+                  <label
+                    htmlFor="address"
+                    className="block text-sm font-medium text-[var(--text-body)] mb-1"
+                  >
                     Address (cleaning location)
                   </label>
                   <textarea
@@ -424,5 +485,5 @@ export default function BookingPage() {
         </AnimatePresence>
       </div>
     </div>
-  )
+  );
 }

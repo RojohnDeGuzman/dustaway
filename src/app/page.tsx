@@ -305,6 +305,7 @@ const faqs = [
 
 export default function Home() {
   const [servicesIndex, setServicesIndex] = useState(0);
+  const [visibleServicesCount, setVisibleServicesCount] = useState(3);
   const [activeTestimonial, setActiveTestimonial] = useState<
     null | (typeof testimonials)[number]
   >(null);
@@ -314,7 +315,29 @@ export default function Home() {
   const [contactMessage, setContactMessage] = useState("");
   const [contactStatus, setContactStatus] = useState("");
 
-  const maxServicesIndex = Math.max(0, services.length - 3);
+  const maxServicesIndex = Math.max(0, services.length - visibleServicesCount);
+
+  useEffect(() => {
+    function updateVisibleServicesCount() {
+      if (window.innerWidth < 640) {
+        setVisibleServicesCount(1);
+        return;
+      }
+      if (window.innerWidth < 1024) {
+        setVisibleServicesCount(2);
+        return;
+      }
+      setVisibleServicesCount(3);
+    }
+
+    updateVisibleServicesCount();
+    window.addEventListener("resize", updateVisibleServicesCount);
+    return () => window.removeEventListener("resize", updateVisibleServicesCount);
+  }, []);
+
+  useEffect(() => {
+    setServicesIndex((current) => Math.min(current, maxServicesIndex));
+  }, [maxServicesIndex]);
 
   const goToNext = useCallback(() => {
     setServicesIndex((i) => (i >= maxServicesIndex ? 0 : i + 1));
@@ -485,13 +508,13 @@ export default function Home() {
               <div
                 className="flex transition-transform duration-500 ease-out"
                 style={{
-                  transform: `translateX(-${servicesIndex * (100 / 3)}%)`,
+                  transform: `translateX(-${servicesIndex * (100 / visibleServicesCount)}%)`,
                 }}
               >
                 {services.map((s) => (
                   <div
                     key={s.title}
-                    className="w-1/3 flex-shrink-0 px-2 sm:px-3"
+                    className="w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 px-2 sm:px-3"
                   >
                     <motion.div
                       whileHover={{ y: -4 }}
@@ -506,7 +529,7 @@ export default function Home() {
                             src={s.image}
                             alt={`${s.title} image`}
                             fill
-                            sizes="33vw"
+                            sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
                             className="object-cover"
                           />
                         </div>

@@ -104,6 +104,28 @@ html {
   box-shadow: inset 0 18px 24px -26px rgba(174, 195, 174, 0.1);
 }
 
+/* Smooth open/close for Upholstery pricing dropdown (details accordion) */
+.pricing-details > summary {
+  list-style: none;
+}
+
+.pricing-details-content {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  overflow: hidden;
+  transition:
+    max-height 350ms ease,
+    opacity 250ms ease,
+    transform 350ms ease;
+}
+
+.pricing-details[open] .pricing-details-content {
+  max-height: 900px; /* enough for the dropdown content */
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Section container layout */
 .section-container {
   @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -183,6 +205,32 @@ html {
 /* Focus ring for accessibility */
 .focus-ring {
   @apply outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent-green)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-cream)];
+}
+
+/* Pastel pink/green glow for service "information" cards.
+   We override Tailwind's dark-ish `shadow-sm` so it becomes a visible glow. */
+.services-info-glow .shadow-sm:not(button):not(.services-carousel-card),
+.services-info-glow .shadow-xl:not(button):not(.services-carousel-card) {
+  transition: box-shadow 250ms ease;
+  position: relative;
+  will-change: transform;
+  box-shadow:
+    0 0 0 1px rgba(253, 206, 223, 0.55),
+    0 0 14px rgba(253, 206, 223, 0.78),
+    0 0 26px rgba(148, 166, 132, 0.28),
+    0 0 44px rgba(174, 195, 174, 0.22);
+}
+
+.services-info-glow .shadow-sm:not(button):not(.services-carousel-card):hover,
+.services-info-glow
+  .shadow-xl:not(button):not(.services-carousel-card):hover {
+  z-index: 5;
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 1px rgba(253, 206, 223, 0.65),
+    0 0 18px rgba(253, 206, 223, 0.92),
+    0 0 30px rgba(148, 166, 132, 0.34),
+    0 0 54px rgba(174, 195, 174, 0.28);
 }
 
 /* Circular image container */

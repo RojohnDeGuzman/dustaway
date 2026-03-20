@@ -6,6 +6,7 @@ export const springCleaning = [
         "Disposal and cleaning of rubbish",
         "Vacuum and mopping",
       ],
+      icon: "/assets/living-room.png",
     },
     {
       title: "KITCHEN AREA",
@@ -16,6 +17,7 @@ export const springCleaning = [
         "Disposal and cleaning of rubbish",
         "Vacuum and mopping",
       ],
+      icon: "/assets/kitchen.png",
     },
     {
       title: "BEDROOMS",
@@ -24,6 +26,7 @@ export const springCleaning = [
         "Disposal and cleaning of rubbish",
         "Vacuum and mopping",
       ],
+      icon: "/assets/bedroom.png",
     },
     {
       title: "BATHROOMS",
@@ -33,6 +36,7 @@ export const springCleaning = [
         "Disposal and cleaning of rubbish",
         "Vacuum and mopping",
       ],
+      icon: "/assets/bath.png",
     },
     
   ];

@@ -1,33 +1,12 @@
 import type { Service, TimeSlot } from './types'
+import { servicesCatalog } from './servicesCatalog'
 
-export const SERVICES: Service[] = [
-  {
-    id: 'home',
-    title: 'Home cleaning',
-    description: 'Regular or one-off cleans for apartments and houses.',
-    duration: '2–3 hours',
-    price: 'From $89',
-  },
-  {
-    id: 'deep',
-    title: 'Deep cleaning',
-    description: 'Thorough top-to-bottom cleans when you need a reset.',
-    duration: '4–5 hours',
-    price: 'From $149',
-  },
-  {
-    id: 'office',
-    title: 'Office & commercial',
-    description: 'Keep your workspace spotless and professional.',
-    duration: '2–4 hours',
-    price: 'From $120',
-  },
-]
+export const SERVICES: Service[] = [...servicesCatalog]
 
 export const TIME_SLOTS: TimeSlot[] = (() => {
   const slots: TimeSlot[] = []
   const start = 8 * 2 // 8 AM in half-hours
-  const end = 18 * 2   // 6 PM in half-hours
+  const end = 18 * 2 // 6 PM in half-hours
   for (let h = start; h <= end; h++) {
     const hours = Math.floor(h / 2)
     const mins = (h % 2) * 30

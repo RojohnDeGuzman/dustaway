@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function VinylCleaningPage() {
   return (
-    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10">
+    <div className="w-full bg-[var(--bg-cream)] py-5 lg:py-10 services-info-glow">
       <div className="w-[96%] mx-auto px-3 sm:px-4 lg:px-6 rounded-none lg:rounded-xl flex flex-col gap-5 mt-10">
         <div className="w-full">
           <div className="mb-6 text-center max-w-3xl mx-auto">
@@ -46,31 +46,31 @@ export default function VinylCleaningPage() {
 
         <div className="w-full bg-white/90 rounded-[1.5rem] shadow-sm overflow-hidden mt-4 border border-pastel-green-200/50">
           <div className="p-6 lg:p-8">
-            <h3 className="font-display text-2xl md:text-3xl font-semibold text-[var(--text-dark)] mb-4">
+            <h3 className="font-display text-center text-2xl md:text-3xl font-semibold text-[var(--text-dark)] mb-4">
               Professional Vinyl Cleaning
             </h3>
-            <p className="text-sm text-[var(--text-body)] mb-4 font-medium">
+            <p className="text-sm text-center text-[var(--text-body)] mb-4 font-medium">
               Maintain the beauty of your vinyl floors with our professional
               cleaning service. Our technicians use gentle yet effective methods
               to remove dirt, grime, and restore a brilliant shine.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-sm text-[var(--text-body)] mb-4 font-medium">
               <li>
-                <span className="font-semibold">Deep Cleanse:</span> We remove
+                <span className="font-extrabold">Deep Cleanse:</span> We remove
                 built-up dirt and debris, leaving your floors sparkling clean.
               </li>
               <li>
-                <span className="font-semibold">Scuff Removal:</span> We tackle
+                <span className="font-extrabold">Scuff Removal:</span> We tackle
                 minor scuff marks and surface scratches, revitalizing the
                 appearance of your vinyl.
               </li>
               <li>
-                <span className="font-semibold">Shine Revival:</span> We use
+                <span className="font-extrabold">Shine Revival:</span> We use
                 specialized solutions that restore the natural luster of your
                 vinyl without a greasy finish.
               </li>
               <li>
-                <span className="font-semibold">Maintenance Tips:</span> We
+                <span className="font-extrabold">Maintenance Tips:</span> We
                 provide helpful guidance to maintain the beauty and longevity of
                 your vinyl floors.
               </li>
@@ -119,8 +119,8 @@ export default function VinylCleaningPage() {
                 </div>
               </div>
             </div>
-            <div className="flex-1">
-              <div className="bg-white/95 rounded-xl shadow-sm overflow-hidden h-full border border-pastel-green-200/40">
+            <div className="flex-1 self-start">
+              <div className="bg-white/95 rounded-xl shadow-sm overflow-hidden border border-pastel-green-200/40">
                 <div className="bg-[var(--pastel-green-strong)] text-white text-center py-3 font-semibold tracking-wide">
                   PRICING
                 </div>

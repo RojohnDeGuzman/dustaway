@@ -1,6 +1,7 @@
 'use client';
  
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
  
 // Define the structure for our data
 interface Testimonial {
@@ -93,7 +94,13 @@ export default function TestimonialPage() {
               {testimonials.map((t, i) => (
 <div key={i} className="w-full flex-shrink-0 px-8 py-10">
 <div className="flex items-center mb-6">
-<img src={t.image} alt={t.name} className="w-10 h-10 rounded-full object-cover grayscale" />
+<Image
+  src={t.image}
+  alt={t.name}
+  width={40}
+  height={40}
+  className="w-10 h-10 rounded-full object-cover grayscale"
+/>
 <div className="ml-4">
 <h3 className="font-bold text-gray-800 text-sm">{t.name}</h3>
 <div className="flex items-center gap-2">
@@ -112,7 +119,9 @@ export default function TestimonialPage() {
                         expandedIndex === i ? '' : 'line-clamp-2'
                       }`}
 >
-                      "{t.quote}"
+                      <span aria-hidden>&ldquo;</span>
+                      {t.quote}
+                      <span aria-hidden>&rdquo;</span>
 </p>
                     {showReadMore[i] && (
 <button 
