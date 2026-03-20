@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { serviceLinks } from "@/lib/serviceLinks";
@@ -13,6 +14,15 @@ const quickLinks = [
   { href: "/dashboard", label: "My bookings" },
 ];
 
+const paymentLogos = [
+  { src: "/assets/paynow.svg", alt: "PayNow", width: 104, height: 20 },
+  { src: "/assets/visa.svg", alt: "Visa", width: 52, height: 16 },
+  { src: "/assets/mastercard.svg", alt: "Mastercard", width: 38, height: 20 },
+  { src: "/assets/maestro.svg", alt: "Maestro", width: 42, height: 20 },
+  { src: "/assets/amex.svg", alt: "American Express", width: 28, height: 22 },
+  { src: "/assets/UnionPay_logo.svg", alt: "UnionPay", width: 52, height: 22 },
+];
+
 export default function Footer() {
   return (
     <motion.footer
@@ -22,29 +32,41 @@ export default function Footer() {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="bg-[color:var(--bg-soft-strong)] soft-divider-top"
     >
-      <div className="max-w-[1700px] mx-auto px-6 sm:px-8 lg:px-10 py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 text-center sm:text-left">
-          {/* Brand */}
+      <div className="max-w-[1700px] mx-auto px-6 sm:px-8 lg:px-10 py-8 sm:py-9">
+        <div className="grid grid-cols-1 gap-5 text-center sm:grid-cols-2 sm:text-left lg:grid-cols-4 lg:gap-6">
           <div>
             <Link
               href="/"
-              className="font-display text-xl font-semibold text-[var(--text-dark)]"
+              className="mx-auto mb-2 flex w-fit justify-center sm:mx-0"
+              aria-label="Dustaway home"
+            >
+              <Image
+                src="/assets/dustaway-logo.png"
+                alt="Dustaway logo"
+                width={86}
+                height={86}
+                unoptimized
+                className="h-auto w-20 object-contain sm:w-24"
+              />
+            </Link>
+            <Link
+              href="/"
+              className="font-display text-lg sm:text-xl font-semibold text-[var(--text-dark)]"
             >
               Dustaway
             </Link>
-            <p className="mt-3 text-sm text-[var(--text-body)] font-medium">
-              Novelty Bizcentre , <br />
+            <p className="mt-1.5 text-sm leading-5 text-[var(--text-body)] font-medium">
+              Novelty Bizcentre, <br />
               18 Howard Road #03-07 <br />
               Singapore 369585
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="font-display font-semibold text-[var(--text-dark)]">
+            <h3 className="font-display text-[15px] font-semibold text-[var(--text-dark)]">
               Quick links
             </h3>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-2.5 space-y-1">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -59,10 +81,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display font-semibold text-[var(--text-dark)]">
+            <h3 className="font-display text-[15px] font-semibold text-[var(--text-dark)]">
               Our services
             </h3>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-2.5 space-y-1">
               {serviceLinks.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -76,12 +98,11 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact / Get in touch */}
           <div>
-            <h3 className="font-display font-semibold text-[var(--text-dark)]">
+            <h3 className="font-display text-[15px] font-semibold text-[var(--text-dark)]">
               Get in touch
             </h3>
-            <ul className="mt-4 space-y-3 text-sm text-[var(--text-body)] font-medium">
+            <ul className="mt-2.5 space-y-1.5 text-sm leading-5 text-[var(--text-body)] font-medium">
               <li>
                 <Link
                   href="/booking"
@@ -99,15 +120,32 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 soft-divider-top flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-          <p className="text-sm text-[var(--text-body)] font-medium">
-            DustAwaySvcs © {new Date().getFullYear()} All rights reserved. Owned
-            by Dustaway Services Pte. Ltd. |{" "}
-            <Link href="/terms">Terms & Conditions</Link>
-          </p>
-          <p className="text-sm text-[var(--text-muted)] font-medium">
-            Modern cleaning, made simple.
-          </p>
+        <div className="mt-6 border-t border-pastel-green-200/50 pt-4">
+          <div className="flex flex-col items-center gap-3 text-center lg:grid lg:grid-cols-[minmax(0,1.7fr)_auto_minmax(240px,0.9fr)] lg:items-center lg:gap-5 lg:text-left">
+            <p className="text-xs leading-5 text-[var(--text-body)] font-medium lg:justify-self-start">
+              DustAwaySvcs © {new Date().getFullYear()} All rights reserved.
+              Owned by Dustaway Services Pte. Ltd. |{" "}
+              <Link href="/terms">Terms & Conditions</Link>
+            </p>
+
+            <div className="flex items-center justify-center gap-2 whitespace-nowrap sm:gap-2.5">
+              {paymentLogos.map((logo) => (
+                <Image
+                  key={logo.alt}
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  unoptimized
+                  className="h-auto max-h-4.5 w-auto object-contain sm:max-h-5"
+                />
+              ))}
+            </div>
+
+            <p className="text-xs leading-5 text-[var(--text-muted)] font-medium lg:justify-self-end">
+              Modern cleaning, made simple.
+            </p>
+          </div>
         </div>
       </div>
     </motion.footer>

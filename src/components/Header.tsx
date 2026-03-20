@@ -113,7 +113,7 @@ export default function Header() {
                 }
               >
                 <span
-                  className={`inline-block text-sm text-pastel-pink-200 transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                  className={`inline-block text-sm text-pastel-pink-200 transition-transform duration-200  ${servicesOpen ? "rotate-180" : ""}`}
                 >
                   ▼
                 </span>

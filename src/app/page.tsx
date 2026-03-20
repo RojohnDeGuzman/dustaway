@@ -11,10 +11,11 @@ import {
   StaggerChildren,
   StaggerItem,
 } from "@/components/AnimateIn";
+import ArrowIcon from "@/components/ArrowIcon";
 import { HeroImage, CleanHomeImage } from "@/components/HeroImage";
 import { serviceLinks } from "@/lib/serviceLinks";
 
-const SERVICES_AUTO_ADVANCE_MS = 5000;
+const SERVICES_AUTO_ADVANCE_MS = 3000;
 
 const services = [
   {
@@ -332,7 +333,8 @@ export default function Home() {
 
     updateVisibleServicesCount();
     window.addEventListener("resize", updateVisibleServicesCount);
-    return () => window.removeEventListener("resize", updateVisibleServicesCount);
+    return () =>
+      window.removeEventListener("resize", updateVisibleServicesCount);
   }, []);
 
   useEffect(() => {
@@ -368,7 +370,7 @@ export default function Home() {
     const intervalId = setInterval(() => {
       if (!testimonialsApi) return;
       testimonialsApi.scrollNext();
-    }, 4500);
+    }, 3000);
     return () => clearInterval(intervalId);
   }, [testimonialsApi]);
 
@@ -488,9 +490,7 @@ export default function Home() {
               aria-label="Previous services"
               className="hidden sm:flex items-center justify-center absolute -left-10 lg:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 text-gray-700 hover:text-gray-900 focus-ring z-10"
             >
-              <span className="material-symbols-outlined text-[22px] leading-none">
-                arrow_back_ios
-              </span>
+              <ArrowIcon direction="back" size={22} />
             </button>
             <button
               type="button"
@@ -498,9 +498,7 @@ export default function Home() {
               aria-label="Next services"
               className="hidden sm:flex items-center justify-center absolute -right-10 lg:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 text-gray-700 hover:text-gray-900 focus-ring z-10"
             >
-              <span className="material-symbols-outlined text-[22px] leading-none">
-                arrow_forward_ios
-              </span>
+              <ArrowIcon direction="forward" size={22} />
             </button>
 
             {/* Viewport (clipped), arrows live outside */}
@@ -641,9 +639,7 @@ export default function Home() {
               aria-label="Previous testimonials"
               className="hidden sm:flex items-center justify-center absolute -left-12 lg:-left-14 top-1/2 -translate-y-1/2 w-10 h-10 text-gray-700 hover:text-gray-900 focus-ring z-10"
             >
-              <span className="material-symbols-outlined text-[22px] leading-none">
-                arrow_back_ios
-              </span>
+              <ArrowIcon direction="back" size={22} />
             </button>
             <button
               type="button"
@@ -651,9 +647,7 @@ export default function Home() {
               aria-label="Next testimonials"
               className="hidden sm:flex items-center justify-center absolute -right-12 lg:-right-14 top-1/2 -translate-y-1/2 w-10 h-10 text-gray-700 hover:text-gray-900 focus-ring z-10"
             >
-              <span className="material-symbols-outlined text-[22px] leading-none">
-                arrow_forward_ios
-              </span>
+              <ArrowIcon direction="forward" size={22} />
             </button>
 
             {/* Carousel */}
@@ -836,21 +830,40 @@ export default function Home() {
 
       {/* CTA — Your roadmap to a cleaner home */}
       <section className="py-16 bg-[color:var(--bg-soft-strong)] soft-divider-top">
-        <div className="section-container text-center">
-          <AnimateIn>
-            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[var(--text-dark)]">
-              Your roadmap to a cleaner home starts here
-            </h2>
-            <p className="mt-4 text-[var(--text-body)] font-medium max-w-xl mx-auto">
-              Book a cleaning in a few clicks!
-            </p>
-            <Link
-              href="/booking"
-              className="btn-primary focus-ring mt-8 inline-flex items-center justify-center px-10 py-4 rounded-full bg-pastel-green-soft text-[var(--text-dark)] font-semibold text-lg"
-            >
-              Book now
-            </Link>
-          </AnimateIn>
+        <div className="section-container">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
+            <AnimateIn className="text-center">
+              <h2 className="font-display text-center text-2xl sm:text-3xl font-semibold text-[var(--text-dark)]">
+                Your roadmap to a cleaner home starts here
+              </h2>
+              <p className="mt-4 text-center text-[var(--text-body)] font-medium max-w-xl mx-auto">
+                Book a cleaning in a few clicks!
+              </p>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=Novelty%20BizCentre%2C%2018%20Howard%20Road%20%2303-07%2C%20Singapore%20369585"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary focus-ring mt-8 inline-flex items-center justify-center px-10 py-4 rounded-full bg-pastel-green-soft text-[var(--text-dark)] font-semibold text-lg"
+              >
+                Get directions
+              </a>
+            </AnimateIn>
+            <AnimateIn delay={0.08}>
+              <div className="overflow-hidden rounded-[1.75rem] border border-pastel-green-200/50 bg-white shadow-sm">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.736981120991!2d103.88327887472458!3d1.3339877986533746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da17e668bf124b%3A0xcb1f2977df9d2db6!2sNovelty%20BizCentre!5e0!3m2!1sen!2sph!4v1774010569192!5m2!1sen!2sph"
+                  width="600"
+                  height="450"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Dustaway location map"
+                  className="h-[320px] w-full md:h-[360px]"
+                />
+              </div>
+            </AnimateIn>
+          </div>
         </div>
       </section>
 

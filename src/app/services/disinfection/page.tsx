@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import LocalAssetIcon from "@/components/LocalAssetIcon";
 
 
 
@@ -172,11 +173,11 @@ export default function DisinfectionPage() {
     {/* Table Header */}
     <div className="grid grid-cols-2 text-xs sm:text-sm font-semibold text-[var(--text-body)] border-b border-pastel-green-200/40">
       <div className="py-4 flex items-center justify-center gap-2 border-r border-pastel-green-200/40">
-        <span className="material-symbols-outlined text-[20px]">fullscreen</span>
+        <LocalAssetIcon src="/assets/fullscreen.png" />
         <span>SIZE</span>
       </div>
       <div className="py-4 flex items-center justify-center gap-2">
-        <span className="material-symbols-outlined text-[20px]">attach_money</span>
+        <LocalAssetIcon src="/assets/cash.png" />
         <span>PRICE</span>
       </div>
     </div>

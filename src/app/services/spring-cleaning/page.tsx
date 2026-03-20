@@ -6,6 +6,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import { springCleaning } from "@/app/data/springCleaning";
 import { importantNotes } from "@/app/data/importantNotes";
 import { addBenefits } from "@/app/data/addBenefits";
+import ArrowIcon from "@/components/ArrowIcon";
+import LocalAssetIcon from "@/components/LocalAssetIcon";
 
 type TabType = "3hr" | "4hr";
 
@@ -26,7 +28,7 @@ export default function SpringCleaningPage() {
     const intervalId = setInterval(() => {
       if (!emblaApi) return;
       emblaApi.scrollNext();
-    }, 4000);
+    }, 3000);
     return () => clearInterval(intervalId);
   }, [emblaApi]);
 
@@ -83,17 +85,13 @@ export default function SpringCleaningPage() {
                   onClick={scrollPrev}
                   className="absolute left-0 sm:-left-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center z-10 text-[var(--text-body)] hover:text-[var(--text-dark)] focus-ring"
                 >
-                  <span className="material-symbols-outlined text-[20px] leading-none">
-                    arrow_back_ios
-                  </span>
+                  <ArrowIcon direction="back" />
                 </button>
                 <button
                   onClick={scrollNext}
                   className="absolute right-0 sm:-right-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center z-10 text-[var(--text-body)] hover:text-[var(--text-dark)] focus-ring"
                 >
-                  <span className="material-symbols-outlined text-[20px] leading-none">
-                    arrow_forward_ios
-                  </span>
+                  <ArrowIcon direction="forward" />
                 </button>
                 <div className="overflow-hidden" ref={emblaRef}>
                   <div className="-mx-3 flex">
@@ -238,15 +236,11 @@ export default function SpringCleaningPage() {
                 </div>
                 <div className="grid grid-cols-2 text-xs sm:text-sm font-semibold text-[var(--text-body)] border-b border-pastel-green-200/40">
                   <div className="py-3 pl-5 border-r border-pastel-green-200/40 flex items-center justify-center gap-2">
-                    <span className="material-symbols-outlined text-[20px] leading-none">
-                      schedule
-                    </span>
+                    <LocalAssetIcon src="/assets/clock.png" />
                     <span>HRS</span>
                   </div>
                   <div className="py-3 pl-5 flex items-center justify-center gap-2">
-                    <span className="material-symbols-outlined text-[20px] leading-none">
-                      attach_money
-                    </span>
+                    <LocalAssetIcon src="/assets/cash.png" />
                     <span>PRICE</span>
                   </div>
                 </div>

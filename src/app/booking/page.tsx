@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { SERVICES, TIME_SLOTS } from "@/lib/mockData";
 import type { ServiceId } from "@/lib/types";
+import ArrowIcon from "@/components/ArrowIcon";
 
 const STORAGE_BOOKINGS = "dustaway_bookings";
 
@@ -270,9 +271,7 @@ export default function BookingPage() {
                       className="w-9 h-9 rounded-lg font-medium text-[var(--text-body)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-pastel-green-lighter/50 focus-ring"
                       aria-label="Previous month"
                     >
-                      <span className="material-symbols-outlined text-[20px] leading-none">
-                        arrow_back_ios
-                      </span>
+                      <ArrowIcon direction="back" />
                     </button>
                     <span className="min-w-0 flex-1 text-center font-display font-semibold text-[var(--text-dark)]">
                       {monthLabel}
@@ -284,9 +283,7 @@ export default function BookingPage() {
                       className="w-9 h-9 rounded-lg font-medium text-[var(--text-body)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-pastel-green-lighter/50 focus-ring"
                       aria-label="Next month"
                     >
-                      <span className="material-symbols-outlined text-[20px] leading-none">
-                        arrow_forward_ios
-                      </span>
+                      <ArrowIcon direction="forward" />
                     </button>
                   </div>
                 </div>

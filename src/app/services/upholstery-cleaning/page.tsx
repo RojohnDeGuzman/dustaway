@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import LocalAssetIcon from "@/components/LocalAssetIcon";
 import { useEffect, useState } from "react";
 
 const upholsteryDropdowns = [
@@ -116,7 +117,7 @@ export default function VinylCleaningPage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % steps.length);
-    }, 1500); // change speed here
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -252,7 +253,9 @@ export default function VinylCleaningPage() {
                   height={18}
                   className="h-[18px] w-[18px] flex-shrink-0 object-contain"
                 />
-                <span>Remove common stains, dust mites and other allergens</span>
+                <span>
+                  Remove common stains, dust mites and other allergens
+                </span>
               </li>
               <li className="flex items-center justify-center gap-2 text-center">
                 <Image
@@ -262,7 +265,10 @@ export default function VinylCleaningPage() {
                   height={18}
                   className="h-[18px] w-[18px] flex-shrink-0 object-contain"
                 />
-                <span>High heat pressure steaming for sterilization &amp; disinfection</span>
+                <span>
+                  High heat pressure steaming for sterilization &amp;
+                  disinfection
+                </span>
               </li>
             </ul>
           </div>
@@ -388,8 +394,8 @@ export default function VinylCleaningPage() {
                               <span className="truncate">{section.title}</span>
                             </span>
                             <span className="flex items-center justify-center text-[var(--text-dark)] transition-transform duration-300 group-open:rotate-180">
-                              <span className="material-symbols-outlined text-[24px] leading-none">
-                                expand_more
+                              <span className="material-symbols-outlined text-[24px] leading-none text-medium text-pastel-pink-200 transition-transform duration-200">
+                                ▼
                               </span>
                             </span>
                           </div>
@@ -399,15 +405,11 @@ export default function VinylCleaningPage() {
                           <div className="bg-white rounded-xl shadow-sm overflow-hidden h-full border border-pastel-green-200/40">
                             <div className="grid grid-cols-2 bg-[var(--pastel-green-strong)] text-white">
                               <div className="py-3 pl-5 border-r border-white/15 flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold">
-                                <span className="material-symbols-outlined text-[20px] leading-none">
-                                  straighten
-                                </span>
+                                <LocalAssetIcon src="/assets/fullscreen.png" />
                                 <span>SIZE</span>
                               </div>
                               <div className="py-3 pl-5 flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold">
-                                <span className="material-symbols-outlined text-[20px] leading-none">
-                                  attach_money
-                                </span>
+                                <LocalAssetIcon src="/assets/cash.png" />
                                 <span>PRICE</span>
                               </div>
                             </div>

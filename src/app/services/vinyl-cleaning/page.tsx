@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import LocalAssetIcon from "@/components/LocalAssetIcon";
 
 export default function VinylCleaningPage() {
   return (
@@ -126,15 +127,11 @@ export default function VinylCleaningPage() {
                 </div>
                 <div className="grid grid-cols-2 text-xs sm:text-sm font-semibold text-[var(--text-body)] border-b border-pastel-green-200/40">
                   <div className="py-3 pl-5 border-r border-pastel-green-200/40 flex items-center justify-center gap-2">
-                    <span className="material-symbols-outlined text-[20px] leading-none">
-                      fullscreen
-                    </span>
+                    <LocalAssetIcon src="/assets/fullscreen.png" />
                     <span>ROOM</span>
                   </div>
                   <div className="py-3 pl-5 flex items-center justify-center gap-2">
-                    <span className="material-symbols-outlined text-[20px] leading-none">
-                      attach_money
-                    </span>
+                    <LocalAssetIcon src="/assets/cash.png" />
                     <span>PRICE</span>
                   </div>
                 </div>

@@ -2,6 +2,7 @@
  
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import ArrowIcon from "@/components/ArrowIcon";
  
 // Define the structure for our data
 interface Testimonial {
@@ -144,13 +145,13 @@ export default function TestimonialPage() {
             onClick={prevSlide}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white rounded-full p-3 shadow-md hover:bg-gray-50 transition-all hidden md:block"
 >
-<i className="fas fa-chevron-left text-gray-400"></i>
+<ArrowIcon direction="back" />
 </button>
 <button 
             onClick={nextSlide}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white rounded-full p-3 shadow-md hover:bg-gray-50 transition-all hidden md:block"
 >
-<i className="fas fa-chevron-right text-gray-400"></i>
+<ArrowIcon direction="forward" />
 </button>
 </div>
  
