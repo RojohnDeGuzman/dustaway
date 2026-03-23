@@ -12,21 +12,28 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-type InternalInquiryProps = {
+type BookingCancelledProps = {
+  bookingId: string;
+  serviceTitle: string;
+  date: string;
+  time: string;
   fullName: string;
-  phoneNumber: string;
   email: string;
-  message: string;
+  phoneNumber?: string;
+  address?: string;
   baseUrl?: string;
 };
 
-export default function InternalInquiry({
+export default function BookingCancelled({
+  bookingId,
+  serviceTitle,
+  date,
+  time,
   fullName,
-  phoneNumber,
   email,
-  message,
-  baseUrl,
-}: InternalInquiryProps) {
+  phoneNumber,
+  address,
+}: BookingCancelledProps) {
   return (
     <Html>
       <Head />
@@ -39,7 +46,6 @@ export default function InternalInquiry({
         }}
       >
         <Container style={{ maxWidth: "560px", margin: "0 auto" }}>
-          {/* Header */}
           <Section
             style={{
               backgroundColor: "#fff",
@@ -67,21 +73,20 @@ export default function InternalInquiry({
               Dustaway
             </Heading>
             <Text style={{ fontSize: "13px", color: "#a89890", margin: 0 }}>
-              Internal Notification
+              Professional Cleaning Services
             </Text>
           </Section>
 
-          {/* Body */}
-          <Section style={{ backgroundColor: "#fff", padding: "32px 40px" }}>
+          <Section style={{ backgroundColor: "#fff", padding: "32px 40px 0" }}>
             <Heading
               style={{
                 fontFamily: "Georgia, serif",
-                fontSize: "20px",
+                fontSize: "22px",
                 color: "#2c2c2a",
                 margin: "0 0 8px",
               }}
             >
-              📋 New Customer Inquiry
+              Your booking has been cancelled, {fullName}.
             </Heading>
             <Text
               style={{
@@ -91,13 +96,12 @@ export default function InternalInquiry({
                 margin: "0 0 24px",
               }}
             >
-              A new inquiry has been submitted through the Dustaway website.
-              Please respond promptly.
+              This is a confirmation that your booking was successfully cancelled.
+              If this was a mistake, you can make a new booking anytime.
             </Text>
 
             <Hr style={{ borderColor: "#FFDBDB", margin: "0 0 24px" }} />
 
-            {/* Customer Details */}
             <Text
               style={{
                 fontSize: "11px",
@@ -108,7 +112,7 @@ export default function InternalInquiry({
                 margin: "0 0 14px",
               }}
             >
-              Customer Details
+              Cancelled Booking Details
             </Text>
             <Section
               style={{
@@ -118,33 +122,29 @@ export default function InternalInquiry({
                 borderLeft: "4px solid #FFDBDB",
               }}
             >
-              <Text
-                style={{
-                  fontSize: "14px",
-                  color: "#5a5854",
-                  margin: "0 0 8px",
-                }}
-              >
-                <strong style={{ color: "#2c2c2a" }}>Name:</strong> {fullName}
+              <Text style={{ fontSize: "14px", color: "#5a5854", margin: "0 0 8px" }}>
+                <strong style={{ color: "#2c2c2a" }}>Booking ID:</strong>{" "}
+                {bookingId}
               </Text>
-              <Text
-                style={{
-                  fontSize: "14px",
-                  color: "#5a5854",
-                  margin: "0 0 8px",
-                }}
-              >
-                <strong style={{ color: "#2c2c2a" }}>Phone:</strong>{" "}
-                {phoneNumber}
+              <Text style={{ fontSize: "14px", color: "#5a5854", margin: "0 0 8px" }}>
+                <strong style={{ color: "#2c2c2a" }}>Service:</strong>{" "}
+                {serviceTitle}
               </Text>
-              <Text style={{ fontSize: "14px", color: "#5a5854", margin: 0 }}>
-                <strong style={{ color: "#2c2c2a" }}>Email:</strong> {email}
+              <Text style={{ fontSize: "14px", color: "#5a5854", margin: "0 0 8px" }}>
+                <strong style={{ color: "#2c2c2a" }}>Date:</strong> {date}
               </Text>
+              <Text style={{ fontSize: "14px", color: "#5a5854", margin: "0 0 8px" }}>
+                <strong style={{ color: "#2c2c2a" }}>Time:</strong> {time}
+              </Text>
+              {address ? (
+                <Text style={{ fontSize: "14px", color: "#5a5854", margin: 0 }}>
+                  <strong style={{ color: "#2c2c2a" }}>Address:</strong> {address}
+                </Text>
+              ) : null}
             </Section>
 
             <Hr style={{ borderColor: "#FFDBDB", margin: "24px 0" }} />
 
-            {/* Message */}
             <Text
               style={{
                 fontSize: "11px",
@@ -155,28 +155,33 @@ export default function InternalInquiry({
                 margin: "0 0 14px",
               }}
             >
-              Message
+              Contact Details
             </Text>
             <Section
               style={{
                 backgroundColor: "#FFF4F4",
                 borderRadius: "12px",
                 padding: "20px 24px",
-                borderLeft: "4px solid #c5dfc2",
+                borderLeft: "4px solid #FFDBDB",
               }}
             >
-              <Text
-                style={{
-                  fontSize: "14px",
-                  color: "#5a5854",
-                  margin: 0,
-                  lineHeight: "1.65",
-                }}
-              >
-                {message}
+              <Text style={{ fontSize: "14px", color: "#5a5854", margin: "0 0 8px" }}>
+                <strong style={{ color: "#2c2c2a" }}>Name:</strong> {fullName}
+              </Text>
+              {phoneNumber ? (
+                <Text
+                  style={{ fontSize: "14px", color: "#5a5854", margin: "0 0 8px" }}
+                >
+                  <strong style={{ color: "#2c2c2a" }}>Phone:</strong>{" "}
+                  {phoneNumber}
+                </Text>
+              ) : null}
+              <Text style={{ fontSize: "14px", color: "#5a5854", margin: 0 }}>
+                <strong style={{ color: "#2c2c2a" }}>Email:</strong> {email}
               </Text>
             </Section>
           </Section>
+
           <Section style={{ backgroundColor: "#fff", padding: "16px 40px 0" }}>
             <Text
               style={{
@@ -190,19 +195,19 @@ export default function InternalInquiry({
                 padding: "16px 20px",
               }}
             >
-              We will confirm your appointment via email or WhatsApp!
+              Need a fresh appointment? You can book another cleaning anytime.
             </Text>
           </Section>
-          {/* CTA */}
+
           <Section
             style={{
               backgroundColor: "#fff",
-              padding: "0 40px 32px",
+              padding: "28px 40px 32px",
               textAlign: "center",
             }}
           >
             <Button
-              href={`mailto:${email}?subject=Re: Your Dustaway Inquiry&body=Hi ${fullName},%0D%0A%0D%0AThank you for reaching out to Dustaway!`}
+              href="https://dustaway.com/booking"
               style={{
                 backgroundColor: "#7cb87a",
                 color: "#fff",
@@ -214,11 +219,10 @@ export default function InternalInquiry({
                 display: "inline-block",
               }}
             >
-              Reply to {fullName}
+              Book again
             </Button>
           </Section>
 
-          {/* Footer */}
           <Section
             style={{
               backgroundColor: "#FFDBDB",
@@ -235,8 +239,9 @@ export default function InternalInquiry({
                 lineHeight: "1.6",
               }}
             >
-              This is an internal notification from Dustaway. Do not forward
-              this email.
+              You&apos;re receiving this because a booking under your email address was
+              cancelled.
+              <br />© 2025 Dustaway. All rights reserved.
             </Text>
           </Section>
         </Container>

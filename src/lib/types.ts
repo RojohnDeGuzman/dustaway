@@ -28,6 +28,9 @@ export interface Booking {
   date: string
   time: string
   status: 'upcoming' | 'completed' | 'cancelled'
+  fullName?: string
+  email?: string
+  phoneNumber?: string
   address?: string
   createdAt: string
 }

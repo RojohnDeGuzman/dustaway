@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SERVICES, TIME_SLOTS } from "@/lib/mockData";
 import type { ServiceId } from "@/lib/types";
 import ArrowIcon from "@/components/ArrowIcon";
+import ThemedModal from "@/components/ThemedModal";
 
 const STORAGE_BOOKINGS = "dustaway_bookings";
 
@@ -57,6 +58,7 @@ export default function BookingPage() {
   const [address, setAddress] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [bookingId, setBookingId] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const today = useMemo(() => new Date(), []);
   const [calendarMonth, setCalendarMonth] = useState(() => ({
@@ -92,6 +94,23 @@ export default function BookingPage() {
     });
   }
 
+  function resetBookingFlow() {
+    setStep(1);
+    setServiceId(null);
+    setDate("");
+    setTimeId("");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setAddress("");
+    setBookingId(null);
+    setConfirmed(false);
+    setCalendarMonth({
+      year: today.getFullYear(),
+      month: today.getMonth(),
+    });
+  }
+
   const canGoPrev =
     calendarMonth.year > today.getFullYear() ||
     calendarMonth.month > today.getMonth();
@@ -102,8 +121,9 @@ export default function BookingPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!selectedService || !date || !timeId) return;
+    if (!selectedService || !date || !timeId || isSubmitting) return;
 
+    setIsSubmitting(true);
     const slot = TIME_SLOTS.find((t) => t.id === timeId);
     const id = `B${Date.now()}`;
     const booking = {
@@ -113,6 +133,9 @@ export default function BookingPage() {
       date,
       time: slot?.label ?? timeId,
       status: "upcoming" as const,
+      fullName: name,
+      email,
+      phoneNumber: phone,
       address: address || undefined,
       createdAt: new Date().toISOString(),
     };
@@ -141,6 +164,8 @@ export default function BookingPage() {
       });
     } catch (error) {
       console.error("Booking email failed:", error);
+    } finally {
+      setIsSubmitting(false);
     }
 
     setBookingId(id);
@@ -181,12 +206,13 @@ export default function BookingPage() {
             A confirmation has been sent to {email}.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/booking"
+            <button
+              type="button"
+              onClick={resetBookingFlow}
               className="btn-primary focus-ring inline-flex items-center justify-center px-6 py-3 rounded-full bg-pastel-green-soft text-[var(--text-dark)] font-medium"
             >
               Book another
-            </Link>
+            </button>
             <Link
               href="/"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-pastel-pink-soft text-[var(--text-dark)] font-medium hover:bg-pastel-pink-lighter/50"
@@ -500,9 +526,10 @@ export default function BookingPage() {
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-3 rounded-full bg-pastel-green-soft font-medium text-[var(--text-dark)] btn-primary focus-ring"
+                    disabled={isSubmitting}
+                    className="px-6 py-3 rounded-full bg-pastel-green-soft font-medium text-[var(--text-dark)] btn-primary focus-ring disabled:cursor-wait disabled:opacity-70"
                   >
-                    Confirm booking
+                    {isSubmitting ? "Confirming..." : "Confirm booking"}
                   </button>
                 </div>
               </form>
@@ -510,6 +537,23 @@ export default function BookingPage() {
           )}
         </AnimatePresence>
       </div>
+      <ThemedModal
+        open={isSubmitting}
+        title="Confirming your booking"
+        description="Please hold on while we save your booking details and send your confirmation."
+        dismissible={false}
+      >
+        <div className="flex flex-col items-center justify-center gap-4 py-4 text-center">
+          <motion.div
+            className="h-14 w-14 rounded-full border-4 border-pastel-green-100 border-t-pastel-green-200"
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+          />
+          <p className="max-w-xs text-sm leading-6 text-[var(--text-body)]">
+            We&apos;re preparing your booking summary and email updates now.
+          </p>
+        </div>
+      </ThemedModal>
     </div>
   );
 }

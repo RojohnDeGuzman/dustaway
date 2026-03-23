@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { Booking } from '@/lib/types'
+import ThemedModal from '@/components/ThemedModal'
 
 const STORAGE_BOOKINGS = 'dustaway_bookings'
 
@@ -25,6 +26,8 @@ function saveBookings(bookings: Booking[]) {
 
 export default function DashboardPage() {
   const [bookings, setBookings] = useState<Booking[]>([])
+  const [bookingToCancel, setBookingToCancel] = useState<Booking | null>(null)
+  const [isCancelling, setIsCancelling] = useState(false)
 
   useEffect(() => {
     setBookings(loadBookings())
@@ -32,11 +35,40 @@ export default function DashboardPage() {
 
   const upcomingBookings = bookings.filter((b) => b.status === 'upcoming')
 
-  function handleCancelBooking(id: string) {
-    if (!confirm('Cancel this booking?')) return
-    const next = bookings.map((b) => (b.id === id ? { ...b, status: 'cancelled' as const } : b))
+  async function handleCancelBooking(booking: Booking) {
+    if (isCancelling) return
+
+    setIsCancelling(true)
+    const next = bookings.map((b) =>
+      b.id === booking.id ? { ...b, status: 'cancelled' as const } : b,
+    )
     setBookings(next)
     saveBookings(next)
+
+    if (booking.email) {
+      try {
+        await fetch('/api/emails', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'booking-cancelled',
+            bookingId: booking.id,
+            serviceTitle: booking.serviceTitle,
+            date: booking.date,
+            time: booking.time,
+            fullName: booking.fullName ?? 'Customer',
+            email: booking.email,
+            phoneNumber: booking.phoneNumber,
+            address: booking.address,
+          }),
+        })
+      } catch (error) {
+        console.error('Booking cancellation email failed:', error)
+      }
+    }
+
+    setIsCancelling(false)
+    setBookingToCancel(null)
   }
 
   return (
@@ -93,7 +125,7 @@ export default function DashboardPage() {
                   <div className="flex justify-center sm:justify-end gap-2">
                     <button
                       type="button"
-                      onClick={() => handleCancelBooking(b.id)}
+                      onClick={() => setBookingToCancel(b)}
                       className="px-4 py-2 rounded-lg border border-pastel-pink-200 text-[var(--text-body)] font-medium hover:bg-pastel-pink-lighter/50 focus-ring"
                     >
                       Cancel
@@ -105,6 +137,48 @@ export default function DashboardPage() {
           )}
         </motion.div>
       </div>
+      <ThemedModal
+        open={!!bookingToCancel}
+        title="Cancel this booking?"
+        description={
+          bookingToCancel
+            ? `You’re about to cancel your ${bookingToCancel.serviceTitle.toLowerCase()} scheduled for ${new Date(
+                bookingToCancel.date + 'T12:00:00',
+              ).toLocaleDateString('en-US', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+              })} at ${bookingToCancel.time}.`
+            : undefined
+        }
+        onClose={() => setBookingToCancel(null)}
+        dismissible={!isCancelling}
+      >
+        <div className="rounded-2xl border border-pastel-pink-200/60 bg-white/70 p-4">
+          <p className="text-sm leading-6 text-[var(--text-body)]">
+            This booking will be removed from your upcoming list. You can always make a new
+            booking again anytime.
+          </p>
+        </div>
+        <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <button
+            type="button"
+            onClick={() => setBookingToCancel(null)}
+            disabled={isCancelling}
+            className="focus-ring inline-flex items-center justify-center rounded-full border-2 border-pastel-pink-soft px-5 py-3 font-medium text-[var(--text-dark)] transition-colors hover:bg-pastel-pink-lighter/50 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Keep booking
+          </button>
+          <button
+            type="button"
+            onClick={() => bookingToCancel && handleCancelBooking(bookingToCancel)}
+            disabled={isCancelling}
+            className="focus-ring inline-flex items-center justify-center rounded-full bg-pastel-green-soft px-5 py-3 font-medium text-[var(--text-dark)] btn-primary disabled:cursor-wait disabled:opacity-70"
+          >
+            {isCancelling ? 'Cancelling...' : 'Yes, cancel it'}
+          </button>
+        </div>
+      </ThemedModal>
     </div>
   )
 }

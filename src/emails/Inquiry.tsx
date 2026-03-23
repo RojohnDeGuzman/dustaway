@@ -6,49 +6,235 @@ import {
   Text,
   Section,
   Hr,
+  Button,
+  Img,
+  Container,
 } from "@react-email/components";
 import * as React from "react";
 
-type ConfirmationProps = {
+type InquiryProps = {
   fullName: string;
   phoneNumber: string;
   email: string;
   message: string;
+  baseUrl?: string;
 };
 
-export default function Confirmation({
+export default function Inquiry({
   fullName,
   phoneNumber,
   email,
   message,
-}: ConfirmationProps) {
+  baseUrl,
+}: InquiryProps) {
   return (
     <Html>
       <Head />
-      <Body style={{ fontFamily: "sans-serif", padding: "20px" }}>
-        <Heading>Thanks for reaching out, {fullName}! 🎉</Heading>
-        <Text>
-          We've received your inquiry and will get back to you shortly.
-        </Text>
-        <Hr />
-        <Section>
-          <Text>
-            <strong>Full Name:</strong> {fullName}
-          </Text>
-          <Text>
-            <strong>Phone Number:</strong> {phoneNumber}
-          </Text>
-          <Text>
-            <strong>Email:</strong> {email}
-          </Text>
-          <Text>
-            <strong>Message:</strong> {message}
-          </Text>
-        </Section>
-        <Hr />
-        <Text style={{ color: "#888", fontSize: "12px" }}>
-          — The Dustaway Team
-        </Text>
+      <Body
+        style={{
+          backgroundColor: "#FFDBDB",
+          fontFamily: "'DM Sans', sans-serif",
+          margin: 0,
+          padding: "40px 0",
+        }}
+      >
+        <Container style={{ maxWidth: "560px", margin: "0 auto" }}>
+          {/* Header */}
+          <Section
+            style={{
+              backgroundColor: "#fff",
+              borderRadius: "20px 20px 0 0",
+              padding: "32px 40px 24px",
+              borderBottom: "1px solid #FFDBDB",
+              textAlign: "center",
+            }}
+          >
+            <Img
+              src="https://res.cloudinary.com/dkuzqeafz/image/upload/f_auto,q_auto/dustaway-logo_cj5nth"
+              alt="Dustaway feather logo"
+              width="42"
+              height="42"
+              style={{ margin: "0 auto 10px", display: "block" }}
+            />
+            <Heading
+              style={{
+                fontFamily: "Georgia, serif",
+                fontSize: "26px",
+                color: "#2c2c2a",
+                margin: "0 0 4px",
+              }}
+            >
+              Dustaway
+            </Heading>
+            <Text style={{ fontSize: "13px", color: "#a89890", margin: 0 }}>
+              Professional Cleaning Services
+            </Text>
+          </Section>
+
+          {/* Body */}
+          <Section style={{ backgroundColor: "#fff", padding: "32px 40px" }}>
+            <Heading
+              style={{
+                fontFamily: "Georgia, serif",
+                fontSize: "22px",
+                color: "#2c2c2a",
+                margin: "0 0 8px",
+              }}
+            >
+              Thanks for reaching out, {fullName}! 🎉
+            </Heading>
+            <Text
+              style={{
+                fontSize: "15px",
+                color: "#5a5854",
+                lineHeight: "1.7",
+                margin: "0 0 24px",
+              }}
+            >
+              We've received your inquiry and our team will get back to you as
+              soon as possible.
+            </Text>
+
+            <Hr style={{ borderColor: "#FFDBDB", margin: "0 0 24px" }} />
+
+            {/* Summary Box */}
+            <Section
+              style={{
+                backgroundColor: "#FFF4F4",
+                borderRadius: "12px",
+                padding: "20px 24px",
+                borderLeft: "4px solid #c5dfc2",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: "11px",
+                  fontWeight: "600",
+                  color: "#a89890",
+                  letterSpacing: "1.2px",
+                  textTransform: "uppercase",
+                  margin: "0 0 14px",
+                }}
+              >
+                Your Inquiry Summary
+              </Text>
+              <Text
+                style={{
+                  fontSize: "14px",
+                  color: "#5a5854",
+                  margin: "0 0 8px",
+                }}
+              >
+                <strong style={{ color: "#2c2c2a" }}>Name:</strong> {fullName}
+              </Text>
+              <Text
+                style={{
+                  fontSize: "14px",
+                  color: "#5a5854",
+                  margin: "0 0 8px",
+                }}
+              >
+                <strong style={{ color: "#2c2c2a" }}>Phone:</strong>{" "}
+                {phoneNumber}
+              </Text>
+              <Text
+                style={{
+                  fontSize: "14px",
+                  color: "#5a5854",
+                  margin: "0 0 8px",
+                }}
+              >
+                <strong style={{ color: "#2c2c2a" }}>Email:</strong> {email}
+              </Text>
+              <Hr style={{ borderColor: "#FFDBDB", margin: "12px 0" }} />
+              <Text
+                style={{ fontSize: "13px", color: "#888", margin: "0 0 6px" }}
+              >
+                Message
+              </Text>
+              <Text
+                style={{
+                  fontSize: "14px",
+                  color: "#5a5854",
+                  margin: 0,
+                  lineHeight: "1.65",
+                }}
+              >
+                {message}
+              </Text>
+            </Section>
+          </Section>
+          {/* Confirmation Notice */}
+          <Section style={{ backgroundColor: "#fff", padding: "16px 40px 0" }}>
+            <Text
+              style={{
+                fontSize: "14px",
+                color: "#5a5854",
+                lineHeight: "1.7",
+                margin: 0,
+                textAlign: "center",
+                backgroundColor: "#FFF4F4",
+                borderRadius: "12px",
+                padding: "16px 20px",
+              }}
+            >
+              We will confirm your appointment via email or WhatsApp!
+            </Text>
+          </Section>
+
+          {/* CTA */}
+          <Section
+            style={{
+              backgroundColor: "#fff",
+              padding: "0 40px 32px",
+              textAlign: "center",
+            }}
+          >
+            <Text
+              style={{ fontSize: "14px", color: "#5a5854", margin: "0 0 20px" }}
+            >
+              In the meantime, feel free to explore our services.
+            </Text>
+            <Button
+              href="https://dustaway.com"
+              style={{
+                backgroundColor: "#7cb87a",
+                color: "#fff",
+                padding: "14px 32px",
+                borderRadius: "999px",
+                fontSize: "14px",
+                fontWeight: "500",
+                textDecoration: "none",
+                display: "inline-block",
+              }}
+            >
+              Visit our website
+            </Button>
+          </Section>
+
+          {/* Footer */}
+          <Section
+            style={{
+              backgroundColor: "#FFDBDB",
+              borderRadius: "0 0 20px 20px",
+              padding: "20px 40px",
+              textAlign: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: "12px",
+                color: "#a89890",
+                margin: 0,
+                lineHeight: "1.6",
+              }}
+            >
+              You're receiving this because you submitted an inquiry on our
+              website.
+              <br />© 2025 Dustaway. All rights reserved.
+            </Text>
+          </Section>
+        </Container>
       </Body>
     </Html>
   );
