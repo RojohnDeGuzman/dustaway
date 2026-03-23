@@ -33,7 +33,7 @@ export default function Inquiry({
       <Body
         style={{
           backgroundColor: "#FFDBDB",
-          fontFamily: "'DM Sans', sans-serif",
+          fontFamily: "&apos;DM Sans&apos;, sans-serif",
           margin: 0,
           padding: "40px 0",
         }}
@@ -91,8 +91,8 @@ export default function Inquiry({
                 margin: "0 0 24px",
               }}
             >
-              We've received your inquiry and our team will get back to you as
-              soon as possible.
+              We&apos;ve received your inquiry and our team will get back to you
+              as soon as possible.
             </Text>
 
             <Hr style={{ borderColor: "#FFDBDB", margin: "0 0 24px" }} />
@@ -229,7 +229,7 @@ export default function Inquiry({
                 lineHeight: "1.6",
               }}
             >
-              You're receiving this because you submitted an inquiry on our
+              You&apos;re receiving this because you submitted an inquiry on our
               website.
               <br />© 2025 Dustaway. All rights reserved.
             </Text>

@@ -41,7 +41,7 @@ export default function Booking({
       <Body
         style={{
           backgroundColor: "#FFDBDB",
-          fontFamily: "'DM Sans', sans-serif",
+          fontFamily: "&apos;DM Sans&apos;, sans-serif",
           margin: 0,
           padding: "40px 0",
         }}
@@ -99,8 +99,8 @@ export default function Booking({
                 margin: "0 0 24px",
               }}
             >
-              We're looking forward to serving you. Here's a summary of your
-              upcoming appointment.
+              We&apos;re looking forward to serving you. Here&apos;s a summary
+              of your upcoming appointment.
             </Text>
 
             <Hr style={{ borderColor: "#FFDBDB", margin: "0 0 24px" }} />
@@ -243,7 +243,7 @@ export default function Booking({
             <Text
               style={{ fontSize: "14px", color: "#5a5854", margin: "0 0 20px" }}
             >
-              Need to make changes or have questions? We're here to help.
+              Need to make changes or have questions? We&apos;re here to help.
             </Text>
             <Button
               href="https://dustaway.com"
@@ -279,7 +279,8 @@ export default function Booking({
                 lineHeight: "1.6",
               }}
             >
-              You're receiving this because you made a booking on our website.
+              You&apos;re receiving this because you made a booking on our
+              website.
               <br />© 2025 Dustaway. All rights reserved.
             </Text>
           </Section>
